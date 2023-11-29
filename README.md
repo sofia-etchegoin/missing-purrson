@@ -24,6 +24,11 @@ The tech we will use.
 
 ## User Stories
 
+- As a user whose cat has gone missing, I want to be able to list my missing cat. I want to be able to create a detailed profile that will help others identify my cat if they think they’ve seen him/her. This profile should include their name, breed, description, color/s, location, and most importantly, photos.
+
+- As a user who thinks I might have spotted a missing cat, I want to visit the website and view missing cats, I want to be able to search by area instead of trudging through a long list of missing cats that aren’t relevant to me. If I think I’ve seen a cat, I want to be able to log this information. 
+
+
 ## Workflow
 
 ### Git
