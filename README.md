@@ -138,7 +138,7 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 | cat_id_image [FK]   | integer   | unique identifier for a missing cat    |
 | image_url           | string    | identifies which user saved the cheese |
 | image_desc          | string    | description of image                   |
-| cat_image_sighting  | boolean   | determines waether the cat is sighted or missing |
+| cat_image_sighting  | boolean   | determines weather the cat is sighted or missing |
 
 ### Sighted Cats Table
 
