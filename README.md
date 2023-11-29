@@ -2,7 +2,7 @@
 
 ### MVP
 
-Cats can be fickle creatures and are known to occassionally take a hiatus. The heartache endured by their owners is all-consuming and leads to desperation. We've all seen posters stuck around of missing pets, their reach is limited, and hope wanes much like the sad paper that unpeels in the rain... Aside from conventional social media/forums, there's no dedicated online space to post about your awol-kitty troubles. A team of developers has taken it upon themselves to address this need. And so, we present Missing Purrson; the site to help cat owners reunite with their furry friends.
+Cats can be fickle creatures and are known to occassionally take a hiatus. The heartache endured by their owners is all-consuming and leads to desperation. We've all seen posters stuck around of missing pets, their reach is limited, and hope wanes much like the sad paper that unpeels in the rain... Aside from conventional social media/forums, there's no attractive dedicated online space to post about your awol-kitty troubles. A team of developers has taken it upon themselves to address this need. And so, we present Missing Purrson; the site to help cat owners reunite with their furry friends.
 
 Our MVP will allow a user to:
 
@@ -22,7 +22,11 @@ The tech we will use.
 - Auth0.
 - Uploading images to database.
 
-## Git workflow
+## User Stories
+
+## Workflow
+
+### Git
 
 Branches:
 main -> dev -> 'front-end + descriptor' and 'back-end + descriptor'.
@@ -38,6 +42,10 @@ The team will check whether:
 - no unnecessary comments or console logs remain
 - that Types are used where applicable, and any Type issues should be resolved
 - user-facing updates (front end/ css crew) should be checked for accessibility concerns (using the WAVE tool) code meets naming conventions.
+
+## KANBAN
+
+We will be using the digital KANBAN in our repo for the high-level planning. We will be using a physical KANBAN day-to-day
 
 ## Roles
 
@@ -94,6 +102,8 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 | -------------------- | --------- | ----------------------------------------- |
 | foreign key (userId) | integer   | unique identifier                         |
 | catId                | integer   | unique identifier for a missing cat       |
+| microchip            | string    | yes/no whether they are microchipped      |
+| microchipNumber      | integer   | unique number from the microchip          |
 | userId               | integer   | unique identifier for the cat owner       |
 | catName              | string    | name of the cat                           |
 | breed                | string    | breed of the cat                          |
@@ -162,30 +172,35 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 | Component   | components       | SignIn        |
 | Component   | components       | SignOut       |
 | Component   | components       | Profile       |
+| Component   | components       | Map           |
+
+We will be using snake_case for back-end function names, and camelCase for the front-end.
 
 ## Server API endpoints
 
-| METHOD | ENDPOINT                | PROTECTED? | USAGE                          | RETURNS                |
-| ------ | ----------------------- | ---------- | ------------------------------ | ---------------------- |
-| GET    | `/api/v1/cats`          | No         | gets a list of missing cats    | an array of cats       |
-| GET    | `/api/v1/cats/:id`      | No         | gets an individual missing cat | an object              |
-| POST   | `/api/v1/cats`          | Yes        | add a new missing cat          | the newly uploaded cat |
-| DELETE | `/api/v1/cats/:id`      | Yes        | delete an existing cat         | nothing (status OK)    |
-| PATCH  | `/api/v1/cats/:id`      | Yes        | update an existing cat         | the updated cat        |
-| POST   | `/api/v1/auth/login`    | Yes        | log in a user                  | the user's JWT token   |
-| POST   | `/api/v1/auth/register` | Yes        | register a user                | the user's JWT token   |
+| METHOD | ENDPOINT                | PROTECTED? | USAGE                           | RETURNS                |
+| ------ | ----------------------- | ---------- | ------------------------------- | ---------------------- |
+| GET    | `/api/v1/cats`          | No         | gets a list of missing cats     | an array of cats       |
+| GET    | `/api/v1/cats/:id`      | No         | gets an individual missing cat  | an object              |
+| POST   | `/api/v1/cats`          | Yes        | add a new missing cat           | the newly uploaded cat |
+| DELETE | `/api/v1/cats/:id`      | Yes        | delete an existing cat          | nothing (status OK)    |
+| PATCH  | `/api/v1/cats/:id`      | Yes        | update an existing cat          | the updated cat        |
+| GET    | `/api/v1/users`         | Yes        | gets a list of all users        | an array of users      |
+| GET    | `/api/v1/map`           | No         | gets map data from external API | TBC                    |
+| POST   | `/api/v1/auth/login`    | Yes        | log in a user                   | the user's JWT token   |
+| POST   | `/api/v1/auth/register` | Yes        | register a user                 | the user's JWT token   |
 
 ## Views Client Side
 
-| PAGE               | MVP? | PURPOSE                                                                                                                                  |
-| ------------------ | ---- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Home               | yes  | welcomes the user, displays links to the 'list a missing cat' and 'missing cats' pages, and has login/register buttons in the top corner |
-| Missing Cats       | yes  | shows images and some details of all the missing cats from the database that the user can click                                          |
-| List a Missing Cat | yes  | shows a form to submit missing cat details and upload an image to the database                                                           |
-| Cat Profile        | yes  | shows all the details of each missing cat (images, name, breed, age, last-seen/area, owner information)                                  |
-| Cat Sighting       | yes  | allows a user to record whether they have seen a missing cat. Includes google map api as stretch                                         |
-| Register           | no   | linked from the home page. View for the user to create an account                                                                        |
-| Login              | no   | linked from the home page. View for the user to log into their account                                                                   |
+| PAGE               | MVP? | PURPOSE                                                                                                                                                                                            |
+| ------------------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Home               | yes  | welcomes the user, displays links to the 'list a missing cat' and 'missing cats' pages, and has login/register buttons in the top corner                                                           |
+| Missing Cats       | yes  | shows images and some details of all the missing cats from the database that the user can click                                                                                                    |
+| List a Missing Cat | yes  | shows a form to submit missing cat details and upload an image to the database. Includes disclaimer about sharing personal information.                                                            |
+| Cat Profile        | yes  | shows all the details of each missing cat (images, name, breed, age, last-seen/area, owner information)                                                                                            |
+| Cat Sighting       | yes  | allows a user to record whether they have seen a missing cat. Includes a form for a user to record the place, time, photo, comment/description of the sighting. Includes google map api as stretch |
+| Register           | no   | linked from the home page. View for the user to create an account                                                                                                                                  |
+| Login              | no   | linked from the home page. View for the user to log into their account                                                                                                                             |
 
 ## Authentication
 
