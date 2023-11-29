@@ -105,24 +105,26 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 
 | COLUMN NAME          | DATA TYPE | PURPOSE                                   |
 | -------------------- | --------- | ----------------------------------------- |
-| cat_id [PK]             | increment | unique identifier for a missing cat       |
-| microchip            | string    | yes/no whether they are microchipped      |
-| microchip_number     | integer   | unique number from the microchip          |
-| user_id              | integer   | unique identifier for the cat owner       |
+| cat_id [PK]          | increment | unique identifier for a missing cat       |
+| microchip            | boolean   | yes/no whether they are microchipped      |
+| microchip_number     | string    | unique number from the microchip          |
+| user_id_mc [FK]      | integer   | unique identifier for the cat owner       |
 | cat_name             | string    | name of the cat                           |
 | breed                | string    | breed of the cat                          |
 | color                | string    | color of the cat                          |
 | description          | string    | description of the cat                    |
-| dateLost             | string    | date the cat went missing                 |
-| locationLat          | string    | latitude of the cat's last known location |
-| locationLng          | string    | logitude of the cat's last known location |
+| date_lost            | date      | date the cat went missing                 |
+| location_lat         | string    | latitude of the cat's last known location |
+| location_lng         | string    | logitude of the cat's last known location |
+| cat_missing          | boolean   | cat status is initially set to missing    |
 
 ### Users Table
 
 | COLUMN NAME | DATA TYPE | PURPOSE                             |
 | ----------- | --------- | ----------------------------------- |
-| userId      | integer   | unique identifier for each user     |
+| user_id [PK]| integer   | unique identifier for each user     |
 | username    | string    | username from auth0 registration    |
+| password    | string    | password from auth0 registration    |
 | email       | string    | used to log into user account       |
 | auth0_id    | string    | unique identifier supplied by auth0 |
 | given_name  | string    | user's first name                   |
@@ -132,26 +134,25 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 
 | COLUMN NAME         | DATA TYPE | PURPOSE                                |
 | ------------------- | --------- | -------------------------------------- |
-| foreign key (catId) | integer   | unique identifier                      |
-| imagesId            | integer   | unique identifier for a cat image      |
-| catId               | integer   | unique identifier for a missing cat    |
-| imageUrl            | string    | identifies which user saved the cheese |
+| image_id [PK]       | integer   | unique identifier for a cat image      |
+| cat_id_image [FK]   | integer   | unique identifier for a missing cat    |
+| image_url           | string    | identifies which user saved the cheese |
+| image_desc          | string    | description of image                   |
+| cat_image_sighting  | boolean   | determines waether the cat is sighted or missing |
 
 ### Sighted Cats Table
 
 | COLUMN NAME          | DATA TYPE | PURPOSE                                   |
 | -------------------- | --------- | ----------------------------------------- |
-| foreign key (userId) | integer   | unique identifier                         |
-| userId               | integer   | unique identifier for the cat owner       |
-| catId                | integer   | unique identifier for a missing cat       |
-| catName              | string    | name of the cat                           |
-| breed                | string    | breed of the cat                          |
+| sighted_cat_id [PK]  | integer   | unique identifier for a missing cat       |
+| user_id_sc [FK]      | integer   | unique identifier for the cat owner       |
+| cat_id_mc [FK]       | integer   | unique identifier for a sighted cat       |
 | color                | string    | color of the cat                          |
 | description          | string    | description of the cat                    |
-| dateLost             | string    | date the cat went missing                 |
-| locationLat          | string    | latitude of the cat's last known location |
-| locationLng          | string    | logitude of the cat's last known location |
-| contactInfo          | string    | email?                                    |
+| date_seen            | date      | date the cat went missing                 |
+| location_lat         | string    | latitude of the cat's last known location |
+| location_lng         | string    | logitude of the cat's last known location |
+| email                | string    | email?                                    |
 
 ## Naming conventions
 
