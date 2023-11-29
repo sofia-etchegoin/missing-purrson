@@ -105,12 +105,11 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 
 | COLUMN NAME          | DATA TYPE | PURPOSE                                   |
 | -------------------- | --------- | ----------------------------------------- |
-| foreign key (userId) | integer   | unique identifier                         |
-| catId                | integer   | unique identifier for a missing cat       |
+| cat_id [PK]             | increment | unique identifier for a missing cat       |
 | microchip            | string    | yes/no whether they are microchipped      |
-| microchipNumber      | integer   | unique number from the microchip          |
-| userId               | integer   | unique identifier for the cat owner       |
-| catName              | string    | name of the cat                           |
+| microchip_number     | integer   | unique number from the microchip          |
+| user_id              | integer   | unique identifier for the cat owner       |
+| cat_name             | string    | name of the cat                           |
 | breed                | string    | breed of the cat                          |
 | color                | string    | color of the cat                          |
 | description          | string    | description of the cat                    |
