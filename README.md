@@ -17,10 +17,10 @@ As stretch, our website will allow users to:
 
 The tech we will use.
 
-- Using the full-stack we have learnt at Dev Academy.
-- Google maps Api.
-- Auth0.
-- Uploading images to database.
+- the full-stack we have learnt at Dev Academy.
+- google maps API.
+- auth0.
+- uploading images to database.
 
 ## User Stories
 
