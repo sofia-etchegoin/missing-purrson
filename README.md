@@ -115,7 +115,7 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 | description          | string    | description of the cat                    |
 | date_lost            | date      | date the cat went missing                 |
 | location_lat         | string    | latitude of the cat's last known location |
-| location_lng         | string    | logitude of the cat's last known location |
+| location_lng         | string    | longitude of the cat's last known location |
 | cat_missing          | boolean   | cat status is initially set to missing    |
 
 ### Users Table
@@ -151,7 +151,7 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 | description          | string    | description of the cat                    |
 | date_seen            | date      | date the cat went missing                 |
 | location_lat         | string    | latitude of the cat's last known location |
-| location_lng         | string    | logitude of the cat's last known location |
+| location_lng         | string    | longitude of the cat's last known location |
 | email                | string    | email?                                    |
 
 ## Naming conventions
