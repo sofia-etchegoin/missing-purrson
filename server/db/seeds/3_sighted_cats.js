@@ -7,8 +7,7 @@ export async function seed(knex) {
       color: 'White',
       description: 'Friendly white cat with blue eyes found near the park',
       date_seen: '2023-01-20',
-      location_lat: '40.730610',
-      location_lng: '-73.935242',
+      location: '40.730610, -73.935242',
       email: 'founder@example.com',
     },
     {
@@ -18,8 +17,7 @@ export async function seed(knex) {
       color: 'Brown',
       description: 'Brown Siamese cat found in the backyard',
       date_seen: '2023-02-25',
-      location_lat: '34.052235',
-      location_lng: '-118.243683',
+      location: '34.052235, -118.243683',
       email: 'rescuer@example.com',
     },
     {
@@ -29,8 +27,7 @@ export async function seed(knex) {
       color: 'Gray',
       description: 'Gray tabby cat found playing near the street',
       date_seen: '2023-03-15',
-      location_lat: '41.878113',
-      location_lng: '-87.629799',
+      location: '41.878113, -87.629799',
       email: 'saver@example.com',
     },
     {
@@ -40,8 +37,8 @@ export async function seed(knex) {
       color: 'Black',
       description: 'Mysterious black cat found on the rooftop',
       date_seen: '2023-04-10',
-      location_lat: '37.774929',
-      location_lng: '-122.419416',
+      location: '37.774929, -122.419416',
+
       email: 'finder@example.com',
     },
     {
@@ -51,8 +48,7 @@ export async function seed(knex) {
       color: 'White',
       description: 'Lost white cat with a blue collar found near the church',
       date_seen: '2023-05-05',
-      location_lat: '40.712776',
-      location_lng: '-74.005974',
+      location: '40.712776, -74.005974',
       email: 'catlover@example.com',
     },
     {
@@ -62,8 +58,7 @@ export async function seed(knex) {
       color: 'Brown',
       description: 'Adorable brown cat found on the porch',
       date_seen: '2023-06-20',
-      location_lat: '33.749001',
-      location_lng: '-84.387978',
+      location: '33.749001, -84.387978',
       email: 'animalrescue@example.com',
     },
     {
@@ -73,8 +68,7 @@ export async function seed(knex) {
       color: 'Gray',
       description: 'Lost gray cat with a red collar found in the garden',
       date_seen: '2023-07-10',
-      location_lat: '39.952583',
-      location_lng: '-75.165222',
+      location: '39.952583, -75.165222',
       email: 'petfinder@example.com',
     },
     {
@@ -84,8 +78,7 @@ export async function seed(knex) {
       color: 'Black',
       description: 'Black cat with yellow eyes found near the woods',
       date_seen: '2023-08-15',
-      location_lat: '32.776272',
-      location_lng: '-96.796875',
+      location: '32.776272, -96.796875',
       email: 'foundcat@example.com',
     },
     {
@@ -95,8 +88,7 @@ export async function seed(knex) {
       color: 'White',
       description: 'White cat found in the neighborhood',
       date_seen: '2023-09-05',
-      location_lat: '41.878113',
-      location_lng: '-87.629799',
+      location: '41.878113, -87.629799',
       email: 'helpthecats@example.com',
     },
     {
@@ -106,8 +98,7 @@ export async function seed(knex) {
       color: 'Brown',
       description: 'Brown cat with a fluffy tail found in the park',
       date_seen: '2023-10-10',
-      location_lat: '37.774929',
-      location_lng: '-122.419416',
+      location: '37.774929, -122.419416',
       email: 'catrescue@example.com',
     },
   ])

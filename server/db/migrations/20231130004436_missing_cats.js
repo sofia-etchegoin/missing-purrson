@@ -9,8 +9,7 @@ export async function up(knex) {
     table.integer('color')
     table.integer('description')
     table.date('date_lost')
-    table.string('location_lat')
-    table.string('location_lng')
+    table.string('location')
     table.boolean('cat_missing')
   })
 }

@@ -9,8 +9,7 @@ export async function seed(knex) {
       color: 'White',
       description: 'Fluffy and friendly cat with blue eyes',
       date_lost: '2023-01-15',
-      location_lat: '40.7128',
-      location_lng: '-74.0060',
+      location: '40.7128, -74.0060',
       cat_missing: false,
     },
     {
@@ -22,8 +21,7 @@ export async function seed(knex) {
       color: 'Brown',
       description: 'Energetic cat with distinctive whiskers',
       date_lost: '2023-02-20',
-      location_lat: '34.0522',
-      location_lng: '-118.2437',
+      location: '34.0522, -118.2437',
       cat_missing: true,
     },
     {
@@ -35,8 +33,7 @@ export async function seed(knex) {
       color: 'Gray',
       description: 'Mittens is a playful and curious cat',
       date_lost: '2023-03-10',
-      location_lat: '41.8781',
-      location_lng: '-87.6298',
+      location: '41.8781, -87.6298',
       cat_missing: false,
     },
     {
@@ -48,8 +45,7 @@ export async function seed(knex) {
       color: 'Black',
       description: 'Shadow is a mysterious black cat with golden eyes',
       date_lost: '2023-04-05',
-      location_lat: '37.7749',
-      location_lng: '-122.4194',
+      location: '37.7749, -122.4194',
       cat_missing: false,
     },
   ])

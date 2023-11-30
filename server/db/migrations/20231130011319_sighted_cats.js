@@ -6,8 +6,7 @@ export async function up(knex) {
     table.string('color')
     table.string('description')
     table.date('date_seen')
-    table.string('location_lat')
-    table.string('location_lng')
+    table.string('location')
     table.string('email')
   })
 }
