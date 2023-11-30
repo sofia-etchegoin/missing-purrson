@@ -158,11 +158,11 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 
 | STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME |
 | ----------- | ---------------- | ------------- |
-| Database    | db-cats.ts       | getAllCatsDb  |
-| Database    | db-cats.ts       | getOneCatDb   |
-| Database    | db-cats.ts       | addCatDb      |
-| Database    | db-cats.ts       | deleteCatDb   |
-| Database    | db-cats.ts       | updateCatDb   |
+| Database    | db-cats.ts       | getAllMissingCatsDb  |
+| Database    | db-cats.ts       | getOneMissingCatDb   |
+| Database    | db-cats.ts       | addMissingCatDb      |
+| Database    | db-cats.ts       | deleteMissingCatDb   |
+| Database    | db-cats.ts       | updateMissingCatDb   |
 | Database    | db-users.ts      | getUsersDb    |
 | Database    | db-users.ts      | getOneUserDb  |
 | API Client  | api-cats.ts      | getAllCatsApi |
