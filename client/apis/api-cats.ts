@@ -17,7 +17,7 @@ export async function getAllMissingCatsApi(): Promise<MissingCat[]> {
 
 export async function getOneMissingCatApi(
   missingCatId: number,
-): Promise<Cat[]> {
+): Promise<MissingCat[]> {
   try {
     const response = await request.get(`${rootUrl}/singlecat/${missingCatId}`)
     return response.body
