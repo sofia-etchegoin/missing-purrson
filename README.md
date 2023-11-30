@@ -122,7 +122,7 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 
 | COLUMN NAME | DATA TYPE | PURPOSE                             |
 | ----------- | --------- | ----------------------------------- |
-| user_id [PK]| integer   | unique identifier for each user     |
+| user_id [PK]| increment | unique identifier for each user     |
 | username    | string    | username from auth0 registration    |
 | password    | string    | password from auth0 registration    |
 | email       | string    | used to log into user account       |
@@ -134,7 +134,7 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 
 | COLUMN NAME         | DATA TYPE | PURPOSE                                |
 | ------------------- | --------- | -------------------------------------- |
-| image_id [PK]       | integer   | unique identifier for a cat image      |
+| image_id [PK]       | increment | unique identifier for a cat image      |
 | cat_id_image [FK]   | integer   | unique identifier for a missing cat    |
 | image_url           | string    | identifies which user saved the cheese |
 | image_desc          | string    | description of image                   |
