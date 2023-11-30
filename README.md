@@ -102,22 +102,22 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 
 ### Missing Cat Table
 
-| COLUMN NAME      | DATA TYPE | PURPOSE                                |
-| ---------------- | --------- | -------------------------------------- |
-| cat_id [PK]      | increment | unique identifier for a missing cat    |
-| microchip        | boolean   | yes/no whether they are microchipped   |
-| microchip_number | string    | unique number from the microchip       |
-| user_id_mc [FK]  | integer   | unique identifier for the cat owner    |
-| cat_name         | string    | name of the cat                        |
-| breed            | string    | breed of the cat                       |
-| color            | string    | color of the cat                       |
-| description      | string    | description of the cat                 |
-| date_lost        | date      | date the cat went missing              |
-| location         | string    | last known location                    |
-| cat_missing      | boolean   | cat status is initially set to missing |
-| phone            | string    | cat owner's phone number               |
-| email            | string    | cat owner's email                      |
-| missing_image_url        | string    | image path for the uploaded photo      |
+| COLUMN NAME        | DATA TYPE | PURPOSE                                |
+| ----------------   | --------- | -------------------------------------- |
+| cat_id [PK]        | increment | unique identifier for a missing cat    |
+| microchip          | boolean   | yes/no whether they are microchipped   |
+| microchip_number   | string    | unique number from the microchip       |
+| user_id_mc [FK]    | integer   | unique identifier for the cat owner    |
+| cat_name           | string    | name of the cat                        |
+| breed              | string    | breed of the cat                       |
+| color              | string    | color of the cat                       |
+| description        | string    | description of the cat                 |
+| date_lost          | date      | date the cat went missing              |
+| location           | string    | last known location                    |
+| cat_missing        | boolean   | cat status is initially set to missing |
+| missing_cat_phone  | string    | cat owner's phone number               |
+| missing_cat_email  | string    | cat owner's email                      |
+| missing_image_url  | string    | image path for the uploaded photo      |
 
 ### Users Table
 
@@ -141,37 +141,36 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 | color               | string    | color of the cat                           |
 | description         | string    | description of the cat                     |
 | date_seen           | date      | date the cat went missing                  |
-| location_lat        | string    | latitude of the cat's last known location  |
-| location_lng        | string    | longitude of the cat's last known location |
-| phone               | string    | cat owner's phone number                   |
-| email               | string    | cat owner's email                          |
+| location            | string    | last known location                        |
+| sighted_cat_phone   | string    | phone number                               |
+| sighted_cat_email   | string    | cat owner's email                          |
 | sighted_image_url   | string    | image path for the uploaded photo          |
 
 ## Naming conventions
 
-| STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME |
-| ----------- | ---------------- | ------------- |
+| STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME        |
+| ----------- | ---------------- | -------------        |
 | Database    | db-cats.ts       | getAllMissingCatsDb  |
 | Database    | db-cats.ts       | getOneMissingCatDb   |
 | Database    | db-cats.ts       | addMissingCatDb      |
 | Database    | db-cats.ts       | deleteMissingCatDb   |
 | Database    | db-cats.ts       | updateMissingCatDb   |
-| Database    | db-users.ts      | getUsersDb    |
-| Database    | db-users.ts      | getOneUserDb  |
-| API Client  | api-cats.ts      | getAllCatsApi |
-| API Client  | api-cats.ts      | getOneCatApi  |
-| API Client  | api-cats.ts      | addCatApi     |
-| API Client  | api-cats.ts      | deleteCatApi  |
-| API Client  | api-cats.ts      | updateCatApi  |
-| Component   | components       | App           |
-| Component   | components       | Cat           |
-| Component   | components       | DeleteCat     |
-| Component   | components       | UpdateCat     |
-| Component   | components       | SignIn        |
-| Component   | components       | SignOut       |
-| Component   | components       | Profile       |
-| Component   | components       | Map           |
-|Componentn|components|Nav|
+| Database    | db-users.ts      | getUsersDb           |
+| Database    | db-users.ts      | getOneUserDb         |
+| API Client  | api-cats.ts      | getAllCatsApi        |
+| API Client  | api-cats.ts      | getOneCatApi         |
+| API Client  | api-cats.ts      | addCatApi            |
+| API Client  | api-cats.ts      | deleteCatApi         |
+| API Client  | api-cats.ts      | updateCatApi         |
+| Component   | components       | App                  |
+| Component   | components       | Cat                  |
+| Component   | components       | DeleteCat            |
+| Component   | components       | UpdateCat            |
+| Component   | components       | SignIn               |
+| Component   | components       | SignOut              |
+| Component   | components       | Profile              |
+| Component   | components       | Map                  |
+| Component   | components       | Nav                  |
 
 
 We will be using snake_case for back-end function names, and camelCase for the front-end.
