@@ -117,7 +117,7 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 | cat_missing      | boolean   | cat status is initially set to missing |
 | phone            | string    | cat owner's phone number               |
 | email            | string    | cat owner's email                      |
-| image_url        | string    | image path for the uploaded photo      |
+| missing_image_url        | string    | image path for the uploaded photo      |
 
 ### Users Table
 
@@ -143,7 +143,9 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 | date_seen           | date      | date the cat went missing                  |
 | location_lat        | string    | latitude of the cat's last known location  |
 | location_lng        | string    | longitude of the cat's last known location |
-| email               | string    | email?                                     |
+| phone               | string    | cat owner's phone number                   |
+| email               | string    | cat owner's email                          |
+| sighted_image_url   | string    | image path for the uploaded photo          |
 
 ## Naming conventions
 
