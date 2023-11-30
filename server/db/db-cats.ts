@@ -1,7 +1,9 @@
 import connection from './connection'
-import { Cat, NewCat } from '../../models/cats'
+import { MissingCat, SightedCat, NewMissingCat } from '../../models/cats'
 
-export async function getAllMissingCatsDb(db = connection): Promise<Cat[]> {
+export async function getAllMissingCatsDb(
+  db = connection,
+): Promise<MissingCat[]> {
   return await db('missing_cats').select(
     'cat_id as catId',
     'microchip',
@@ -23,7 +25,7 @@ export async function getAllMissingCatsDb(db = connection): Promise<Cat[]> {
 export async function getOneMissingCatDb(
   id: number,
   db = connection,
-): Promise<Cat[]> {
+): Promise<MissingCat[]> {
   return await db('missing_cats')
     .select(
       'cat_id as catId',
@@ -45,27 +47,6 @@ export async function getOneMissingCatDb(
     .first()
 }
 
-export async function getOneSightedCatDb(
-  id: number,
-  db = connection,
-): Promise<Cat[]> {
-  return await db('sighted_cats')
-    .select(
-      'sighted_cat_id as sightedCatId',
-      'user_id_sc as userIdSc',
-      'cat_id_mc as catIdMc',
-      'color',
-      'description',
-      'date_seen as dateSeen',
-      'location',
-      'sighted_cat_phone as sightedCatPhone',
-      'sighted_cat_email as sightedCatEmail',
-      'sighted_image_url as sightedImageUrl',
-    )
-    .where('sighted_cat_id', id)
-    .first()
-}
-
 export async function deleteMissingCatDb(
   id: number,
   db = connection,
@@ -79,7 +60,9 @@ export async function deleteMissingCatDb(
   }
 }
 
-export async function addMissingCatDb(newCat: NewCat): Promise<Cat[]> {
+export async function addMissingCatDb(
+  newCat: NewMissingCat,
+): Promise<MissingCat[]> {
   try {
     const [newCatId] = await connection('missing_cats').insert({
       microchip: newCat.microchip,
@@ -100,6 +83,46 @@ export async function addMissingCatDb(newCat: NewCat): Promise<Cat[]> {
     console.error('Error in addCat:', error)
     throw error
   }
+}
+
+//SIGHTED CATS FROM HERE
+
+export async function getAllSightedCatsDb(
+  db = connection,
+): Promise<SightedCat[]> {
+  return await db('sighted_cats').select(
+    'sighted_cat_id as sightedCatId',
+    'user_id_sc as userIdSc',
+    'cat_id_mc as catIdMc',
+    'color',
+    'description',
+    'date_seen as dateSeen',
+    'location',
+    'sighted_cat_phone as sightedCatPhone',
+    'sighted_cat_email as sightedCatEmail',
+    'sighted_image_url as sightedImageUrl',
+  )
+}
+
+export async function getOneSightedCatDb(
+  id: number,
+  db = connection,
+): Promise<MissingCat[]> {
+  return await db('sighted_cats')
+    .select(
+      'sighted_cat_id as sightedCatId',
+      'user_id_sc as userIdSc',
+      'cat_id_mc as catIdMc',
+      'color',
+      'description',
+      'date_seen as dateSeen',
+      'location',
+      'sighted_cat_phone as sightedCatPhone',
+      'sighted_cat_email as sightedCatEmail',
+      'sighted_image_url as sightedImageUrl',
+    )
+    .where('sighted_cat_id', id)
+    .first()
 }
 
 export function close(db = connection) {

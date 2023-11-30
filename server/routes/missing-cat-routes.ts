@@ -3,7 +3,7 @@ import * as db from '../db/db-cats'
 
 const router = Router()
 
-//GET localhost:5173/api/v1/cats/
+//GET localhost:5173/api/v1/missingcats/
 router.get('/', async (req, res) => {
   try {
     const cats = await db.getAllMissingCatsDb()
@@ -15,37 +15,20 @@ router.get('/', async (req, res) => {
   }
 })
 
-//GET localhost:5173/api/v1/cats/singlecat/:id
+//GET localhost:5173/api/v1/missingcats/singlecat/:id
 router.get('/singlecat/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
-    const cats = await db.getOneMissingCatDb(id)
+    const missingCats = await db.getOneMissingCatDb(id)
     //console.log(cats)
-    res.json(cats)
+    res.json(missingCats)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })
   }
 })
 
-// GET localhost:5173/api/v1/cats/singlecat/sighting/:id
-router.get('/singlecat/sighting/:id', async (req, res) => {
-  try {
-    const id = Number(req.params.id)
-    const cats = await db.getOneSightedCatDb(id)
-    //console.log(cats)
-    res.json(cats)
-    if (!cats) {
-      res.status(404).json({ error: 'id could not be found' })
-      return cats
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ message: 'Something went wrong' })
-  }
-})
-
-// DELETE /api/v1/cats/:id
+// DELETE localhost:5173/api/v1/missingcats/:id
 router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id)
   console.log('Deleting cat with ID:', id)
@@ -63,7 +46,7 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
-// POST /api/v1/cats/addcat
+// POST localhost:5173/api/v1/missingcats/addcat
 router.post('/addcat', async (req, res) => {
   try {
     const newCat = await db.addMissingCatDb(req.body)

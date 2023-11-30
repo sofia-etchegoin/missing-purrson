@@ -1,4 +1,4 @@
-export interface Cat {
+export interface MissingCat {
   catId: number
   microchip: number
   microChipNumber: string
@@ -12,7 +12,7 @@ export interface Cat {
   catMissing: boolean
 }
 
-export interface NewCat {
+export interface NewMissingCat {
   microchip: number
   microChipNumber: string
   userIdMc: number
@@ -23,4 +23,17 @@ export interface NewCat {
   dateLost: Date
   location: string
   catMissing: boolean
+}
+
+export interface SightedCat {
+  sightedCatId: number
+  userIdSc: number
+  catIdMc: number
+  color: string
+  description: string
+  dateSeen: Date
+  location: string
+  sightedCatPhone: string
+  sightedCatEmail: string
+  sightedImageUrl: string
 }
