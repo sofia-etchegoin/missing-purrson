@@ -1,5 +1,10 @@
 import connection from './connection'
-import { MissingCat, SightedCat, NewMissingCat } from '../../models/cats'
+import {
+  MissingCat,
+  SightedCat,
+  NewMissingCat,
+  NewSightedCat,
+} from '../../models/cats'
 
 export async function getAllMissingCatsDb(
   db = connection,
@@ -107,7 +112,7 @@ export async function getAllSightedCatsDb(
 export async function getOneSightedCatDb(
   id: number,
   db = connection,
-): Promise<MissingCat[]> {
+): Promise<SightedCat[]> {
   return await db('sighted_cats')
     .select(
       'sighted_cat_id as sightedCatId',
@@ -123,6 +128,47 @@ export async function getOneSightedCatDb(
     )
     .where('sighted_cat_id', id)
     .first()
+}
+
+export async function addSightedCatDb(
+  newCat: NewSightedCat,
+  db = connection,
+): Promise<SightedCat[]> {
+  try {
+    const [newCatId] = await db('sighted_cats').insert({
+      user_id_sc: newCat.userIdSc,
+      cat_id_mc: newCat.catIdMc,
+      color: newCat.color,
+      description: newCat.description,
+      date_seen: newCat.dateSeen,
+      location: newCat.location,
+      sighted_cat_phone: newCat.sightedCatPhone,
+      sighted_cat_email: newCat.sightedCatEmail,
+      sighted_image_url: newCat.sightedImageUrl,
+    })
+
+    const newAddedCat = await getOneSightedCatDb(newCatId)
+    return newAddedCat
+  } catch (error) {
+    console.error('Error in addCat:', error)
+    throw error
+  }
+}
+
+export async function singleCatSightingsDb(
+  cat_id: number,
+  db = connection,
+): Promise<SightedCat[]> {
+  try {
+    const sightedCats = await db('sighted_cats')
+      .select()
+      .where('cat_id_mc', cat_id)
+
+    return sightedCats
+  } catch (error) {
+    console.error('Error. No sightings for this cat:', error)
+    throw error
+  }
 }
 
 export function close(db = connection) {
