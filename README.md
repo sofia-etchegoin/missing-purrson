@@ -121,25 +121,15 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 
 ### Users Table
 
-| COLUMN NAME  | DATA TYPE | PURPOSE                             |
-| ------------ | --------- | ----------------------------------- |
-| user_id [PK] | integer   | unique identifier for each user     |
-| username     | string    | username from auth0 registration    |
-| password     | string    | password from auth0 registration    |
-| email        | string    | used to log into user account       |
-| auth0_id     | string    | unique identifier supplied by auth0 |
-| given_name   | string    | user's first name                   |
-| family_name  | string    | user's last name                    |
-
-### Cat Images Table
-
-| COLUMN NAME        | DATA TYPE | PURPOSE                                          |
-| ------------------ | --------- | ------------------------------------------------ |
-| image_id [PK]      | integer   | unique identifier for a cat image                |
-| cat_id_image [FK]  | integer   | unique identifier for a missing cat              |
-| image_url          | string    | identifies which user saved the cat              |
-| image_desc         | string    | description of image                             |
-| cat_image_sighting | boolean   | determines weather the cat is sighted or missing |
+| COLUMN NAME | DATA TYPE | PURPOSE                             |
+| ----------- | --------- | ----------------------------------- |
+| user_id [PK]| increment | unique identifier for each user     |
+| username    | string    | username from auth0 registration    |
+| password    | string    | password from auth0 registration    |
+| email       | string    | used to log into user account       |
+| auth0_id    | string    | unique identifier supplied by auth0 |
+| given_name  | string    | user's first name                   |
+| family_name | string    | user's last name                    |
 
 ### Sighted Cats Table
 
@@ -157,31 +147,30 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 
 ## Naming conventions
 
-| STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME  |
-| ----------- | ---------------- | -------------- |
-| Database    | db-cats.ts       | getAllCatsDb   |
-| Database    | db-cats.ts       | getOneCatDb    |
-| Database    | db-cats.ts       | addCatDb       |
-| Database    | db-cats.ts       | deleteCatDb    |
-| Database    | db-cats.ts       | updateCatDb    |
-| Database    | db-users.ts      | getUsersDb     |
-| Database    | db-users.ts      | getOneUserDb   |
-| API Client  | api-cats.ts      | getAllCatsApi  |
-| API Client  | api-cats.ts      | getOneCatApi   |
-| API Client  | api-cats.ts      | addCatApi      |
-| API Client  | api-cats.ts      | deleteCatApi   |
-| API Client  | api-cats.ts      | updateCatApi   |
-| Component   | components       | App            |
-| Component   | components       | Home           |
-| Component   | components       | SingleCat      |
-| Component   | components       | MissingCatList |
-| Component   | components       | DeleteCat      |
-| Component   | components       | UpdateCat      |
-| Component   | components       | SignIn         |
-| Component   | components       | SignOut        |
-| Component   | components       | Map            |
-| Component   | components       | CatSightings   |
-| Component   | components       | Nav            |
+| STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME |
+| ----------- | ---------------- | ------------- |
+| Database    | db-cats.ts       | getAllMissingCatsDb  |
+| Database    | db-cats.ts       | getOneMissingCatDb   |
+| Database    | db-cats.ts       | addMissingCatDb      |
+| Database    | db-cats.ts       | deleteMissingCatDb   |
+| Database    | db-cats.ts       | updateMissingCatDb   |
+| Database    | db-users.ts      | getUsersDb    |
+| Database    | db-users.ts      | getOneUserDb  |
+| API Client  | api-cats.ts      | getAllCatsApi |
+| API Client  | api-cats.ts      | getOneCatApi  |
+| API Client  | api-cats.ts      | addCatApi     |
+| API Client  | api-cats.ts      | deleteCatApi  |
+| API Client  | api-cats.ts      | updateCatApi  |
+| Component   | components       | App           |
+| Component   | components       | Cat           |
+| Component   | components       | DeleteCat     |
+| Component   | components       | UpdateCat     |
+| Component   | components       | SignIn        |
+| Component   | components       | SignOut       |
+| Component   | components       | Profile       |
+| Component   | components       | Map           |
+|Componentn|components|Nav|
+
 
 We will be using snake_case for back-end function names, and camelCase for the front-end.
 
