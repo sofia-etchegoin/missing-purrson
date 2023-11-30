@@ -1,7 +1,7 @@
 import connection from './connection'
 import { Cat } from '../../models/cats'
 
-export async function getAllMissingCats(db = connection): Promise<Cat[]> {
+export async function getAllMissingCatsDb(db = connection): Promise<Cat[]> {
   return await db('missing_cats').select(
     'cat_id as catId',
     'microchip',
@@ -18,7 +18,7 @@ export async function getAllMissingCats(db = connection): Promise<Cat[]> {
   )
 }
 
-export async function getAMissingCatById(
+export async function getOneMissingCatDb(
   id: number,
   db = connection,
 ): Promise<Cat[]> {

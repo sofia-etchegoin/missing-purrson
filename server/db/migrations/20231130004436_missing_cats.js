@@ -10,6 +10,9 @@ export async function up(knex) {
     table.integer('description')
     table.date('date_lost')
     table.string('location')
+    table.string('missing_cat_phone')
+    table.string('missing_cat_email')
+    table.string('missing_image_url')
     table.boolean('cat_missing')
   })
 }

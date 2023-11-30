@@ -5,7 +5,7 @@ const router = Router()
 
 router.get('/', async (req, res) => {
   try {
-    const cats = await db.getAllMissingCats()
+    const cats = await db.getAllMissingCatsDb()
     //console.log(cats)
     res.json(cats)
   } catch (error) {
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/singlecat/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
-    const cats = await db.getAMissingCatById(id)
+    const cats = await db.getOneMissingCatDb(id)
     //console.log(cats)
     res.json(cats)
   } catch (error) {

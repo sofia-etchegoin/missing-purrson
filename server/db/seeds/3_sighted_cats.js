@@ -8,7 +8,9 @@ export async function seed(knex) {
       description: 'Friendly white cat with blue eyes found near the park',
       date_seen: '2023-01-20',
       location: '40.730610, -73.935242',
-      email: 'founder@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'founder@example.com',
+      sighted_image_url: 'https://example.com/cat1.jpg',
     },
     {
       sighted_cat_id: 2,
@@ -18,7 +20,9 @@ export async function seed(knex) {
       description: 'Brown Siamese cat found in the backyard',
       date_seen: '2023-02-25',
       location: '34.052235, -118.243683',
-      email: 'rescuer@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'rescuer@example.com',
+      sighted_image_url: 'https://example.com/cat2.jpg',
     },
     {
       sighted_cat_id: 3,
@@ -28,7 +32,9 @@ export async function seed(knex) {
       description: 'Gray tabby cat found playing near the street',
       date_seen: '2023-03-15',
       location: '41.878113, -87.629799',
-      email: 'saver@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'saver@example.com',
+      sighted_image_url: 'https://example.com/cat3.jpg',
     },
     {
       sighted_cat_id: 4,
@@ -38,8 +44,9 @@ export async function seed(knex) {
       description: 'Mysterious black cat found on the rooftop',
       date_seen: '2023-04-10',
       location: '37.774929, -122.419416',
-
-      email: 'finder@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'finder@example.com',
+      sighted_image_url: 'https://example.com/cat4.jpg',
     },
     {
       sighted_cat_id: 5,
@@ -49,7 +56,9 @@ export async function seed(knex) {
       description: 'Lost white cat with a blue collar found near the church',
       date_seen: '2023-05-05',
       location: '40.712776, -74.005974',
-      email: 'catlover@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'catlover@example.com',
+      sighted_image_url: 'https://example.com/cat5.jpg',
     },
     {
       sighted_cat_id: 6,
@@ -59,7 +68,9 @@ export async function seed(knex) {
       description: 'Adorable brown cat found on the porch',
       date_seen: '2023-06-20',
       location: '33.749001, -84.387978',
-      email: 'animalrescue@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'animalrescue@example.com',
+      sighted_image_url: 'https://example.com/cat6.jpg',
     },
     {
       sighted_cat_id: 7,
@@ -69,7 +80,9 @@ export async function seed(knex) {
       description: 'Lost gray cat with a red collar found in the garden',
       date_seen: '2023-07-10',
       location: '39.952583, -75.165222',
-      email: 'petfinder@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'petfinder@example.com',
+      sighted_image_url: 'https://example.com/cat7.jpg',
     },
     {
       sighted_cat_id: 8,
@@ -79,7 +92,9 @@ export async function seed(knex) {
       description: 'Black cat with yellow eyes found near the woods',
       date_seen: '2023-08-15',
       location: '32.776272, -96.796875',
-      email: 'foundcat@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'foundcat@example.com',
+      sighted_image_url: 'https://example.com/cat8.jpg',
     },
     {
       sighted_cat_id: 9,
@@ -89,7 +104,9 @@ export async function seed(knex) {
       description: 'White cat found in the neighborhood',
       date_seen: '2023-09-05',
       location: '41.878113, -87.629799',
-      email: 'helpthecats@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'helpthecats@example.com',
+      sighted_image_url: 'https://example.com/cat9.jpg',
     },
     {
       sighted_cat_id: 10,
@@ -99,7 +116,9 @@ export async function seed(knex) {
       description: 'Brown cat with a fluffy tail found in the park',
       date_seen: '2023-10-10',
       location: '37.774929, -122.419416',
-      email: 'catrescue@example.com',
+      sighted_cat_phone: '022-021-2355',
+      sighted_cat_email: 'catrescue@example.com',
+      sighted_image_url: 'https://example.com/cat10.jpg',
     },
   ])
 }
