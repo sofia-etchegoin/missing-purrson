@@ -1,5 +1,5 @@
 import connection from './connection'
-import { Cat } from '../../models/cats'
+import { Cat, NewCat } from '../../models/cats'
 
 export async function getAllMissingCatsDb(db = connection): Promise<Cat[]> {
   return await db('missing_cats').select(
@@ -75,6 +75,29 @@ export async function deleteMissingCatDb(
     console.log(result)
   } catch (error) {
     console.error(error)
+    throw error
+  }
+}
+
+export async function addMissingCatDb(newCat: NewCat): Promise<Cat[]> {
+  try {
+    const [newCatId] = await connection('missing_cats').insert({
+      microchip: newCat.microchip,
+      microChipNumber: newCat.microChipNumber,
+      userIdMc: newCat.userIdMc,
+      catName: newCat.catName,
+      breed: newCat.breed,
+      color: newCat.color,
+      description: newCat.description,
+      dateLost: newCat.dateLost,
+      location: newCat.location,
+      cat_missing: newCat.cat_missing,
+    })
+
+    const newAddedCat = await getOneMissingCatDb(newCatId)
+    return newAddedCat
+  } catch (error) {
+    console.error('Error in addCat:', error)
     throw error
   }
 }

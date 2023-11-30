@@ -1,7 +1,7 @@
 import express from 'express'
 import * as Path from 'node:path'
 
-import catRoutes from './routes/routes-cats.ts'
+import catRoutes from './routes/routes-cats'
 
 const server = express()
 

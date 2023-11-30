@@ -8,7 +8,19 @@ export interface Cat {
   color: string
   description: string
   dateLost: Date
-  locationLat: string
-  locationLng: string
+  location: string
   catMissing: boolean
+}
+
+export interface NewCat {
+  microchip: number
+  microChipNumber: string
+  userIdMc: number
+  catName: string
+  breed: string
+  color: string
+  description: string
+  dateLost: Date
+  location: string
+  cat_missing: boolean
 }
