@@ -1,0 +1,31 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+*::after, *::before{
+  margin: 0; 
+  padding: 0; 
+  box-sizing: inherit;
+}
+
+
+
+// Overflow Testing Starts
+
+// * {
+//     background: #000 !important;
+//     color: #0f0 !important;
+//     outline: solid #f00 1px !important;
+// }
+
+// Overflow Testing Ends
+
+
+html{
+  font-size: 62.5% !important;
+  scroll-behavior: smooth;
+  user-select: none;
+}
