@@ -22,5 +22,5 @@ export interface NewCat {
   description: string
   dateLost: Date
   location: string
-  cat_missing: boolean
+  catMissing: boolean
 }

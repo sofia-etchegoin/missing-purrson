@@ -83,15 +83,15 @@ export async function addMissingCatDb(newCat: NewCat): Promise<Cat[]> {
   try {
     const [newCatId] = await connection('missing_cats').insert({
       microchip: newCat.microchip,
-      microChipNumber: newCat.microChipNumber,
-      userIdMc: newCat.userIdMc,
-      catName: newCat.catName,
+      microchip_number: newCat.microChipNumber,
+      user_id_mc: newCat.userIdMc,
+      cat_name: newCat.catName,
       breed: newCat.breed,
       color: newCat.color,
       description: newCat.description,
-      dateLost: newCat.dateLost,
+      date_lost: newCat.dateLost,
       location: newCat.location,
-      cat_missing: newCat.cat_missing,
+      cat_missing: newCat.catMissing,
     })
 
     const newAddedCat = await getOneMissingCatDb(newCatId)
