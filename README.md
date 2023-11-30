@@ -155,29 +155,30 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 
 ## Naming conventions
 
-| STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME |
-| ----------- | ---------------- | ------------- |
-| Database    | db-cats.ts       | getAllCatsDb  |
-| Database    | db-cats.ts       | getOneCatDb   |
-| Database    | db-cats.ts       | addCatDb      |
-| Database    | db-cats.ts       | deleteCatDb   |
-| Database    | db-cats.ts       | updateCatDb   |
-| Database    | db-users.ts      | getUsersDb    |
-| Database    | db-users.ts      | getOneUserDb  |
-| API Client  | api-cats.ts      | getAllCatsApi |
-| API Client  | api-cats.ts      | getOneCatApi  |
-| API Client  | api-cats.ts      | addCatApi     |
-| API Client  | api-cats.ts      | deleteCatApi  |
-| API Client  | api-cats.ts      | updateCatApi  |
-| Component   | components       | App           |
-| Component   | components       | Home          |
-| Component   | components       | SingleCat     |
-| Component   | components       | DeleteCat     |
-| Component   | components       | UpdateCat     |
-| Component   | components       | SignIn        |
-| Component   | components       | SignOut       |
-| Component   | components       | CatProfile    |
-| Component   | components       | Map           |
+| STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME  |
+| ----------- | ---------------- | -------------- |
+| Database    | db-cats.ts       | getAllCatsDb   |
+| Database    | db-cats.ts       | getOneCatDb    |
+| Database    | db-cats.ts       | addCatDb       |
+| Database    | db-cats.ts       | deleteCatDb    |
+| Database    | db-cats.ts       | updateCatDb    |
+| Database    | db-users.ts      | getUsersDb     |
+| Database    | db-users.ts      | getOneUserDb   |
+| API Client  | api-cats.ts      | getAllCatsApi  |
+| API Client  | api-cats.ts      | getOneCatApi   |
+| API Client  | api-cats.ts      | addCatApi      |
+| API Client  | api-cats.ts      | deleteCatApi   |
+| API Client  | api-cats.ts      | updateCatApi   |
+| Component   | components       | App            |
+| Component   | components       | Home           |
+| Component   | components       | SingleCat      |
+| Component   | components       | MissingCatList |
+| Component   | components       | DeleteCat      |
+| Component   | components       | UpdateCat      |
+| Component   | components       | SignIn         |
+| Component   | components       | SignOut        |
+| Component   | components       | Map            |
+| Component   | components       | CatSightings   |
 
 We will be using snake_case for back-end function names, and camelCase for the front-end.
 

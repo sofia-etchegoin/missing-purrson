@@ -1,1 +1,3 @@
-export default function SingleCat() {}
+export default function SingleCat() {
+  return <></>
+}
