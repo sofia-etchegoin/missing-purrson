@@ -1,9 +1,12 @@
+import { Outlet } from 'react-router-dom'
+
 function App() {
   return (
     <>
-      <div className="app">
+      <main>
         <h1>Missing Purrson</h1>
-      </div>
+        <Outlet />
+      </main>
     </>
   )
 }
