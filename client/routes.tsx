@@ -10,8 +10,8 @@ export const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Home />} />
     <Route path="cats" element={<MissingCatList />} />
-    <Route path="singleCat/:id" element={<SingleCat />} />
-    <Route path="addCat" element={<AddCat />} />
-    <Route path="singleCat/sighting/:id" element={<CatSightings />} />
+    <Route path="singlecat/:id" element={<SingleCat />} />
+    <Route path="addcat" element={<AddCat />} />
+    <Route path="singlecat/sighting/:id" element={<CatSightings />} />
   </Route>,
 )
