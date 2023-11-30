@@ -37,3 +37,15 @@ export interface SightedCat {
   sightedCatEmail: string
   sightedImageUrl: string
 }
+
+export interface NewSightedCat {
+  userIdSc: number
+  catIdMc: number
+  color: string
+  description: string
+  dateSeen: Date
+  location: string
+  sightedCatPhone: string
+  sightedCatEmail: string
+  sightedImageUrl: string
+}
