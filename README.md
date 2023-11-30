@@ -171,7 +171,7 @@ Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
 | API Client  | api-cats.ts      | updateCatApi  |
 | Component   | components       | App           |
 | Component   | components       | Home          |
-| Component   | components       | Cat           |
+| Component   | components       | SingleCat     |
 | Component   | components       | DeleteCat     |
 | Component   | components       | UpdateCat     |
 | Component   | components       | SignIn        |
@@ -183,17 +183,18 @@ We will be using snake_case for back-end function names, and camelCase for the f
 
 ## Server API endpoints
 
-| METHOD | ENDPOINT                | PROTECTED? | USAGE                           | RETURNS                |
-| ------ | ----------------------- | ---------- | ------------------------------- | ---------------------- |
-| GET    | `/api/v1/cats`          | No         | gets a list of missing cats     | an array of cats       |
-| GET    | `/api/v1/cats/:id`      | No         | gets an individual missing cat  | an object              |
-| POST   | `/api/v1/cats`          | Yes        | add a new missing cat           | the newly uploaded cat |
-| DELETE | `/api/v1/cats/:id`      | Yes        | delete an existing cat          | nothing (status OK)    |
-| PATCH  | `/api/v1/cats/:id`      | Yes        | update an existing cat          | the updated cat        |
-| GET    | `/api/v1/users`         | Yes        | gets a list of all users        | an array of users      |
-| GET    | `/api/v1/map`           | No         | gets map data from external API | TBC                    |
-| POST   | `/api/v1/auth/login`    | Yes        | log in a user                   | the user's JWT token   |
-| POST   | `/api/v1/auth/register` | Yes        | register a user                 | the user's JWT token   |
+| METHOD | ENDPOINT                              | PROTECTED? | USAGE                           | RETURNS                |
+| ------ | ------------------------------------- | ---------- | ------------------------------- | ---------------------- |
+| GET    | `/api/v1/cats`                        | No         | gets a list of missing cats     | an array of cats       |
+| GET    | `/api/v1/cats/singleCat/:id`          | No         | gets an individual missing cat  | an object              |
+| GET    | `/api/v1/cats/singleCat/sighting/:id` | No         | gets sighting detail of a cat   | an object              |
+| POST   | `/api/v1/addCat`                      | Yes        | add a new missing cat           | the newly uploaded cat |
+| DELETE | `/api/v1/cats/:id`                    | Yes        | delete an existing cat          | nothing (status OK)    |
+| PATCH  | `/api/v1/cats/:id`                    | Yes        | update an existing cat          | the updated cat        |
+| GET    | `/api/v1/users`                       | Yes        | gets a list of all users        | an array of users      |
+| GET    | `/api/v1/map`                         | No         | gets map data from external API | TBC                    |
+| POST   | `/api/v1/auth/login`                  | Yes        | log in a user                   | the user's JWT token   |
+| POST   | `/api/v1/auth/register`               | Yes        | register a user                 | the user's JWT token   |
 
 ## Views Client Side
 
