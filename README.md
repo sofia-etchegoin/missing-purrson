@@ -186,8 +186,8 @@ We will be using snake_case for back-end function names, and camelCase for the f
 | PATCH  | `/api/v1/missingcats/:id`                    | Yes        | update an existing cat          | the updated cat        |In Progress|
 | GET    | `/api/v1/sightedcats`                       | No         | gets a list of sighted cats     | an array of cats       |Working|
 | GET    | `/api/v1/sightedcats/singlecat/:id`         | No         | gets an individual sighted cat  | an object              |Working|
-| GET    | `/api/v1/sightedcats/singlecat/sighting/:id` | No         | gets all sightings for an individual missing cat   | an object     | In Progress        |
-| POST   | `/api/v1/sightedcats/addcat`                 | Yes        | add a new sighted cat           | the newly uploaded cat |In Progress|
+| GET    | `/api/v1/sightedcats/singlecat/sighting/:id` | No         | gets all sightings for an individual missing cat   | an object     | Working       |
+| POST   | `/api/v1/sightedcats/addcat`                 | Yes        | add a new sighted cat           | the newly uploaded cat |Working|
 | PATCH  | `/api/v1/sightedcats/:id`                    | Yes        | update a sighted cat            | the updated cat        |In Progress|
 | GET    | `/api/v1/users`                              | Yes        | gets a list of all users        | an array of users      |Stretch|
 | GET    | `/api/v1/map`                                | No         | gets map data from external API | TBC                    |Stretch|
