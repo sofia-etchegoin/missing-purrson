@@ -20,7 +20,7 @@ The tech we will use.
 - the full-stack we have learnt at Dev Academy.
 - google maps API.
 - auth0.
-- uploading images to database.
+- upload images to database using Multer middleware.
 
 ## User Stories
 
@@ -98,7 +98,7 @@ https://www.figma.com/file/Zguxyv1UlY4WI6PdSUyk5q/Untitled?type=design&node-id=0
 
 ## Database
 
-Link to the database diagram - https://dbdiagram.io/d/6565028d3be1495787d6d369
+Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be14957870363a1
 
 ### Missing Cat Table
 
