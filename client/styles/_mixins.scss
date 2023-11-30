@@ -1,0 +1,18 @@
+// Flexbox mixins
+
+// Row Flex
+@mixin row-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+// column Flex
+@mixin column-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+// @mixin body-font{
+//   font-family: $body-font;
+//   font-size: 1.5em;
+// }
