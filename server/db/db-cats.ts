@@ -1,6 +1,26 @@
-import connection from './connection.ts'
-import { Cat } from '../../models/cats.ts'
+import connection from './connection'
+import { Cat } from '../../models/cats'
 
-export async function getAllCats(db = connection): Promise<Cat[]> {
-  return db('').select()
+export async function getAllMissingCats(db = connection): Promise<Cat[]> {
+  return await db('missing_cats').select(
+    'cat_id as catId',
+    'microchip',
+    'microchip_number as microChipNumber',
+    'user_id_mc as userIdMc',
+    'cat_name as catName',
+    'breed',
+    'color',
+    'description',
+    'date_lost as dateLost',
+    'location_lat as locationLat',
+    'location_lng as locationLng',
+    'cat_missing as catMissing',
+  )
+}
+
+export async function getAMissingCatById(
+  id: number,
+  db = connection,
+): Promise<Cat[]> {
+  return await db('missing_cats').select('*').where('cat_id', id)
 }
