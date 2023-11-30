@@ -65,3 +65,20 @@ export async function getOneSightedCatDb(
     .where('sighted_cat_id', id)
     .first()
 }
+
+export async function deleteMissingCatDb(
+  id: number,
+  db = connection,
+): Promise<void> {
+  try {
+    const result = await db('missing_cats').where({ cat_id: id }).delete()
+    console.log(result)
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export function close(db = connection) {
+  db.destroy
+}
