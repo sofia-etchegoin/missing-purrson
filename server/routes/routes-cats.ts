@@ -26,4 +26,15 @@ router.get('/singlecat/:id', async (req, res) => {
   }
 })
 
+router.get('/singlecat/sighting/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    const cats = await db.getOneSightedCatDb(id)
+    //console.log(cats)
+    res.json(cats)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
 export default router
