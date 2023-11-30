@@ -102,23 +102,24 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 
 ### Missing Cat Table
 
-| COLUMN NAME      | DATA TYPE | PURPOSE                                    |
-| ---------------- | --------- | ------------------------------------------ |
-| cat_id [PK]      | increment | unique identifier for a missing cat        |
-| microchip        | boolean   | yes/no whether they are microchipped       |
-| microchip_number | string    | unique number from the microchip           |
-| user_id_mc [FK]  | integer   | unique identifier for the cat owner        |
-| cat_name         | string    | name of the cat                            |
-| breed            | string    | breed of the cat                           |
-| color            | string    | color of the cat                           |
-| description      | string    | description of the cat                     |
-| date_lost        | date      | date the cat went missing                  |
-| location_lat     | string    | latitude of the cat's last known location  |
-| location_lng     | string    | longitude of the cat's last known location |
-| cat_missing      | boolean   | cat status is initially set to missing     |
+| COLUMN NAME      | DATA TYPE | PURPOSE                                |
+| ---------------- | --------- | -------------------------------------- |
+| cat_id [PK]      | increment | unique identifier for a missing cat    |
+| microchip        | boolean   | yes/no whether they are microchipped   |
+| microchip_number | string    | unique number from the microchip       |
+| user_id_mc [FK]  | integer   | unique identifier for the cat owner    |
+| cat_name         | string    | name of the cat                        |
+| breed            | string    | breed of the cat                       |
+| color            | string    | color of the cat                       |
+| description      | string    | description of the cat                 |
+| date_lost        | date      | date the cat went missing              |
+| location         | string    | last known location                    |
+| cat_missing      | boolean   | cat status is initially set to missing |
+| phone            | string    | cat owner's phone number               |
+| email            | string    | cat owner's email                      |
+| image_url        | string    | image path for the uploaded photo      |
 
 ### Users Table
-
 
 | COLUMN NAME | DATA TYPE | PURPOSE                             |
 | ----------- | --------- | ----------------------------------- |
@@ -168,6 +169,8 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 | Component   | components       | SignOut       |
 | Component   | components       | Profile       |
 | Component   | components       | Map           |
+|Componentn|components|Nav|
+
 
 We will be using snake_case for back-end function names, and camelCase for the front-end.
 
