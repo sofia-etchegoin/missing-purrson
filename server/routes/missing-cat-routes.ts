@@ -1,6 +1,23 @@
 import { Router } from 'express'
 import * as db from '../db/db-cats'
 
+import multer from 'multer'
+//import * as Art from '../../models/art'
+
+//const router = express.Router();
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    console.log(file)
+    return cb(null, 'client/images/cat_images')
+  },
+  filename: function (req, file, cb) {
+    return cb(null, `${Date.now()}_${file.originalname}`)
+  },
+})
+
+const upload = multer({ storage })
+
 const router = Router()
 
 //GET localhost:5173/api/v1/missingcats/
@@ -47,9 +64,16 @@ router.delete('/:id', async (req, res) => {
 })
 
 // POST localhost:5173/api/v1/missingcats/addcat
-router.post('/addcat', async (req, res) => {
+router.post('/addcat', upload.single('file'), async (req, res) => {
   try {
-    const newCat = await db.addMissingCatDb(req.body)
+    if (!req.file) {
+      res.status(400).json({ error: 'No file uploaded' })
+      return
+    }
+    console.log(req)
+    const newCatFormData = req.body
+    newCatFormData.missingCatUrl = `/${req.file.name}`
+    const newCat = await db.addMissingCatDb(newCatFormData)
     res.status(201).json(newCat)
   } catch (err) {
     console.error('Error in POST /api/v1/addCat', err)

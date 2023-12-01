@@ -45,6 +45,7 @@ export default function AddCat() {
         ...formData,
         missingImageUrl: e.target.files[0],
       })
+      console.log(formData.missingImageUrl)
     } else if (e.target.name === 'microchip') {
       setFormData({
         ...formData,
