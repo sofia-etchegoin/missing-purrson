@@ -3,17 +3,17 @@ import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { addMissingCatApi } from '../apis/api-cats'
 
 const emptyCat = {
-  cat_name: '',
+  catName: '',
   location: '',
-  date_lost: '',
+  dateLost: '',
   color: '',
   breed: '',
   description: '',
-  missing_cat_phone: '',
-  missing_cat_email: '',
-  microchipped: '',
-  microchip_number: '',
-  missing_image_url: '',
+  missingCatPhone: '',
+  missingCatEmail: '',
+  microchip: '',
+  microChipNumber: '',
+  missingImageUrl: '',
 }
 
 export default function AddCat() {
@@ -30,6 +30,7 @@ export default function AddCat() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    console.log(formData)
 
     try {
       addCatMutuation.mutate(formData)
@@ -42,12 +43,12 @@ export default function AddCat() {
     if (e.target.type === 'file') {
       setFormData({
         ...formData,
-        missing_image_url: e.target.files[0],
+        missingImageUrl: e.target.files[0],
       })
     } else if (e.target.name === 'microchipped') {
       setFormData({
         ...formData,
-        microchipped: e.target.value,
+        microchip: e.target.value,
       })
     } else {
       setFormData({
@@ -70,12 +71,12 @@ export default function AddCat() {
       >
         <h2>Fill out this form to get them listed!</h2>
 
-        <label htmlFor="cat_name">NAME</label>
+        <label htmlFor="catName">NAME</label>
         <input
-          id="cat_name"
+          id="catName"
           type="text"
-          name="cat_name"
-          value={formData.cat_name}
+          name="catName"
+          value={formData.catName}
           onChange={handleInputChange}
         />
 
@@ -88,12 +89,12 @@ export default function AddCat() {
           onChange={handleInputChange}
         />
 
-        <label htmlFor="date_lost">DATE LOST</label>
+        <label htmlFor="dateLost">DATE LOST</label>
         <input
-          id="date_lost"
+          id="dateLost"
           type="date"
-          name="date_lost"
-          value={formData.date_lost}
+          name="dateLost"
+          value={formData.dateLost}
           onChange={handleInputChange}
         />
 
@@ -124,21 +125,21 @@ export default function AddCat() {
           onChange={handleInputChange}
         />
 
-        <label htmlFor="missing_cat_email">EMAIL</label>
+        <label htmlFor="missingCatEmail">EMAIL</label>
         <input
-          id="missing_cat_email"
+          id="missingCatEmail"
           type="email"
-          name="missing_cat_email"
-          value={formData.missing_cat_email}
+          name="missingCatEmail"
+          value={formData.missingCatEmail}
           onChange={handleInputChange}
         />
 
-        <label htmlFor="missing_cat_phone">PHONE</label>
+        <label htmlFor="missingCatPhone">PHONE</label>
         <input
-          id="missing_cat_phone"
-          type="tel"
-          name="missing_cat_phone"
-          value={formData.missing_cat_phone}
+          id="missingCatPhone"
+          type="text"
+          name="missingCatPhone"
+          value={formData.missingCatPhone}
           onChange={handleInputChange}
         />
 
@@ -146,28 +147,28 @@ export default function AddCat() {
         <select
           id="microchipped"
           name="microchipped"
-          value={formData.microchipped}
+          value={formData.microchip}
           onChange={handleInputChange}
         >
           <option value="yes">YES</option>
           <option value="no">NO</option>
         </select>
 
-        <label htmlFor="microchip_number">MICROCHIP NO.</label>
+        <label htmlFor="microchipNumber">MICROCHIP NO.</label>
         <input
-          id="microchip_number"
+          id="microchipNumber"
           type="text"
-          name="microchip_number"
-          value={formData.microchip_number}
+          name="microchipNumber"
+          value={formData.microChipNumber}
           onChange={handleInputChange}
         />
 
-        <label htmlFor="missing_image_url">PHOTO</label>
+        <label htmlFor="missingImageUrl">PHOTO</label>
         <input
-          id="missing_image_url"
+          id="missingImageUrl"
           type="file"
-          name="missing_image_url"
-          value={formData.missing_image_url}
+          name="missingImageUrl"
+          value={formData.missingImageUrl}
           onChange={handleInputChange}
         />
         <button type="submit" className="add-cat">

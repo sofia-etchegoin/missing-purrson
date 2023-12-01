@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { MissingCat } from '../../models/cats'
+import { MissingCat, NewMissingCat } from '../../models/cats'
 const rootUrl = '/api/v1'
 
 // GET all missing cats (/api/v1/missingcats)
@@ -29,7 +29,7 @@ export async function getOneMissingCatApi(
 
 // ADD missing cat (/api/v1/missingcats/addcat)
 
-export async function addMissingCatApi(missingCat: MissingCat) {
+export async function addMissingCatApi(missingCat: NewMissingCat) {
   try {
     const response = await request
       .post(`${rootUrl}/missingcats/addcat`)
