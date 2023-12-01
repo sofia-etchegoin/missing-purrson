@@ -2,6 +2,8 @@ import request from 'superagent'
 import { MissingCat, NewMissingCat } from '../../models/cats'
 const rootUrl = '/api/v1'
 
+// ----- MISSING CATS ----- //
+
 // GET all missing cats (/api/v1/missingcats)
 
 export async function getAllMissingCatsApi(): Promise<MissingCat[]> {
@@ -27,7 +29,7 @@ export async function getOneMissingCatApi(
   }
 }
 
-// ADD missing cat (/api/v1/missingcats/addcat)
+// ADD a missing cat (/api/v1/missingcats/addcat)
 
 export async function addMissingCatApi(missingCat: NewMissingCat) {
   try {
@@ -53,4 +55,12 @@ export async function deleteMissingCatApi(missingCatId: number) {
   }
 }
 
-// UPDATE cat
+// UPDATE missing cat
+
+// ----- SIGHTED CATS ----- //
+
+// GET all sighted cats (/api/v1/sightedcats)
+
+// GET one sighted cat (/api/v1/sightedcats/singlecat/:id)
+
+// ADD a sighted cat

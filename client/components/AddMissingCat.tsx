@@ -16,7 +16,7 @@ const emptyCat = {
   missingImageUrl: '',
 }
 
-export default function AddCat() {
+export default function AddMissingCat() {
   const queryClient = useQueryClient()
   const [formData, setFormData] = useState(emptyCat)
 
