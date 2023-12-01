@@ -158,7 +158,7 @@ export default function AddCat() {
           id="microchip_number"
           type="text"
           name="microchip_number"
-          value={formData.missing_cat_phone}
+          value={formData.microchip_number}
           onChange={handleInputChange}
         />
 
