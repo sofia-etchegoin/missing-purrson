@@ -31,7 +31,7 @@ export default function AddCat() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const formInfo = Object.assign({"missingImageUrl": file}, formData)
-    //console.log(formInfo) //Remember to Delete
+    console.log(formInfo) //Remember to Delete
     try {
       addCatMutuation.mutate(formInfo)
     } catch (error: any) {
