@@ -43,7 +43,7 @@
     </nav>
     <!-- NAV ENDS -->
     <!-- LANDING STARTS -->
-    <div class="landing">
+    <section class="landing">
       <div class="landing__left">
         <div class="landing__header">
           <h1 class="landing-heading">Missing Purson</h1>
@@ -83,8 +83,162 @@
         </div>
       </div>
       <div class="landing__right"></div>
-    </div>
+    </section>
     <!-- LANDING ENDS -->
+    <section class="cats">
+      <div class="cats__left">
+        <div class="cats-filter">
+          <h2 class="cats-filter-header">Filter By</h2>
+          <form action="" class="cats-filter-form">
+            <div class="cats-filter-form__section">
+              <label for="cats-region" class="cats-filter-form-label"
+                >Region</label
+              >
+              <input
+                type="text"
+                id="cats-region"
+                class="cats-filter-form-input"
+              />
+            </div>
+            <div class="cats-filter-form__section">
+              <label for="cats-city" class="cats-filter-form-label">City</label>
+              <input
+                type="text"
+                id="cats-city"
+                class="cats-filter-form-input"
+              />
+            </div>
+            <div class="cats-filter-form__section">
+              <button class="cats-filter-form-btn" id="catsFilterFormBtn">
+                Search
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="16"
+                  width="16"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="cats__right">
+        <div class="cats__header">
+          <h1 class="cats-header">These Kitties Need Your Help!</h1>
+        </div>
+        <div class="cats__cards">
+          <div class="cats-card">
+            <div class="cats-card__img">
+              <img
+                src="./client/images/creed.jpg"
+                alt=""
+                class="cats-card-img"
+              />
+            </div>
+            <div class="cats-card__info">
+              <h2 class="cats-card-title">Creed</h2>
+              <p class="cats-card-location">Placeholder, placeholding</p>
+              <p class="cats-card-bio">
+                Creed is new to the area (5 Weeks) and was only let out last
+                week, he’s never gone missing before. He’s very vocal and
+                friendly. He has a distinctive trail of white fur running from
+                his mouth to his tuxedo on his chest
+              </p>
+              <div class="cats-card__link">
+                <a href="#" class="cats-card-link"
+                  >More Info
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="16"
+                    width="14"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="single-cat">
+      <div class="single-cat__left">
+        <div class="single-cat__img">
+          <img src="./client/images/creed.jpg" alt="" class="single-cat-img" />
+        </div>
+      </div>
+      <div class="single-cat__right">
+        <div class="single-cat__header">
+          <h1 class="single-cat-heading">{c.catName}</h1>
+          <h2 class="single-cat-subheading">{c.location}</h2>
+        </div>
+        <div class="single-cat__description">
+          <h3 class="single-cat-info-heading">Description</h3>
+          <p class="single-cat-description">
+            <!-- {c.description} -->
+            Creed is new to the area (5 Weeks) and was only let out last week,
+            he’s never gone missing before. He’s very vocal and friendly. He has
+            a distinctive trail of white fur running from his mouth to his
+            tuxedo on his chest
+          </p>
+        </div>
+        <div class="single-cat__table">
+          <div class="single-cat__section">
+            <h3 class="single-cat-info-heading">Last Seen</h3>
+            <p class="single-cat-info-body">{c.dateLost}</p>
+          </div>
+          <div class="single-cat__section">
+            <h3 class="single-cat-info-heading">Breed</h3>
+            <p class="single-cat-info-body">{c.breed}</p>
+          </div>
+          <div class="single-cat__section">
+            <h3 class="single-cat-info-heading">Colour</h3>
+            <p class="single-cat-info-body">{c.color}</p>
+          </div>
+          <div class="single-cat__section">
+            <h3 class="single-cat-info-heading">Microchipped?</h3>
+            <p class="single-cat-info-body">Yes</p>
+          </div>
+          <div class="single-cat__section">
+            <h3 class="single-cat-info-heading">Microchip Number</h3>
+            <p class="single-cat-info-body">{c.microChipNumber}</p>
+          </div>
+          <div class="single-cat__section">
+            <h3 class="single-cat-info-heading">Owner Email</h3>
+            <p class="single-cat-info-body">{c.missingCatEmail}</p>
+          </div>
+          <div class="single-cat__section">
+            <h3 class="single-cat-info-heading">Owner Email</h3>
+            <p class="single-cat-info-body">{c.missingCatPhone}</p>
+          </div>
+        </div>
+        <div class="single-cat__link">
+          <a href="" class="single-cat-link"
+            >Sightings
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="16"
+              width="14"
+              viewBox="0 0 448 512"
+            >
+              <path
+                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
     <script src="./client/index.tsx" type="module"></script>
   </body>
 </html>

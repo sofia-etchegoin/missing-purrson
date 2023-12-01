@@ -1,0 +1,122 @@
+.single-cat{
+  height: 100vh;
+  width: 100%;
+  @include row-flex;
+  gap: 5em;
+  padding: 8em;
+  background: $orange;
+
+  &__left{
+    flex-basis: 50%;
+  }
+
+  &__img{
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-img{
+    height: 100%;
+    width: auto;
+    border-radius: 30px;
+  }
+
+
+  &__right{
+    flex-basis: 50%;
+    @include column-flex;
+    gap: 5em;
+  }
+
+  &__header{
+    @include column-flex;
+    gap: 2em;
+  }
+
+  &-heading{
+    @include display-font;
+  }
+
+  &-subheading{
+    @include subheading-body-font;
+    font-size: 2em;
+  }
+
+
+  &__description{
+    @include column-flex;
+    width: 80%;
+  }
+
+  &-description{
+    font-family: $body-font;
+    font-size: 2.5em;
+    font-weight: 500;
+  }
+
+
+  &__table{
+    width: 80%;
+    padding: 3em;
+    border-radius: 15px;
+    background: $white;
+    @include column-flex;
+    gap: 2em;
+  }
+
+  &__section{
+    width: 100%;
+    @include row-flex;
+    justify-content: space-between;
+  }
+
+  &-info{
+
+    &-heading{
+      @include subheading-body-font;
+      padding: 0;
+      border: 0;
+      font-size: 2em;
+    }
+
+    &-body{
+      font-family: $body-font;
+      font-weight: 600;
+      font-size: 2em;
+    }
+
+  }
+
+  &__link{
+    width: 20%
+  }
+  
+
+  &-link{
+    @include row-flex;
+    @include center-flex;
+    gap: 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0.8em 0.5em;
+    border: solid 2px $blue;
+    border-radius: 30px;
+    cursor: pointer;
+    color: $black;
+
+    svg{
+      fill: $black;
+    }
+
+    &:hover{
+      @include btn-hover;
+      color: $white;
+
+      svg{
+        fill: $white;
+        transition: 0.3s ease-in-out;
+      }
+    }
+  }
+}

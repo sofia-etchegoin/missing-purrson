@@ -10,7 +10,7 @@
 
   &__left{
     flex-basis: 50%;
-    padding: 5em;
+    padding: 10em;
     @include column-flex;
     gap: 3em;
   }
@@ -34,7 +34,7 @@
   }
  
   &-body{
-    padding-left: 1em;
+    padding-left: 0.5em;
     font-family: $body-font;
     font-size: 4.5em;
     color: $white;
@@ -52,7 +52,7 @@
     color: $white;
     border: solid 3px $blue;
     font-size: 2em;
-    padding: 1em 2em;
+    padding: 0.8em 2em;
     border-radius: 45px;
     @include row-flex;
     align-items: center;
@@ -64,9 +64,7 @@
   }
 
   &-link:hover{
-    color: $black;
-    background: $blue;
-    transition: 0.3s ease-in-out;
+  @include btn-hover;
 
     svg{
       fill: $black;
