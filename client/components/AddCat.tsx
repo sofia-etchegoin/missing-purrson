@@ -45,7 +45,7 @@ export default function AddCat() {
         ...formData,
         missingImageUrl: e.target.files[0],
       })
-    } else if (e.target.name === 'microchipped') {
+    } else if (e.target.name === 'microchip') {
       setFormData({
         ...formData,
         microchip: e.target.value,
@@ -128,7 +128,7 @@ export default function AddCat() {
         <label htmlFor="missingCatEmail">EMAIL</label>
         <input
           id="missingCatEmail"
-          type="email"
+          type="text"
           name="missingCatEmail"
           value={formData.missingCatEmail}
           onChange={handleInputChange}
@@ -143,10 +143,10 @@ export default function AddCat() {
           onChange={handleInputChange}
         />
 
-        <label htmlFor="microchipped">MICROCHIPPED?</label>
+        <label htmlFor="microchip">MICROCHIPPED?</label>
         <select
-          id="microchipped"
-          name="microchipped"
+          id="microchip"
+          name="microchip"
           value={formData.microchip}
           onChange={handleInputChange}
         >
@@ -154,11 +154,11 @@ export default function AddCat() {
           <option value="no">NO</option>
         </select>
 
-        <label htmlFor="microchipNumber">MICROCHIP NO.</label>
+        <label htmlFor="microChipNumber">MICROCHIP NO.</label>
         <input
-          id="microchipNumber"
+          id="microChipNumber"
           type="text"
-          name="microchipNumber"
+          name="microChipNumber"
           value={formData.microChipNumber}
           onChange={handleInputChange}
         />
