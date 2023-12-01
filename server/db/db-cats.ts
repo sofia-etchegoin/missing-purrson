@@ -79,6 +79,9 @@ export async function addMissingCatDb(
       description: newCat.description,
       date_lost: newCat.dateLost,
       location: newCat.location,
+      missing_cat_phone: newCat.missingCatPhone,
+      missing_cat_email: newCat.missingCatEmail,
+      missing_image_url: newCat.missingImageUrl,
       cat_missing: newCat.catMissing,
     })
 
