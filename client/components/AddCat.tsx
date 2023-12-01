@@ -13,13 +13,13 @@ const emptyCat = {
   missingCatEmail: '',
   microchip: '',
   microChipNumber: '',
-  missingImageUrl: '',
+  //missingImageUrl: '',
 }
 
 export default function AddCat() {
   const queryClient = useQueryClient()
   const [formData, setFormData] = useState(emptyCat)
-
+  const [file, setFile] = useState()
   const addCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
     onSuccess: () => {
@@ -30,10 +30,10 @@ export default function AddCat() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
-
+    const formInfo = Object.assign({"missingImageUrl": file}, formData)
+    //console.log(formInfo) //Remember to Delete
     try {
-      addCatMutuation.mutate(formData)
+      addCatMutuation.mutate(formInfo)
     } catch (error: any) {
       console.log('Error adding cat')
     }
@@ -41,11 +41,8 @@ export default function AddCat() {
 
   const handleInputChange = async (e: any) => {
     if (e.target.type === 'file') {
-      setFormData({
-        ...formData,
-        missingImageUrl: e.target.files[0],
-      })
-      console.log(formData.missingImageUrl)
+      setFile(e.target.files[0])
+      //console.log(formData.missingImageUrl)
     } else if (e.target.name === 'microchip') {
       setFormData({
         ...formData,
