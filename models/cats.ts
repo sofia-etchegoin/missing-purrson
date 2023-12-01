@@ -9,6 +9,9 @@ export interface MissingCat {
   description: string
   dateLost: Date
   location: string
+  missing_cat_phone: string
+  missing_cat_email: string
+  missing_image_url: string
   catMissing: boolean
 }
 
@@ -22,6 +25,9 @@ export interface NewMissingCat {
   description: string
   dateLost: Date
   location: string
+  missing_cat_phone: string
+  missing_cat_email: string
+  missing_image_url: string
   catMissing: boolean
 }
 
