@@ -1,3 +1,5 @@
+// AddMissingCat.tsx
+
 import { useState } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { addMissingCatApi } from '../apis/api-cats'
@@ -20,7 +22,7 @@ export default function AddMissingCat() {
   const queryClient = useQueryClient()
   const [formData, setFormData] = useState(emptyCat)
 
-  const addCatMutuation = useMutation({
+  const addMissingCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
     onSuccess: () => {
       queryClient.invalidateQueries(['missing_cats'])
@@ -30,12 +32,10 @@ export default function AddMissingCat() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
-
     try {
-      addCatMutuation.mutate(formData)
+      addMissingCatMutuation.mutate(formData)
     } catch (error: any) {
-      console.log('Error adding cat')
+      console.log('Error adding missing cat')
     }
   }
 
@@ -63,6 +63,7 @@ export default function AddMissingCat() {
       <div>
         <h1>Missing your kitty?</h1>
       </div>
+
       <form
         action="/addcat"
         onSubmit={handleSubmit}
@@ -171,7 +172,8 @@ export default function AddMissingCat() {
           value={formData.missingImageUrl}
           onChange={handleInputChange}
         />
-        <button type="submit" className="add-cat">
+
+        <button type="submit" className="submit">
           Submit
         </button>
       </form>

@@ -178,20 +178,20 @@ We will be using snake_case for back-end function names, and camelCase for the f
 
 ## Server API endpoints
 
-| METHOD | ENDPOINT                                     | PROTECTED? | USAGE                                            | RETURNS                | DONE        |
-| ------ | -------------------------------------------- | ---------- | ------------------------------------------------ | ---------------------- | ----------- |
-| GET    | `/api/v1/missingcats`                        | No         | gets a list of missing cats                      | an array of cats       | Working     |
-| GET    | `/api/v1/missingcats/singlecat/:id`          | No         | gets an individual missing cat                   | an object              | Working     |
-| POST   | `/api/v1/missingcats/addcat`                 | Yes        | add a new missing cat                            | the newly uploaded cat | Working     |
-| DELETE | `/api/v1/missingcats/:id`                    | Yes        | delete an existing cat                           | nothing (status OK)    | In Progress |
-| PATCH  | `/api/v1/missingcats/:id`                    | Yes        | update an existing cat                           | the updated cat        | In Progress |
-| GET    | `/api/v1/sightedcats/singlecat/sighting/:id` | No         | gets all sightings for an individual missing cat | an object              | Working     |
-| POST   | `/api/v1/sightedcats/addcat`                 | Yes        | add a new sighted cat                            | the newly uploaded cat | Working     |
-| PATCH  | `/api/v1/sightedcats/:id`                    | Yes        | update a sighted cat                             | the updated cat        | In Progress |
-| GET    | `/api/v1/users`                              | Yes        | gets a list of all users                         | an array of users      | Stretch     |
-| GET    | `/api/v1/map`                                | No         | gets map data from external API                  | TBC                    | Stretch     |
-| POST   | `/api/v1/auth/login`                         | Yes        | log in a user                                    | the user's JWT token   | Stretch     |
-| POST   | `/api/v1/auth/register`                      | Yes        | register a user                                  | the user's JWT token   | Stretch     |
+| METHOD | ENDPOINT                 | PROTECTED? | USAGE                                            | RETURNS                | DONE        |
+| ------ | ------------------------ | ---------- | ------------------------------------------------ | ---------------------- | ----------- |
+| GET    | `/api/v1/missingcats`    | No         | gets a list of missing cats                      | an array of cats       | Working     |
+| GET    | `/api/v1/missingcat/:id` | No         | gets an individual missing cat                   | an object              | Working     |
+| POST   | `/api/v1/addmissingcat`  | Yes        | add a new missing cat                            | the newly uploaded cat | Working     |
+| DELETE | `/api/v1/missingcat/:id` | Yes        | delete an existing cat                           | nothing (status OK)    | In Progress |
+| PATCH  | `/api/v1/missingcat/:id` | Yes        | update an existing cat                           | the updated cat        | In Progress |
+| GET    | `/api/v1/sightings/:id`  | No         | gets all sightings for an individual missing cat | an object              | Working     |
+| POST   | `/api/v1/sightings/:id`  | Yes        | add a new sighting of a missing cat              | the newly uploaded cat | Working     |
+| PATCH  | `/api/v1/sightings/:id`  | Yes        | update a sighted cat                             | the updated cat        | In Progress |
+| GET    | `/api/v1/users`          | Yes        | gets a list of all users                         | an array of users      | Stretch     |
+| GET    | `/api/v1/map`            | No         | gets map data from external API                  | TBC                    | Stretch     |
+| POST   | `/api/v1/auth/login`     | Yes        | log in a user                                    | the user's JWT token   | Stretch     |
+| POST   | `/api/v1/auth/register`  | Yes        | register a user                                  | the user's JWT token   | Stretch     |
 
 ## Views Client Side
 

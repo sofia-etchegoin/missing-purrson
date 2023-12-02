@@ -1,5 +1,7 @@
+//api-cats.ts
+
 import request from 'superagent'
-import { MissingCat, NewMissingCat } from '../../models/cats'
+import { MissingCat, NewMissingCat, NewSightedCat } from '../../models/cats'
 const rootUrl = '/api/v1'
 
 // ----- MISSING CATS ----- //
@@ -15,13 +17,13 @@ export async function getAllMissingCatsApi(): Promise<MissingCat[]> {
   }
 }
 
-// GET one missing cat (/api/v1/missingcats/singlecat/:id)
+// GET one missing cat (/api/v1/missingcat/:id)
 
 export async function getOneMissingCatApi(
   missingCatId: number,
 ): Promise<MissingCat[]> {
   try {
-    const response = await request.get(`${rootUrl}/singlecat/${missingCatId}`)
+    const response = await request.get(`${rootUrl}/missingcats/${missingCatId}`)
     return response.body
   } catch (error) {
     console.error(`Error fetching cat with id ${missingCatId}: `, error)
@@ -29,20 +31,20 @@ export async function getOneMissingCatApi(
   }
 }
 
-// ADD a missing cat (/api/v1/missingcats/addcat)
+// ADD a missing cat (/api/v1/addmissingcat)
 
 export async function addMissingCatApi(missingCat: NewMissingCat) {
   try {
     const response = await request
-      .post(`${rootUrl}/missingcats/addcat`)
+      .post(`${rootUrl}/addmissingcat`)
       .send(missingCat)
     return response.body
   } catch (error) {
-    console.error(`Error adding cat `, error)
+    throw console.error(`Error adding missing cat `, error)
   }
 }
 
-// DELETE a missing cat (/api/v1/missingcats/:id)
+// DELETE a missing cat (/api/v1/missingcat/:id)
 
 export async function deleteMissingCatApi(missingCatId: number) {
   try {
@@ -51,16 +53,37 @@ export async function deleteMissingCatApi(missingCatId: number) {
     )
     return response.body
   } catch (error) {
-    console.error(`Error deleting cat, `, error)
+    throw console.error(`Error deleting cat, `, error)
   }
 }
 
 // UPDATE missing cat
 
-// ----- SIGHTED CATS ----- //
+// ----- CAT SIGHTINGS ----- //
 
-// GET all sighted cats (/api/v1/sightedcats)
+// GET sightings for a particular cat (/api/v1/sightings/:id)
 
-// GET one sighted cat (/api/v1/sightedcats/singlecat/:id)
+export async function getCatSightingsApi(id: number) {
+  try {
+    const response = await request.get(`${rootUrl}/${id}`)
+    return response.body
+  } catch (error) {
+    throw console.error('Error fetching cat sightings', error)
+  }
+}
 
-// ADD a sighted cat
+// ADD a cat sighting for a particular cat (/api/v1/sightings/:id)
+
+export async function addCatSightingApi(
+  sightedCat: NewSightedCat,
+  catId: number,
+) {
+  try {
+    const response = await request
+      .post(`${rootUrl}/sightings/${catId}`)
+      .send(sightedCat)
+    return response.body
+  } catch (error) {
+    throw console.error(`Error adding cat sighting`, error)
+  }
+}
