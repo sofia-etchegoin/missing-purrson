@@ -33,11 +33,11 @@ export async function getOneMissingCatApi(catId: number): Promise<MissingCat> {
 
 // ADD a missing cat (/api/v1/missingcats/addcat)
 
-export async function addMissingCatApi(missingCat: NewMissingCat) {
+export async function addMissingCatApi(formData: MissingCat) {
   try {
     const response = await request
       .post(`${rootUrl}/missingcats/addcat`)
-      .send(missingCat)
+      .send(formData)
     return response.body
   } catch (error) {
     throw console.error(`Error adding missing cat `, error)
