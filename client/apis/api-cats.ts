@@ -36,7 +36,7 @@ export async function getOneMissingCatApi(
 export async function addMissingCatApi(missingCat: NewMissingCat) {
   try {
     const response = await request
-      .post(`${rootUrl}/addmissingcat`)
+      .post(`${rootUrl}/missingcats`)
       .send(missingCat)
     return response.body
   } catch (error) {
