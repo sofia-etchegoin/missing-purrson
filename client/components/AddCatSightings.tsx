@@ -18,10 +18,10 @@ const emptySighting = {
 export default function AddCatSightings() {
   const queryClient = useQueryClient()
   const [formData, setFormData] = useState(emptySighting)
-  const { id } = useParams()
+  const { catIdMc } = useParams()
 
   const addCatSightingMutation = useMutation({
-    mutationFn: () => addCatSightingApi(catId),
+    mutationFn: (sightedCat) => addCatSightingApi(sightedCat, Number(catIdMc)),
     onSuccess: () => {
       queryClient.invalidateQueries(['sighted_cats'])
       setFormData(emptySighting)

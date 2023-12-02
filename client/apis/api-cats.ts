@@ -59,7 +59,7 @@ export async function deleteMissingCatApi(missingCatId: number) {
 
 // ----- CAT SIGHTINGS ----- //
 
-// GET sightings for a particular cat (/api/v1/sightings/:id)
+// GET sightings for a particular cat (/api/v1/sightedcats/:id)
 
 export async function getCatSightingsApi(id: number) {
   try {
@@ -70,12 +70,15 @@ export async function getCatSightingsApi(id: number) {
   }
 }
 
-// ADD a cat sighting for a particular cat (/api/v1/sightings/:id)
+// ADD a cat sighting for a particular cat (/api/v1/sightedcats/:catIdMc)
 
-export async function addCatSightingApi(sightedCat: NewSightedCat, id: number) {
+export async function addCatSightingApi(
+  sightedCat: NewSightedCat,
+  catIdMc: number,
+) {
   try {
     const response = await request
-      .post(`${rootUrl}/sightings/${id}`)
+      .post(`${rootUrl}/sightedcats/${catIdMc}/add`)
       .send(sightedCat)
     return response.body
   } catch (error) {

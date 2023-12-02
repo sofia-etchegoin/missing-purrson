@@ -16,12 +16,26 @@ router.get('/', async (req, res) => {
 })
 
 // POST localhost:5173/api/v1/sightedcats/addcat
-router.post('/addmissingcat', async (req, res) => {
+// router.post('/addmissingcat', async (req, res) => {
+//   try {
+//     const newCat = await db.addSightedCatDb(req.body)
+//     res.status(201).json(newCat)
+//   } catch (err) {
+//     console.error('Error in POST /api/v1/addCat', err)
+//     res.status(500).json('Internal Server Error')
+//   }
+// })
+
+router.post('/:catIdMc/add', async (req, res) => {
   try {
-    const newCat = await db.addSightedCatDb(req.body)
+    const { catIdMc } = req.params
+    const newCat = await db.addSightedCatDb({
+      ...req.body,
+      catIdMc: Number(catIdMc),
+    })
     res.status(201).json(newCat)
   } catch (err) {
-    console.error('Error in POST /api/v1/addCat', err)
+    console.error('Error in POST /api/v1/sightedcats/:catIdMc/add', err)
     res.status(500).json('Internal Server Error')
   }
 })
