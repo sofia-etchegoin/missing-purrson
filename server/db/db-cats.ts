@@ -159,15 +159,16 @@ export async function addSightedCatDb(
 }
 
 export async function singleCatSightingsDb(
-  cat_id: number,
+  cat_id_mc: number,
   db = connection,
 ): Promise<SightedCat[]> {
   try {
     const sightedCats = await db('sighted_cats')
       .select()
-      .where('cat_id_mc', cat_id)
+      .where('cat_id_mc', cat_id_mc)
+      .first()
 
-    return sightedCats
+    return sightedCats || []
   } catch (error) {
     console.error('Error. No sightings for this cat:', error)
     throw error

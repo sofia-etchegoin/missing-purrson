@@ -17,7 +17,7 @@ export async function getAllMissingCatsApi(): Promise<MissingCat[]> {
   }
 }
 
-// GET one missing cat (/api/v1/missingcat/:id)
+// GET one missing cat (/api/v1/missingcats/singlecat/:catId)
 
 export async function getOneMissingCatApi(catId: number): Promise<MissingCat> {
   try {
@@ -31,7 +31,7 @@ export async function getOneMissingCatApi(catId: number): Promise<MissingCat> {
   }
 }
 
-// ADD a missing cat (/api/v1/addmissingcat)
+// ADD a missing cat (/api/v1/missingcats/addcat)
 
 export async function addMissingCatApi(missingCat: NewMissingCat) {
   try {
@@ -53,20 +53,23 @@ export async function deleteMissingCatApi(missingCatId: number) {
     )
     return response.body
   } catch (error) {
-    throw console.error(`Error deleting cat, `, error)
+    console.error(`Error deleting cat, `, error)
   }
 }
 
 // ----- CAT SIGHTINGS ----- //
 
-// GET sightings for a particular cat (/api/v1/sightedcats/:id)
+// GET sightings for a particular cat (/api/v1/sightedcats/singlecat/sighting/:catIdMc)
 
-export async function getCatSightingsApi(id: number) {
+export async function getCatSightingsApi(catIdMc: number) {
   try {
-    const response = await request.get(`${rootUrl}/${id}`)
+    const response = await request.get(
+      `${rootUrl}/sightedcats/singlecat/sighting/${catIdMc}`,
+    )
     return response.body
   } catch (error) {
-    throw console.error('Error fetching cat sightings', error)
+    console.error('Error fetching cat sightings', error)
+    return { error: 'Failed to fetch cat sightings' }
   }
 }
 
@@ -82,6 +85,6 @@ export async function addCatSightingApi(
       .send(sightedCat)
     return response.body
   } catch (error) {
-    throw console.error(`Error adding cat sighting`, error)
+    console.error(`Error adding cat sighting`, error)
   }
 }

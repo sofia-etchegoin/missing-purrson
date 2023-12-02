@@ -18,7 +18,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
         <Route path="missingcats" element={<MissingCatList />} />
-        <Route path="singlecat/:catId" element={<SingleCat />} />
+        <Route path="missingcats/singlecat/:catId" element={<SingleCat />} />
         <Route path="addcat" element={<AddMissingCat />} />
         <Route path="sightings/:catIdMc" element={<AddCatSightings />} />
       </Route>

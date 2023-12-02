@@ -31,7 +31,7 @@ export default function MissingCatList() {
             <li>{cat.catName}</li>
             <li>{cat.location}</li>
             <li>{cat.description}</li>
-            <Link to={`/singlecat/${cat.catId}`}>
+            <Link to={`/missingcats/singlecat/${cat.catId}`}>
               <button>More info</button>
             </Link>
           </ul>
