@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 })
 
 // POST localhost:5173/api/v1/sightedcats/addcat
-router.post('/addcat', async (req, res) => {
+router.post('/addmissingcat', async (req, res) => {
   try {
     const newCat = await db.addSightedCatDb(req.body)
     res.status(201).json(newCat)
