@@ -47,7 +47,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 // POST localhost:5173/api/v1/missingcats/addcat
-router.post('/addmissingcat', async (req, res) => {
+router.post('/addcat', async (req, res) => {
   try {
     const newCat = await db.addMissingCatDb(req.body)
     res.status(201).json(newCat)
