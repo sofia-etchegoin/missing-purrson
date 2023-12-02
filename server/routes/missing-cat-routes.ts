@@ -6,7 +6,7 @@ import multer from 'multer'
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     //console.log(file)
-    return cb(null, './uploads')
+    return cb(null, 'uploads/')
   },
   filename: function (req, file, cb) {
     console.log(file.originalname)
@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage })
+
 
 const router = Router()
 
@@ -31,10 +32,10 @@ router.get('/', async (req, res) => {
 })
 
 //GET localhost:5173/api/v1/missingcats/singlecat/:id
-router.get('/singlecat/:id', async (req, res) => {
+router.get('/singlecat/:catId', async (req, res) => {
   try {
-    const id = Number(req.params.id)
-    const missingCats = await db.getOneMissingCatDb(id)
+    const catId = Number(req.params.catId)
+    const missingCats = await db.getOneMissingCatDb(catId)
     //console.log(cats)
     res.json(missingCats)
   } catch (error) {
