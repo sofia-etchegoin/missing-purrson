@@ -166,7 +166,6 @@ export async function singleCatSightingsDb(
     const sightedCats = await db('sighted_cats')
       .select()
       .where('cat_id_mc', cat_id_mc)
-      .first()
 
     return sightedCats || []
   } catch (error) {
