@@ -29,11 +29,13 @@ export async function getOneMissingCatApi(
 
 // ADD missing cat (/api/v1/missingcats/addcat)
 
-export async function addMissingCatApi(missingCat: NewMissingCat) {
+export async function addMissingCatApi(formData) {
+  console.log("API-Cat")
   try {
+    console.log(formData)
     const response = await request
-      .post(`${rootUrl}/missingcats/addcat`)
-      .send(missingCat)
+      .post(`api/v1/missingcats/addcat`)
+      .send(formData)
     return response.body
   } catch (error) {
     console.error(`Error adding cat `, error)

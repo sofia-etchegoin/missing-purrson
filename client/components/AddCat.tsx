@@ -45,6 +45,7 @@ export default function AddCat() {
     formData.append('microchip', formFields.microchip) 
     formData.append("microChipNumber :", formFields.microChipNumber)
     formData.append('file', file )
+    console.log( formData)
     try {
       addCatMutuation.mutate(formData)
     } catch (error: any) {
@@ -180,7 +181,6 @@ export default function AddCat() {
           id="file"
           type="file"
           name="file"
-          defaultValue={file}
           required
           onChange={handleInputChange}
         />
