@@ -19,15 +19,15 @@ export async function getAllMissingCatsApi(): Promise<MissingCat[]> {
 
 // GET one missing cat (/api/v1/missingcat/:id)
 
-export async function getOneMissingCatApi(
-  missingCatId: number,
-): Promise<MissingCat[]> {
+export async function getOneMissingCatApi(catId: number): Promise<MissingCat> {
   try {
-    const response = await request.get(`${rootUrl}/missingcats/${missingCatId}`)
+    const response = await request.get(
+      `${rootUrl}/missingcats/singlecat/${catId}`,
+    )
     return response.body
   } catch (error) {
-    console.error(`Error fetching cat with id ${missingCatId}: `, error)
-    throw new Error(`Failed to fetch cat with id ${missingCatId}`)
+    console.error(`Error fetching cat with id ${catId}: `, error)
+    throw new Error(`Failed to fetch cat with id ${catId}`)
   }
 }
 

@@ -16,11 +16,10 @@ router.get('/', async (req, res) => {
 })
 
 //GET localhost:5173/api/v1/missingcats/singlecat/:id
-router.get('/singlecat/:id', async (req, res) => {
+router.get('/singlecat/:catId', async (req, res) => {
   try {
-    const id = Number(req.params.id)
-    const missingCats = await db.getOneMissingCatDb(id)
-    //console.log(cats)
+    const catId = Number(req.params.catId)
+    const missingCats = await db.getOneMissingCatDb(catId)
     res.json(missingCats)
   } catch (error) {
     console.log(error)

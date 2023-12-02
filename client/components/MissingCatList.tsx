@@ -1,11 +1,8 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { getAllMissingCatsApi } from '../apis/api-cats'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function MissingCatList() {
-  const queryClient = useQueryClient()
-  const { catId } = useParams()
-
   const {
     data: missingcats,
     isLoading,
