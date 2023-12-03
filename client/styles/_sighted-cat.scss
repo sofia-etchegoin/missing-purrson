@@ -2,6 +2,7 @@
   padding: 8em;
   @include row-flex;
   background: $orange;
+  height: 100vh;
 
 
   &__left{
@@ -25,6 +26,9 @@
 
   &__cards{
     @include column-flex;
+    gap: 5em;
+    height: 100%;
+    overflow-y: scroll
     
   }
 
@@ -123,6 +127,92 @@
       }
     }
   }
-
   
+  // Form Styling
+
+  &__form{
+    @include column-flex;
+    align-items: center;
+    background: $white;
+    padding: 3em;
+    border-radius: 15px;
+  }
+
+  &-form{
+    @include column-flex;
+    align-items: center;
+
+    &-heading{
+      @include subhead-font;
+    }
+
+    &__content {
+      @include row-flex;
+      justify-content: space-around;
+    }
+
+    &__left{
+      flex-basis: 50%;
+      padding: 5em;
+      @include column-flex;
+      gap: 4em;
+    }
+
+    &__right{
+      flex-basis: 50%;
+      padding: 5em;
+      @include column-flex;
+      gap: 4em;
+    }
+
+    &__section{
+      @include column-flex;
+    }
+
+    &-label{
+      font-family: $body-font;
+      font-size: 2em;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    &-input{
+      padding: 1em 1em;
+      // width: 20em;
+      border: none;
+      border-radius: 10px;
+    }
+
+    &-input:focus{
+      outline: none !important;
+      border:1px solid $blue;
+      box-shadow: 0 0 4px $blue;
+    }
+
+    &-privacy{
+      font-family: $body-font;
+      font-size: 2em;
+      font-family: 500;
+    }
+
+    &-btn{
+      background: none;
+      gap: 1em;
+      font-size: 1.5em;
+      font-weight: bold;
+      padding: 0.8em 3em;
+      border: solid 2px $blue;
+      border-radius: 30px;
+      cursor: pointer;
+      color: $black;
+
+      
+    &:hover{
+      @include btn-hover;
+      color: $white;
+    }
+    }
+
+  }
+
 }

@@ -19,3 +19,8 @@ $green: #B9FFBC;
 // Font variables
 $body-font:'Montserrat', sans-serif;
 $display-font: 'Gogh', sans-serif;
+
+
+.form-transition {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
