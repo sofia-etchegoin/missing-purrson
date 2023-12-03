@@ -5,6 +5,7 @@ import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
 import { useParams } from 'react-router-dom'
 import { SightedCat } from '../../models/cats'
+import { Link } from 'react-router-dom'
 
 const emptySighting = {
   location: '',
@@ -88,7 +89,7 @@ export default function AddCatSightings() {
       {catsighting.map((sighting) => (
         <div key={sighting.sighted_cat_id}>
           {/* image url in database needs update to real images */}
-          <img src={"/"+sighting.sighted_image_url} alt={sighting.name} />
+          <img src={'/' + sighting.sighted_image_url} alt={sighting.name} />
           <h1>Sighted: {sighting.date_seen}</h1>
           <h1>Location: {sighting.location}</h1>
           <h1>Color: {sighting.color}</h1>
@@ -174,6 +175,9 @@ export default function AddCatSightings() {
       <button onClick={() => setFormVisibility(!isFormVisible)}>
         {isFormVisible ? 'Back' : 'List a sighting'}
       </button>
+      <Link to={`/missingcats/singlecat/${catIdMc}`}>
+        <button>Back</button>
+      </Link>
     </>
   )
 }

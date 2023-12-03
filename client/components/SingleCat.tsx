@@ -45,6 +45,10 @@ export default function SingleCat() {
           src={`/` + missingcats.missingImageUrl}
         />
       </div>
+      <Link to="/missingcats">
+        {' '}
+        <button>Back</button>
+      </Link>
     </>
   )
 }
