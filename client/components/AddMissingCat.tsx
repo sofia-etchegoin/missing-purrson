@@ -47,7 +47,7 @@ export default function AddMissingCat() {
     formData.append('microchip', formFields.microchip)
     formData.append('microChipNumber', formFields.microChipNumber)
     formData.append('file', file)
-    console.log(formFields.microChipNumber)
+    // console.log(formFields.microChipNumber)
     // const formDataValues = formData.entries()
     // console.log(formDataValues[9] + ' - ' + formDataValues[10])
     try {

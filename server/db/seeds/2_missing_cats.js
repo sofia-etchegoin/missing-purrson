@@ -12,7 +12,7 @@ export async function seed(knex) {
       location: '40.7128, -74.0060',
       missing_cat_phone: '022-021-2355',
       missing_cat_email: 'john.doe1@example.com',
-      missing_image_url: 'server/images/missing_cats/1701559620450_scream.jpeg',
+      missing_image_url: 'server/images/fluffy_persian.jpg',
       cat_missing: false,
     },
     {
@@ -27,7 +27,7 @@ export async function seed(knex) {
       location: '34.0522, -118.2437',
       missing_cat_phone: '023-021-2355',
       missing_cat_email: 'john.doe2@example.com',
-      missing_image_url: 'server/images/missing_cats/1701561160202_tiger.jpeg',
+      missing_image_url: 'server/images/whiskers_siamese.jpg',
       cat_missing: true,
     },
     {
@@ -42,8 +42,7 @@ export async function seed(knex) {
       location: '41.8781, -87.6298',
       missing_cat_phone: '023-021-2365',
       missing_cat_email: 'john.doe3@example.com',
-      missing_image_url:
-        'server/images/missing_cats/1701564634696_sunflowers.jpg',
+      missing_image_url: 'server/images/mittens_tabby.jpg',
       cat_missing: false,
     },
     {
@@ -58,7 +57,7 @@ export async function seed(knex) {
       location: '37.7749, -122.4194',
       missing_cat_phone: '053-021-2355',
       missing_cat_email: 'john.doe4@example.com',
-      missing_image_url: 'server/images/missing_cats/1701561160202_tiger.jpeg',
+      missing_image_url: 'server/images/shadow_blackcat.jpg',
       cat_missing: false,
     },
   ])
