@@ -185,9 +185,9 @@ We will be using snake_case for back-end function names, and camelCase for the f
 | POST   | `/api/v1/missingcats/addcat`           | Yes        | add a new missing cat                            | the newly uploaded cat | Working     |
 | DELETE | `/api/v1/missingcat/:catId`            | Yes        | delete an existing cat                           | nothing (status OK)    | In Progress |
 | PATCH  | `/api/v1/missingcat/:catId`            | Yes        | update an existing cat                           | the updated cat        | In Progress |
-| GET    | `/api/v1/sightings/:id`                | No         | gets all sightings for an individual missing cat | an object              | Working     |
-| POST   | `/api/v1/sightings/:id`                | Yes        | add a new sighting of a missing cat              | the newly uploaded cat | Working     |
-| PATCH  | `/api/v1/sightings/:id`                | Yes        | update a sighted cat                             | the updated cat        | In Progress |
+| GET    | `/api/v1/sightedcats/singlecat/sighting/:catIdMc`                | No         | gets all sightings for an individual missing cat | an object              | Working     |
+| POST   | `/api/v1/sightedcats/:catIdMc/add`                | Yes        | add a new sighting of a missing cat              | the newly uploaded cat | Working     |
+| PATCH  | `/api/v1/sightedcats/:catIdMc`                | Yes        | update a sighted cat                             | the updated cat        | In Progress |
 | GET    | `/api/v1/users`                        | Yes        | gets a list of all users                         | an array of users      | Stretch     |
 | GET    | `/api/v1/map`                          | No         | gets map data from external API                  | TBC                    | Stretch     |
 | POST   | `/api/v1/auth/login`                   | Yes        | log in a user                                    | the user's JWT token   | Stretch     |
@@ -201,7 +201,7 @@ We will be using snake_case for back-end function names, and camelCase for the f
 | Missing Cats       | yes  | shows images and some details of all the missing cats from the database that the user can click                                                                                                    |
 | List a Missing Cat | yes  | shows a form to submit missing cat details and upload an image to the database. Includes disclaimer about sharing personal information.                                                            |
 | Cat Profile        | yes  | shows all the details of each missing cat (images, name, breed, age, last-seen/area, owner information)                                                                                            |
-| Cat Sighting       | yes  | allows a user to record whether they have seen a missing cat. Includes a form for a user to record the place, time, photo, comment/description of the sighting. Includes google map api as stretch |
+| Cat Sightings       | yes  | allows a user to record whether they have seen a missing cat. Includes a form for a user to record the place, time, photo, comment/description of the sighting. Includes google map api as stretch |
 | Register           | no   | linked from the home page. View for the user to create an account                                                                                                                                  |
 | Login              | no   | linked from the home page. View for the user to log into their account                                                                                                                             |
 
@@ -265,11 +265,6 @@ There are two helper components that will render their children conditionally
       <p>Currently signed out! Click here to sign in</p>
 </IfNotAuthenticated>
 ```
-
-### Checklist for merging to the main branch
-
-Clean up all extra images in the uploads folder.
-npm run lint
 
 ## Human Skills - link to conflict resolution plan
 
