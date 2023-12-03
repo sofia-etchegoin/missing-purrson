@@ -1,6 +1,10 @@
+//api-cats.ts
+
 import request from 'superagent'
-import { MissingCat, NewMissingCat } from '../../models/cats'
+import { MissingCat, NewMissingCat, NewSightedCat } from '../../models/cats'
 const rootUrl = '/api/v1'
+
+// ----- MISSING CATS ----- //
 
 // GET all missing cats (/api/v1/missingcats)
 
@@ -13,7 +17,7 @@ export async function getAllMissingCatsApi(): Promise<MissingCat[]> {
   }
 }
 
-// GET one missing cat (/api/v1/missingcats/singlecat/:id)
+// GET one missing cat (/api/v1/missingcats/singlecat/:catId)
 
 export async function getOneMissingCatApi(catId: number): Promise<MissingCat> {
   try {
@@ -27,22 +31,20 @@ export async function getOneMissingCatApi(catId: number): Promise<MissingCat> {
   }
 }
 
-// ADD missing cat (/api/v1/missingcats/addcat)
+// ADD a missing cat (/api/v1/missingcats/addcat)
 
-export async function addMissingCatApi(formData: any) {
-  console.log('API-Cat')
+export async function addMissingCatApi(formData: MissingCat) {
   try {
-    console.log(formData)
     const response = await request
       .post(`${rootUrl}/missingcats/addcat`)
       .send(formData)
     return response.body
   } catch (error) {
-    console.error(`Error adding cat `, error)
+    throw console.error(`Error adding missing cat `, error)
   }
 }
 
-// DELETE a missing cat (/api/v1/missingcats/:id)
+// DELETE a missing cat (/api/v1/missingcat/:id)
 
 export async function deleteMissingCatApi(missingCatId: number) {
   try {
