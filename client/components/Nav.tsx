@@ -31,7 +31,7 @@ export default function Nav({
         <div className="nav__left">
           <div className="nav__logo">
             <img
-              src="./client/images/MP-Logo-White.svg"
+              src="/client/images/MP-Logo-White.svg"
               alt="Missing Purrson Logo"
               className="nav-logo"
             />
