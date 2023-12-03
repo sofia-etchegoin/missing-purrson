@@ -54,3 +54,35 @@ export async function deleteMissingCatApi(missingCatId: number) {
     console.error(`Error deleting cat, `, error)
   }
 }
+
+// ----- CAT SIGHTINGS ----- //
+
+// GET sightings for a particular cat (/api/v1/sightedcats/singlecat/sighting/:catIdMc)
+
+export async function getCatSightingsApi(catIdMc: number) {
+  try {
+    const response = await request.get(
+      `${rootUrl}/sightedcats/singlecat/sighting/${catIdMc}`,
+    )
+    return response.body
+  } catch (error) {
+    console.error('Error fetching cat sightings', error)
+    return { error: 'Failed to fetch cat sightings' }
+  }
+}
+
+// ADD a cat sighting for a particular cat (/api/v1/sightedcats/:catIdMc)
+
+export async function addCatSightingApi(
+  sightedCat: NewSightedCat,
+  catIdMc: number,
+) {
+  try {
+    const response = await request
+      .post(`${rootUrl}/sightedcats/${catIdMc}/add`)
+      .send(sightedCat)
+    return response.body
+  } catch (error) {
+    console.error(`Error adding cat sighting`, error)
+  }
+}

@@ -8,17 +8,17 @@ import Home from './components/Home'
 import MissingCatList from './components/MissingCatList'
 import SingleCat from './components/SingleCat'
 import AddMissingCat from './components/AddMissingCat'
-import CatSightings from './components/CatSightings'
+import AddCatSightings from './components/AddCatSightings'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
-        <Route path="cats" element={<MissingCatList />} />
-        <Route path="singlecat/:id" element={<SingleCat />} />
+        <Route path="missingcats" element={<MissingCatList />} />
+        <Route path="missingcats/singlecat/:catId" element={<SingleCat />} />
         <Route path="addcat" element={<AddMissingCat />} />
-        <Route path="singlecat/sighting/:id" element={<CatSightings />} />
+        <Route path="sightings/:catIdMc" element={<AddCatSightings />} />
       </Route>
     </>,
   ),
