@@ -102,97 +102,96 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 
 ### Missing Cat Table
 
-| COLUMN NAME        | DATA TYPE | PURPOSE                                |
-| ----------------   | --------- | -------------------------------------- |
-| cat_id [PK]        | increment | unique identifier for a missing cat    |
-| microchip          | boolean   | yes/no whether they are microchipped   |
-| microchip_number   | string    | unique number from the microchip       |
-| user_id_mc [FK]    | integer   | unique identifier for the cat owner    |
-| cat_name           | string    | name of the cat                        |
-| breed              | string    | breed of the cat                       |
-| color              | string    | color of the cat                       |
-| description        | string    | description of the cat                 |
-| date_lost          | date      | date the cat went missing              |
-| location           | string    | last known location                    |
-| cat_missing        | boolean   | cat status is initially set to missing |
-| missing_cat_phone  | string    | cat owner's phone number               |
-| missing_cat_email  | string    | cat owner's email                      |
-| missing_image_url  | string    | image path for the uploaded photo      |
+| COLUMN NAME       | DATA TYPE | PURPOSE                                |
+| ----------------- | --------- | -------------------------------------- |
+| cat_id [PK]       | increment | unique identifier for a missing cat    |
+| microchip         | boolean   | yes/no whether they are microchipped   |
+| microchip_number  | string    | unique number from the microchip       |
+| user_id_mc [FK]   | integer   | unique identifier for the cat owner    |
+| cat_name          | string    | name of the cat                        |
+| breed             | string    | breed of the cat                       |
+| color             | string    | color of the cat                       |
+| description       | string    | description of the cat                 |
+| date_lost         | date      | date the cat went missing              |
+| location          | string    | last known location                    |
+| cat_missing       | boolean   | cat status is initially set to missing |
+| missing_cat_phone | string    | cat owner's phone number               |
+| missing_cat_email | string    | cat owner's email                      |
+| missing_image_url | string    | image path for the uploaded photo      |
 
 ### Users Table
 
-| COLUMN NAME | DATA TYPE | PURPOSE                             |
-| ----------- | --------- | ----------------------------------- |
-| user_id [PK]| increment | unique identifier for each user     |
-| username    | string    | username from auth0 registration    |
-| password    | string    | password from auth0 registration    |
-| email       | string    | used to log into user account       |
-| auth0_id    | string    | unique identifier supplied by auth0 |
-| given_name  | string    | user's first name                   |
-| family_name | string    | user's last name                    |
+| COLUMN NAME  | DATA TYPE | PURPOSE                             |
+| ------------ | --------- | ----------------------------------- |
+| user_id [PK] | increment | unique identifier for each user     |
+| username     | string    | username from auth0 registration    |
+| password     | string    | password from auth0 registration    |
+| email        | string    | used to log into user account       |
+| auth0_id     | string    | unique identifier supplied by auth0 |
+| given_name   | string    | user's first name                   |
+| family_name  | string    | user's last name                    |
 
 ### Sighted Cats Table
 
-| COLUMN NAME         | DATA TYPE | PURPOSE                                    |
-| ------------------- | --------- | ------------------------------------------ |
-| sighted_cat_id [PK] | integer   | unique identifier for a missing cat        |
-| user_id_sc [FK]     | integer   | unique identifier for the cat owner        |
-| cat_id_mc [FK]      | integer   | unique identifier for a sighted cat        |
-| color               | string    | color of the cat                           |
-| description         | string    | description of the cat                     |
-| date_seen           | date      | date the cat went missing                  |
-| location            | string    | last known location                        |
-| sighted_cat_phone   | string    | phone number                               |
-| sighted_cat_email   | string    | cat owner's email                          |
-| sighted_image_url   | string    | image path for the uploaded photo          |
+| COLUMN NAME         | DATA TYPE | PURPOSE                             |
+| ------------------- | --------- | ----------------------------------- |
+| sighted_cat_id [PK] | integer   | unique identifier for a missing cat |
+| user_id_sc [FK]     | integer   | unique identifier for the cat owner |
+| cat_id_mc [FK]      | integer   | unique identifier for a sighted cat |
+| color               | string    | color of the cat                    |
+| description         | string    | description of the cat              |
+| date_seen           | date      | date the cat went missing           |
+| location            | string    | last known location                 |
+| sighted_cat_phone   | string    | phone number                        |
+| sighted_cat_email   | string    | cat owner's email                   |
+| sighted_image_url   | string    | image path for the uploaded photo   |
 
 ## Naming conventions
 
-| STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME        |
-| ----------- | ---------------- | -------------        |
-| Database    | db-cats.ts       | getAllMissingCatsDb  |
-| Database    | db-cats.ts       | getOneMissingCatDb   |
-| Database    | db-cats.ts       | addMissingCatDb      |
-| Database    | db-cats.ts       | deleteMissingCatDb   |
-| Database    | db-cats.ts       | updateMissingCatDb   |
-| Database    | db-users.ts      | getUsersDb           |
-| Database    | db-users.ts      | getOneUserDb         |
-| API Client  | api-cats.ts      | getAllCatsApi        |
-| API Client  | api-cats.ts      | getOneCatApi         |
-| API Client  | api-cats.ts      | addCatApi            |
-| API Client  | api-cats.ts      | deleteCatApi         |
-| API Client  | api-cats.ts      | updateCatApi         |
-| Component   | components       | App                  |
-| Component   | components       | Cat                  |
-| Component   | components       | DeleteCat            |
-| Component   | components       | UpdateCat            |
-| Component   | components       | SignIn               |
-| Component   | components       | SignOut              |
-| Component   | components       | Profile              |
-| Component   | components       | Map                  |
-| Component   | components       | Nav                  |
-
+| STACK LAYER | FILE/FOLDER NAME | FUNCTION NAME       |
+| ----------- | ---------------- | ------------------- |
+| Database    | db-cats.ts       | getAllMissingCatsDb |
+| Database    | db-cats.ts       | getOneMissingCatDb  |
+| Database    | db-cats.ts       | addMissingCatDb     |
+| Database    | db-cats.ts       | deleteMissingCatDb  |
+| Database    | db-cats.ts       | updateMissingCatDb  |
+| Database    | db-users.ts      | getUsersDb          |
+| Database    | db-users.ts      | getOneUserDb        |
+| API Client  | api-cats.ts      | getAllCatsApi       |
+| API Client  | api-cats.ts      | getOneCatApi        |
+| API Client  | api-cats.ts      | addCatApi           |
+| API Client  | api-cats.ts      | deleteCatApi        |
+| API Client  | api-cats.ts      | updateCatApi        |
+| Component   | components       | App                 |
+| Component   | components       | SingleCat           |
+| Component   | components       | AddMissingCat       |
+| Component   | components       | AddCatSightings     |
+| Component   | components       | DeleteCat           |
+| Component   | components       | UpdateCat           |
+| Component   | components       | SignIn              |
+| Component   | components       | SignOut             |
+| Component   | components       | Profile             |
+| Component   | components       | Map                 |
+| Component   | components       | Nav                 |
 
 We will be using snake_case for back-end function names, and camelCase for the front-end.
 
 ## Server API endpoints
 
-| METHOD | ENDPOINT                                    | PROTECTED? | USAGE                                               | RETURNS                  |   DONE     | 
-| ------ | -------------------------------------       | ---------- | -------------------------------                     | ----------------------   |--------    |
-| GET    | `/api/v1/missingcats`                       | No         | gets a list of missing cats                         | an array of cats         | Working    |
-| GET    | `/api/v1/missingcats/singlecat/:id`         | No         | gets an individual missing cat                      | an object                | Working    |
-| POST   | `/api/v1/missingcats/addcat`                 | Yes        | add a new missing cat                              | the newly uploaded cat   | Working    |
-| DELETE | `/api/v1/missingcats/:id`                    | Yes        | delete an existing cat                             | nothing (status OK)      | In Progress|
-| PATCH  | `/api/v1/missingcats/:id`                    | Yes        | update an existing cat                             | the updated cat          | In Progress|
-| GET    | `/api/v1/sightedcats`                       | No         | gets a list of sighted cats                         |  an array of cats        | Working    |
-| GET    | `/api/v1/sightedcats/singlecat/:id`         | No         | gets an individual sighted cat                      | an object                | Working    |
-| GET    | `/api/v1/sightedcats/singlecat/sighting/:id` | No         | gets all sightings for an individual missing cat   | an object                | Working    |
-| POST   | `/api/v1/sightedcats/addcat`                 | Yes        | add a new sighted cat                              | the newly uploaded cat   | Working    |
-| PATCH  | `/api/v1/sightedcats/:id`                    | Yes        | update a sighted cat                               | the updated cat          | In Progress|
-| GET    | `/api/v1/users`                              | Yes        | gets a list of all users                           | an array of users        | Stretch    | 
-| GET    | `/api/v1/map`                                | No         | gets map data from external API                    | TBC                      | Stretch    |
-| POST   | `/api/v1/auth/login`                         | Yes        | log in a user                                      | the user's JWT token     | Stretch    |
-| POST   | `/api/v1/auth/register`                      | Yes        | register a user                                    | the user's JWT token     | Stretch    |
+| METHOD | ENDPOINT                               | PROTECTED? | USAGE                                            | RETURNS                | DONE        |
+| ------ | -------------------------------------- | ---------- | ------------------------------------------------ | ---------------------- | ----------- |
+| GET    | `/api/v1/missingcats`                  | No         | gets all missing cats                            | an array of cats       | Working     |
+| GET    | `/api/v1/missingcats/singlecat/:catId` | No         | gets one missing cat                             | an object              | Working     |
+| POST   | `/api/v1/missingcats/addcat`           | Yes        | add a new missing cat                            | the newly uploaded cat | Working     |
+| DELETE | `/api/v1/missingcat/:catId`            | Yes        | delete an existing cat                           | nothing (status OK)    | In Progress |
+| PATCH  | `/api/v1/missingcat/:catId`            | Yes        | update an existing cat                           | the updated cat        | In Progress |
+| GET    | `/api/v1/sightings/:id`                | No         | gets all sightings for an individual missing cat | an object              | Working     |
+| POST   | `/api/v1/sightings/:id`                | Yes        | add a new sighting of a missing cat              | the newly uploaded cat | Working     |
+| PATCH  | `/api/v1/sightings/:id`                | Yes        | update a sighted cat                             | the updated cat        | In Progress |
+| GET    | `/api/v1/users`                        | Yes        | gets a list of all users                         | an array of users      | Stretch     |
+| GET    | `/api/v1/map`                          | No         | gets map data from external API                  | TBC                    | Stretch     |
+| POST   | `/api/v1/auth/login`                   | Yes        | log in a user                                    | the user's JWT token   | Stretch     |
+| POST   | `/api/v1/auth/register`                | Yes        | register a user                                  | the user's JWT token   | Stretch     |
 
 ## Views Client Side
 

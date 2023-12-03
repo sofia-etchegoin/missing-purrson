@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { addMissingCatApi } from '../apis/api-cats'
+import { renderMatches } from 'react-router-dom'
 
 const emptyCat = {
   catName: '',
@@ -16,22 +17,36 @@ const emptyCat = {
   missingImageUrl: '',
 }
 
-export default function AddCat() {
+export default function AddMissingCat() {
   const queryClient = useQueryClient()
-  const [formData, setFormData] = useState(emptyCat)
+  const [formFields, setFormFields] = useState(emptyCat)
+  const formData = new FormData()
+  const [file, setFile] = useState('')
 
   const addCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
-    onSuccess: () => {
-      queryClient.invalidateQueries(['missing_cats'])
-      setFormData(emptyCat)
+    onSuccess: async () => {
+      queryClient.invalidateQueries(['NewMissingCat'])
+      setFormFields(emptyCat)
     },
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
-
+    formData.append('catName', formFields.catName)
+    formData.append('location', formFields.location)
+    formData.append('dateLost', formFields.dateLost)
+    formData.append('color', formFields.color)
+    formData.append('breed', formFields.breed)
+    formData.append('description', formFields.description)
+    formData.append('missingCatPhone', formFields.missingCatPhone)
+    formData.append('missingCatEmail', formFields.missingCatEmail)
+    formData.append('microchip', formFields.microchip)
+    formData.append('microChipNumber', formFields.microChipNumber)
+    formData.append('file', file)
+    console.log(formFields.microChipNumber)
+    // const formDataValues = formData.entries()
+    // console.log(formDataValues[9] + ' - ' + formDataValues[10])
     try {
       addCatMutuation.mutate(formData)
     } catch (error: any) {
@@ -40,19 +55,18 @@ export default function AddCat() {
   }
 
   const handleInputChange = async (e: any) => {
-    if (e.target.type === 'file') {
-      setFormData({
-        ...formData,
-        missingImageUrl: e.target.files[0],
-      })
-    } else if (e.target.name === 'microchip') {
-      setFormData({
-        ...formData,
+    if (e.target.name === 'microchip') {
+      setFormFields({
+        ...formFields,
         microchip: e.target.value,
       })
+    } else if (e.target.name === 'file') {
+      //console.log("file : " , e.target.files[0].name)
+      setFile(e.target.files[0])
+      console.log('file : ', file)
     } else {
-      setFormData({
-        ...formData,
+      setFormFields({
+        ...formFields,
         [e.target.name]: e.target.value,
       })
     }
@@ -76,7 +90,7 @@ export default function AddCat() {
           id="catName"
           type="text"
           name="catName"
-          value={formData.catName}
+          value={formFields.catName}
           onChange={handleInputChange}
         />
 
@@ -85,7 +99,7 @@ export default function AddCat() {
           id="location"
           type="text"
           name="location"
-          value={formData.location}
+          value={formFields.location}
           onChange={handleInputChange}
         />
 
@@ -94,7 +108,7 @@ export default function AddCat() {
           id="dateLost"
           type="date"
           name="dateLost"
-          value={formData.dateLost}
+          value={formFields.dateLost}
           onChange={handleInputChange}
         />
 
@@ -103,7 +117,7 @@ export default function AddCat() {
           id="color"
           type="text"
           name="color"
-          value={formData.color}
+          value={formFields.color}
           onChange={handleInputChange}
         />
 
@@ -112,7 +126,7 @@ export default function AddCat() {
           id="breed"
           type="text"
           name="breed"
-          value={formData.breed}
+          value={formFields.breed}
           onChange={handleInputChange}
         />
 
@@ -121,7 +135,7 @@ export default function AddCat() {
           id="description"
           type="text"
           name="description"
-          value={formData.description}
+          value={formFields.description}
           onChange={handleInputChange}
         />
 
@@ -130,7 +144,7 @@ export default function AddCat() {
           id="missingCatEmail"
           type="text"
           name="missingCatEmail"
-          value={formData.missingCatEmail}
+          value={formFields.missingCatEmail}
           onChange={handleInputChange}
         />
 
@@ -139,7 +153,7 @@ export default function AddCat() {
           id="missingCatPhone"
           type="text"
           name="missingCatPhone"
-          value={formData.missingCatPhone}
+          value={formFields.missingCatPhone}
           onChange={handleInputChange}
         />
 
@@ -147,7 +161,7 @@ export default function AddCat() {
         <select
           id="microchip"
           name="microchip"
-          value={formData.microchip}
+          value={formFields.microchip}
           onChange={handleInputChange}
         >
           <option value="yes">YES</option>
@@ -159,19 +173,19 @@ export default function AddCat() {
           id="microChipNumber"
           type="text"
           name="microChipNumber"
-          value={formData.microChipNumber}
+          value={formFields.microChipNumber}
           onChange={handleInputChange}
         />
 
         <label htmlFor="missingImageUrl">PHOTO</label>
         <input
-          id="missingImageUrl"
+          id="file"
           type="file"
-          name="missingImageUrl"
-          value={formData.missingImageUrl}
+          name="file"
+          required
           onChange={handleInputChange}
         />
-        <button type="submit" className="add-cat">
+        <button type="submit" disabled={!file} className="add-cat">
           Submit
         </button>
       </form>
