@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
+import Nav from './Nav'
 
 export default function Home() {
+  const backgroundColour = 'none'
+  const itemColour = '#f3f3f3'
+  const borderColour = '#f3f3f3'
   return (
     <>
+      <Nav backgroundColour={backgroundColour} itemColour={itemColour} borderColour={borderColour} />
       <section className="landing">
         <div className="landing__left">
           <div className="landing__header">

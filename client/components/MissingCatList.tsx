@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getAllMissingCatsApi } from '../apis/api-cats'
 import { Link } from 'react-router-dom'
+import Nav from './Nav'
 
 export default function MissingCatList() {
   const {
@@ -22,8 +23,12 @@ export default function MissingCatList() {
     return <p>Loading...</p>
   }
 
+  const backgroundColour = 'none'
+  const itemColour = '#030303'
+  const borderColour = '#030303'
   return (
     <>
+      <Nav backgroundColour={backgroundColour} itemColour={itemColour} borderColour={borderColour} />
       <section className="cats">
         <div className="cats__left">
           <div className="cats-filter">
@@ -105,20 +110,6 @@ export default function MissingCatList() {
           </div>
         </div>
       </section>
-
-      {/* <h1>These kitties need your help!</h1> */}
-      {/* <div className="missing-cat-list">
-        {missingcats?.map((cat) => (
-          <ul key={cat.catId}>
-            <li>{cat.catName}</li>
-            <li>{cat.location}</li>
-            <li>{cat.description}</li>
-            <Link to={`/missingcats/singlecat/${cat.catId}`}>
-              <button>More info</button>
-            </Link>
-          </ul>
-        ))}
-      </div> */}
     </>
   )
 }
