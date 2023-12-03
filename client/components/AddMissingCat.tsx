@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { addMissingCatApi } from '../apis/api-cats'
-import { renderMatches } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const emptyCat = {
   catName: '',
@@ -189,6 +189,10 @@ export default function AddMissingCat() {
           Submit
         </button>
       </form>
+      <Link to="/missingcats">
+        {' '}
+        <button>See List of Missing Cats</button>
+      </Link>
     </>
   )
 }

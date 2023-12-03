@@ -84,7 +84,8 @@ export default function MissingCatList() {
                 <div className="cats-card__img">
                   <img
                     src={cat.missingImageUrl}
-                    alt=""
+                    alt={cat.catName}
+
                     className="cats-card-img"
                   />
                 </div>
