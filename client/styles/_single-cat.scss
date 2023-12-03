@@ -10,6 +10,13 @@
     flex-basis: 50%;
   }
 
+  &-back{
+    width: 20%;
+    margin-left: 6em;
+    position: relative;
+    padding-bottom: 2em;
+  }
+
   &__img{
     height: 100%;
     display: flex;
