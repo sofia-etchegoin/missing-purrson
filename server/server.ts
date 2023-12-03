@@ -10,6 +10,9 @@ server.use(express.json())
 
 server.use('/api/v1/missingcats', missingCatRoutes)
 server.use('/api/v1/sightedcats', sightedCatRoutes)
+server.use((error, req, res, next) => {
+console.log('This is the rejected field ->', error.field);
+})
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))

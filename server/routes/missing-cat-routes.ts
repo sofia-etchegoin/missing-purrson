@@ -5,11 +5,9 @@ import multer from 'multer'
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    //console.log(file)
     return cb(null, 'uploads/')
   },
   filename: function (req, file, cb) {
-    console.log(file.originalname)
     return cb(null, `${Date.now()}_${file.originalname}`)
   },
 })
@@ -35,7 +33,6 @@ router.get('/singlecat/:catId', async (req, res) => {
   try {
     const catId = Number(req.params.catId)
     const missingCats = await db.getOneMissingCatDb(catId)
-    //console.log(cats)
     res.json(missingCats)
   } catch (error) {
     console.log(error)
@@ -46,7 +43,6 @@ router.get('/singlecat/:catId', async (req, res) => {
 // DELETE localhost:5173/api/v1/missingcats/:id
 router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id)
-  console.log('Deleting cat with ID:', id)
   if (isNaN(id)) {
     res.status(400).send('Bad Request: ID must be a number')
     return
@@ -61,26 +57,10 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
-// POST localhost:5173/api/v1/missingcats/addcat
-// router.post('/addcat', upload.single('file'), async (req, res) => {
-//   console.log('Missing-cat-routes')
-//   //console.log(req.body)
 
-//   try {
-//     if (!req.file) {
-//       res.status(400).json({ error: 'No file uploaded' })
-//       return
-//     }
-//     const newCat = await db.addMissingCatDb(req.body)
-//     res.status(201).json(newCat)
-//   } catch (err) {
-//     console.error('Error in POST /api/v1/addCat', err)
-//     res.status(500).json('Internal Server Error')
-//   }
-// })
+// POST localhost:5173/api/v1/missingcats/addcat
 
 router.post('/addcat', upload.single('file'), async (req, res) => {
-  console.log('Missing-cat-routes')
   try {
     if (!req.file) {
       res.status(400).json({ error: 'No file uploaded' })
@@ -88,7 +68,7 @@ router.post('/addcat', upload.single('file'), async (req, res) => {
     }
     const newCat = await db.addMissingCatDb({
       ...req.body,
-      missingImageUrl: req.file.filename, // Assuming 'missingImageUrl' is the correct field name
+      missingImageUrl: req.file.filename,
     })
     res.status(201).json(newCat)
   } catch (err) {
