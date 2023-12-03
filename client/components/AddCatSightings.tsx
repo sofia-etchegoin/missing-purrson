@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
-import { addCatSightingApi } from '../apis/api-cats'
+import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
 import { useParams } from 'react-router-dom'
+import { SightedCat } from '../../models/cats'
 
 const emptySighting = {
   location: '',
@@ -20,9 +21,16 @@ export default function AddCatSightings() {
   const [formFields, setformFields] = useState(emptySighting)
   const [isFormVisible, setFormVisibility] = useState(false)
   const formData = new FormData()
-
   const [file, setFile] = useState('')
   const { catIdMc } = useParams()
+
+  const {
+    data: catsighting,
+    isLoading,
+    isError,
+  } = useQuery<SightedCat, Error>(['sighted_cats', catIdMc], () => {
+    return getCatSightingsApi(Number(catIdMc))
+  })
 
   const addCatSightingMutation = useMutation({
     mutationFn: (sightedCat) => addCatSightingApi(sightedCat, Number(catIdMc)),
@@ -61,11 +69,30 @@ export default function AddCatSightings() {
     }
   }
 
+  if (isError) {
+    return <p>YEEEOOOWWWW! No kitties to be found!</p>
+  }
+
+  if (!catsighting || isLoading) {
+    return <p>Loading...</p>
+  }
+
+  console.log(catsighting)
+
   return (
     <>
       <div>
         <h1>Possible sightings</h1>
       </div>
+
+      {catsighting.map((sighting) => (
+        <div key={sighting.sighted_cat_id}>
+          <h1>Sighted: {sighting.date_seen}</h1>
+          <h1>Location: {sighting.location}</h1>
+          <h1>Color: {sighting.color}</h1>
+          <h1>Description: {sighting.description}</h1>
+        </div>
+      ))}
 
       {isFormVisible && (
         <form
