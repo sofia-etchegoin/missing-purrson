@@ -266,6 +266,11 @@ There are two helper components that will render their children conditionally
 </IfNotAuthenticated>
 ```
 
+### Checklist for merging to the main branch
+
+Clean up all extra images in the uploads folder.
+npm run lint
+
 ## Human Skills - link to conflict resolution plan
 
 https://docs.google.com/document/d/1yp-sKGSqoBdrwnCrR-KEHai1Pg_nWRAttEzwPM_fzLM/edit?pli=1
