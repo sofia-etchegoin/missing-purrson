@@ -8,11 +8,12 @@
 
   &__left{
     flex-basis: 50%;
+    padding-top: 4em;
   }
 
   &-back{
     width: 20%;
-    margin-left: 6em;
+    margin-left: 10em;
     position: relative;
     padding-bottom: 2em;
   }
@@ -32,6 +33,7 @@
   }
 
   &__right{
+    padding-top: 4em;
     flex-basis: 50%;
     @include column-flex;
     gap: 5em;

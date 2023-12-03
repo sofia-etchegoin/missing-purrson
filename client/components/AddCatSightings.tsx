@@ -6,6 +6,7 @@ import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
 import { useParams } from 'react-router-dom'
 import { SightedCat } from '../../models/cats'
 import { Link } from 'react-router-dom'
+import Nav from './Nav'
 
 const emptySighting = {
   location: '',
@@ -79,9 +80,17 @@ export default function AddCatSightings() {
   }
 
   console.log(catsighting)
+  const backgroundColour = 'none'
+  const itemColour = '#030303'
+  const borderColour = '#030303'
 
   return (
     <>
+      <Nav
+        backgroundColour={backgroundColour}
+        itemColour={itemColour}
+        borderColour={borderColour}
+      />
       <section className="cat-sightings">
         <div className="cat-sightings__left">
           <div className="cat-sightings__map"></div>

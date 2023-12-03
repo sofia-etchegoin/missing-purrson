@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { getOneMissingCatApi } from '../apis/api-cats'
 import { useQuery } from '@tanstack/react-query'
 import { MissingCat } from '../../models/cats'
+import Nav from './Nav'
 
 export default function SingleCat() {
   const { catId } = useParams<{ catId: string }>()
@@ -21,9 +22,17 @@ export default function SingleCat() {
   if (!missingcats || isLoading) {
     return <p>Loading...</p>
   }
+  const backgroundColour = 'none'
+  const itemColour = '#030303'
+  const borderColour = '#030303'
 
   return (
     <>
+      <Nav
+        backgroundColour={backgroundColour}
+        itemColour={itemColour}
+        borderColour={borderColour}
+      />
       <section className="single-cat">
         <div className="single-cat__left">
           <div className="single-cat-back">
