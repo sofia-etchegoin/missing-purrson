@@ -31,6 +31,7 @@ export default function MissingCatList() {
             <li>{cat.catName}</li>
             <li>{cat.location}</li>
             <li>{cat.description}</li>
+            <img alt={cat.description} src={cat.missingImageUrl} />
             <Link to={`/missingcats/singlecat/${cat.catId}`}>
               <button>More info</button>
             </Link>

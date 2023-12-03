@@ -36,10 +36,15 @@ export default function SingleCat() {
         <h2>Color: {missingcats.color}</h2>
         <h2>Microchipped: {missingcats.microchip ? 'Yes' : 'No'}</h2>
       </div>
-
       <Link to={`/sightings/${catId}`}>
         <button>Sightings</button>
       </Link>
+      <div className="test">
+        <img
+          alt={missingcats.description}
+          src={`/` + missingcats.missingImageUrl}
+        />
+      </div>
     </>
   )
 }
