@@ -155,24 +155,28 @@ Link to the database diagram - https://dbdiagram.io/d/missingPurrson-6567dc953be
 | Database    | db-cats.ts       | addMissingCatDb     |
 | Database    | db-cats.ts       | deleteMissingCatDb  |
 | Database    | db-cats.ts       | updateMissingCatDb  |
+|Database|db-cats.ts|addSightedCatDb|
+|Database|db-cats.ts|singleCatSightingsDb|
 | Database    | db-users.ts      | getUsersDb          |
 | Database    | db-users.ts      | getOneUserDb        |
-| API Client  | api-cats.ts      | getAllCatsApi       |
-| API Client  | api-cats.ts      | getOneCatApi        |
-| API Client  | api-cats.ts      | addCatApi           |
-| API Client  | api-cats.ts      | deleteCatApi        |
-| API Client  | api-cats.ts      | updateCatApi        |
-| Component   | components       | App                 |
-| Component   | components       | SingleCat           |
-| Component   | components       | AddMissingCat       |
+| API Client  | api-cats.ts      | getAllMissingCatsApi       |
+| API Client  | api-cats.ts      | getOneMissingCatApi        |
+| API Client  | api-cats.ts      | addMissingCatApi           |
+| API Client  | api-cats.ts      | deleteMissingCatApi        |
+| API Client  | api-cats.ts      | getCatSightingsApi        |
+| API Client  | api-cats.ts      | addCatSightingApi        |
 | Component   | components       | AddCatSightings     |
+| Component   | components       | AddMissingCat       |
+| Component   | components       | App                 |
 | Component   | components       | DeleteCat           |
-| Component   | components       | UpdateCat           |
+|Component|components|Home|
+| Component   | components       | Map                 |
+|Component|components|MissingCatList|
+| Component   | components       | Nav                 |
 | Component   | components       | SignIn              |
 | Component   | components       | SignOut             |
-| Component   | components       | Profile             |
-| Component   | components       | Map                 |
-| Component   | components       | Nav                 |
+| Component   | components       | SingleCat           |
+| Component   | components       | UpdateCat           |
 
 We will be using snake_case for back-end function names, and camelCase for the front-end.
 
