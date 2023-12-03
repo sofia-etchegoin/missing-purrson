@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-
 const router = Router()
 
 //GET localhost:5173/api/v1/missingcats/
@@ -64,15 +63,16 @@ router.delete('/:id', async (req, res) => {
 
 // POST localhost:5173/api/v1/missingcats/addcat
 router.post('/addcat', upload.single('file'), async (req, res) => {
-  console.log("Missing-cat-routes")
+  console.log('Missing-cat-routes')
   //console.log(req.body)
-
+  
   try {
     if (!req.file) {
       res.status(400).json({ error: 'No file uploaded' })
       return
     }
-    const newCat = await db.addMissingCatDb(req.body) 
+    console.log(req.body)
+    const newCat = await db.addMissingCatDb(req.body)
     res.status(201).json(newCat)
   } catch (err) {
     console.error('Error in POST /api/v1/addCat', err)

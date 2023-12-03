@@ -14,38 +14,39 @@ const emptyCat = {
   missingCatEmail: '',
   microchip: '',
   microChipNumber: '',
-  //missingImageUrl: '',
+  missingImageUrl: '',
 }
 
-export default function AddCat() {
+export default function AddMissingCat() {
   const queryClient = useQueryClient()
   const [formFields, setFormFields] = useState(emptyCat)
   const formData = new FormData()
   const [file, setFile] = useState('')
 
-  
   const addCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
     onSuccess: async () => {
       queryClient.invalidateQueries(['NewMissingCat'])
-      //setFormFields(emptyCat)
+      setFormFields(emptyCat)
     },
   })
 
-    const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    formData.append('catName', formFields.catName) 
-    formData.append('location', formFields.location) 
-    formData.append('dateLost', formFields.dateLost) 
-    formData.append('color', formFields.color) 
-    formData.append('breed', formFields.breed) 
-    formData.append('description', formFields.description) 
-    formData.append('missingCatPhone', formFields.missingCatPhone) 
-    formData.append('missingCatEmail', formFields.missingCatEmail) 
-    formData.append('microchip', formFields.microchip) 
-    formData.append("microChipNumber :", formFields.microChipNumber)
-    formData.append('file', file )
-    console.log( formData)
+    formData.append('catName', formFields.catName)
+    formData.append('location', formFields.location)
+    formData.append('dateLost', formFields.dateLost)
+    formData.append('color', formFields.color)
+    formData.append('breed', formFields.breed)
+    formData.append('description', formFields.description)
+    formData.append('missingCatPhone', formFields.missingCatPhone)
+    formData.append('missingCatEmail', formFields.missingCatEmail)
+    formData.append('microchip', formFields.microchip)
+    formData.append('microChipNumber', formFields.microChipNumber)
+    formData.append('file', file)
+    console.log(formFields.microChipNumber)
+    // const formDataValues = formData.entries()
+    // console.log(formDataValues[9] + ' - ' + formDataValues[10])
     try {
       addCatMutuation.mutate(formData)
     } catch (error: any) {
@@ -54,15 +55,15 @@ export default function AddCat() {
   }
 
   const handleInputChange = async (e: any) => {
-    if (e.target.name === 'file') {
-      //console.log("file : " , e.target.files[0].name)
-      setFile(e.target.files[0])
-      console.log("file : " , file)      
-    } else if (e.target.name === 'microchip') {
+    if (e.target.name === 'microchip') {
       setFormFields({
         ...formFields,
         microchip: e.target.value,
       })
+    } else if (e.target.name === 'file') {
+      //console.log("file : " , e.target.files[0].name)
+      setFile(e.target.files[0])
+      console.log('file : ', file)
     } else {
       setFormFields({
         ...formFields,

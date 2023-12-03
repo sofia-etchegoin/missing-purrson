@@ -29,7 +29,7 @@ export async function getOneMissingCatApi(catId: number): Promise<MissingCat> {
 
 // ADD missing cat (/api/v1/missingcats/addcat)
 
-export async function addMissingCatApi(formData: MissingCat) {
+export async function addMissingCatApi(formData: any) {
   console.log('API-Cat')
   try {
     console.log(formData)

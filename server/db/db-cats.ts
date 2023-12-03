@@ -68,6 +68,8 @@ export async function deleteMissingCatDb(
 export async function addMissingCatDb(
   newCat: NewMissingCat,
 ): Promise<MissingCat[]> {
+  console.log('microChipNumber')
+  console.log(newCat.microChipNumber)
   try {
     const [newCatId] = await connection('missing_cats').insert({
       microchip: newCat.microchip,
