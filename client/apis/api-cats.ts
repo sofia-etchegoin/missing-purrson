@@ -1,7 +1,7 @@
 //api-cats.ts
 
 import request from 'superagent'
-import { MissingCat, NewMissingCat, NewSightedCat } from '../../models/cats'
+import { MissingCat, NewSightedCat } from '../../models/cats'
 const rootUrl = '/api/v1'
 
 // ----- MISSING CATS ----- //

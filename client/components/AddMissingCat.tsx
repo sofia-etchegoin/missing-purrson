@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { addMissingCatApi } from '../apis/api-cats'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const emptyCat = {
   catName: '',
@@ -18,7 +18,6 @@ const emptyCat = {
 }
 
 export default function AddMissingCat() {
-  const { catId } = useParams<{ catId: string }>()
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [formFields, setFormFields] = useState(emptyCat)
