@@ -1,0 +1,128 @@
+.cat-sightings{
+  padding: 8em;
+  @include row-flex;
+  background: $orange;
+
+
+  &__left{
+    flex-basis: 50%;
+  }
+
+  &__right{
+    flex-basis: 50%;
+    @include column-flex;
+    gap: 4em;
+  }
+
+  &__header{
+    @include row-flex;
+    justify-content: space-between
+  }
+  
+  &-heading{
+    @include display-font;
+  }
+
+  &__cards{
+    @include column-flex;
+    
+  }
+
+  &-card{
+    @include column-flex;
+    background: $white;
+    padding: 3em;
+    border-radius: 15px;
+    gap: 3em;
+
+    &__top{
+      @include row-flex;
+      gap: 4em;
+      width: 100%
+    }
+
+    &-title{
+      font-family: $body-font;
+      font-size: 2em;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    &-info{
+      font-family: $body-font;
+      font-size: 2em;
+      font-weight: 700;
+    }
+      
+  &__img{
+    flex-basis: 50%;
+    display: flex;
+    @include center-flex;
+    flex-shrink: 0;
+    // width: 100%;
+    height: 25em;
+    border-radius: 15px;
+    overflow: hidden; 
+  }
+
+  &-img{
+    width: 100%;
+    // object-fit: cover;
+    // object-position: center center;
+  }
+
+  &__info{
+    width: 100%;
+    @include column-flex;
+    justify-content: space-around;
+  }
+
+  &-section{
+    @include row-flex;
+    justify-content: space-between;
+  }
+
+  &__bottom{
+    @include column-flex;
+    gap: 1em;
+  }
+
+  
+
+  }
+&__btn{
+// height: 80%;
+  @include row-flex;
+  @include center-flex;
+}
+
+  &-btn{
+    @include row-flex;
+    @include center-flex;
+    background: none;
+    gap: 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0.8em 2em;
+    border: solid 2px $blue;
+    border-radius: 30px;
+    cursor: pointer;
+    color: $black;
+
+    svg{
+      fill: $black;
+    }
+
+    &:hover{
+      @include btn-hover;
+      color: $white;
+
+      svg{
+        fill: $white;
+        transition: 0.3s ease-in-out;
+      }
+    }
+  }
+
+  
+}

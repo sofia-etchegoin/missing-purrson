@@ -22,7 +22,6 @@
     border-radius: 30px;
   }
 
-
   &__right{
     flex-basis: 50%;
     @include column-flex;
@@ -43,9 +42,9 @@
     font-size: 2em;
   }
 
-
   &__description{
     @include column-flex;
+    gap: 1em;
     width: 80%;
   }
 
@@ -54,7 +53,6 @@
     font-size: 2.5em;
     font-weight: 500;
   }
-
 
   &__table{
     width: 80%;
@@ -91,7 +89,6 @@
   &__link{
     width: 20%
   }
-  
 
   &-link{
     @include row-flex;

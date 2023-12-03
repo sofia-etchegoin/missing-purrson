@@ -239,6 +239,71 @@
         </div>
       </div>
     </section>
+
+    <section class="cat-sightings">
+      <div class="cat-sightings__left">
+        <div class="cat-sightings__map"></div>
+      </div>
+      <div class="cat-sightings__right">
+        <div class="cat-sightings__header">
+          <h1 class="cat-sightings-heading">Possible Sightings</h1>
+          <div class="cat-sightings__btn">
+            <button class="cat-sightings-btn">
+              List a sighting
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="16"
+                width="12"
+                viewBox="0 0 384 512"
+              >
+                <path
+                  d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="cat-sightings__cards">
+          <div class="cat-sightings-card">
+            <div class="cat-sightings-card__top">
+              <div class="cat-sightings-card__img">
+                <img
+                  src="./client/images/creedMissing1.jpg"
+                  alt=""
+                  class="cat-sightings-card-img"
+                />
+              </div>
+              <div class="cat-sightings-card__info">
+                <div class="cat-sightings-card-section">
+                  <h3 class="cat-sightings-card-title">Sighted:</h3>
+                  <p class="cat-sightings-card-info">{c.dateSeen}</p>
+                </div>
+                <div class="cat-sightings-card-section">
+                  <h3 class="cat-sightings-card-title">Location:</h3>
+                  <p class="cat-sightings-card-info">{c.location}</p>
+                </div>
+                <div class="cat-sightings-card-section">
+                  <h3 class="cat-sightings-card-title">Colour</h3>
+                  <p class="cat-sightings-card-info">{c.color}</p>
+                </div>
+              </div>
+            </div>
+            <div class="cat-sightings-card__bottom">
+              <h3 class="cat-sightings-card-title">Description</h3>
+              <p class="cat-sightings-card-info">
+                Top of Birkdale Rd. He/She is very friendly and very hungry. She
+                has a white bib white paws and a pink collar. Turned up last
+                night had a big feed and today my sons cat has bought her home
+                for another which is amazing as he hates my cat and any other
+                neighbourhood cats. She likes being petted but not picked up.
+                I'm happy to feed her as she is so hungry but dont want to do it
+                if she has a loving home and her family is missing her.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <script src="./client/index.tsx" type="module"></script>
   </body>
 </html>
