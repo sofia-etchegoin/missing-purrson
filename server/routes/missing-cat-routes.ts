@@ -62,16 +62,34 @@ router.delete('/:id', async (req, res) => {
 })
 
 // POST localhost:5173/api/v1/missingcats/addcat
+// router.post('/addcat', upload.single('file'), async (req, res) => {
+//   console.log('Missing-cat-routes')
+//   //console.log(req.body)
+
+//   try {
+//     if (!req.file) {
+//       res.status(400).json({ error: 'No file uploaded' })
+//       return
+//     }
+//     const newCat = await db.addMissingCatDb(req.body)
+//     res.status(201).json(newCat)
+//   } catch (err) {
+//     console.error('Error in POST /api/v1/addCat', err)
+//     res.status(500).json('Internal Server Error')
+//   }
+// })
+
 router.post('/addcat', upload.single('file'), async (req, res) => {
   console.log('Missing-cat-routes')
-  //console.log(req.body)
-
   try {
     if (!req.file) {
       res.status(400).json({ error: 'No file uploaded' })
       return
     }
-    const newCat = await db.addMissingCatDb(req.body)
+    const newCat = await db.addMissingCatDb({
+      ...req.body,
+      missingImageUrl: req.file.filename, // Assuming 'missingImageUrl' is the correct field name
+    })
     res.status(201).json(newCat)
   } catch (err) {
     console.error('Error in POST /api/v1/addCat', err)
