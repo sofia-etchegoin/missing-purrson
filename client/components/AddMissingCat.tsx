@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { addMissingCatApi } from '../apis/api-cats'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const emptyCat = {
   catName: '',
@@ -18,6 +18,7 @@ const emptyCat = {
 }
 
 export default function AddMissingCat() {
+  const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [formFields, setFormFields] = useState(emptyCat)
   const formData = new FormData()
@@ -25,9 +26,11 @@ export default function AddMissingCat() {
 
   const addCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
-    onSuccess: async () => {
+    onSuccess: async (data) => {
+      const { catId } = data
       queryClient.invalidateQueries(['NewMissingCat'])
       setFormFields(emptyCat)
+      navigate(`/missingcats/singlecat/${catId}`)
     },
   })
 
@@ -189,10 +192,6 @@ export default function AddMissingCat() {
           Submit
         </button>
       </form>
-      <Link to="/missingcats">
-        {' '}
-        <button>See List of Missing Cats</button>
-      </Link>
     </>
   )
 }

@@ -35,7 +35,8 @@
     "knex": "^2.5.1",
     "multer": "^1.4.5-lts.1",
     "sqlite3": "^5.1.6",
-    "superagent": "7.1.1"
+    "superagent": "7.1.1",
+    "use-history": "^1.4.1"
   },
   "devDependencies": {
     "@devacademy/eslint-config": "^1.9.1",
