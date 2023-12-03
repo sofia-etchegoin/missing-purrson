@@ -17,21 +17,31 @@ const emptySighting = {
 
 export default function AddCatSightings() {
   const queryClient = useQueryClient()
-  const [formData, setFormData] = useState(emptySighting)
+  const [formFields, setformFields] = useState(emptySighting)
   const [isFormVisible, setFormVisibility] = useState(false)
+  const formData = new FormData()
+
+  const [file, setFile] = useState('')
   const { catIdMc } = useParams()
 
   const addCatSightingMutation = useMutation({
     mutationFn: (sightedCat) => addCatSightingApi(sightedCat, Number(catIdMc)),
     onSuccess: () => {
       queryClient.invalidateQueries(['sighted_cats'])
-      setFormData(emptySighting)
+      setformFields(emptySighting)
       setFormVisibility(false)
     },
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    formData.append('location', formFields.location)
+    formData.append('dateLost', formFields.dateSeen)
+    formData.append('color', formFields.color)
+    formData.append('description', formFields.description)
+    formData.append('sightedCatPhone', formFields.sightedCatPhone)
+    formData.append('sightedCatEmail', formFields.sightedCatEmail)
+    formData.append('file', file)
     try {
       addCatSightingMutation.mutate(formData)
     } catch (error: any) {
@@ -41,13 +51,11 @@ export default function AddCatSightings() {
 
   const handleInputChange = async (e: any) => {
     if (e.target.type === 'file') {
-      setFormData({
-        ...formData,
-        sightedImgUrl: e.target.files[0],
-      })
+      setFile(e.target.files[0])
+      console.log('file : ', file)
     } else {
-      setFormData({
-        ...formData,
+      setformFields({
+        ...formFields,
         [e.target.name]: e.target.value,
       })
     }
@@ -72,7 +80,7 @@ export default function AddCatSightings() {
             id="location"
             type="text"
             name="location"
-            value={formData.location}
+            value={formFields.location}
             onChange={handleInputChange}
           />
           <label htmlFor="dateSeen">DATE</label>
@@ -80,7 +88,7 @@ export default function AddCatSightings() {
             id="dateSeen"
             type="date"
             name="dateSeen"
-            value={formData.dateSeen}
+            value={formFields.dateSeen}
             onChange={handleInputChange}
           />
           <label htmlFor="color">COLOR</label>
@@ -88,7 +96,7 @@ export default function AddCatSightings() {
             id="color"
             type="text"
             name="color"
-            value={formData.color}
+            value={formFields.color}
             onChange={handleInputChange}
           />
           <label htmlFor="description">DESCRIPTION</label>
@@ -96,7 +104,7 @@ export default function AddCatSightings() {
             id="description"
             type="text"
             name="description"
-            value={formData.description}
+            value={formFields.description}
             onChange={handleInputChange}
           />
           <label htmlFor="sightedCatEmail">EMAIL</label>
@@ -104,7 +112,7 @@ export default function AddCatSightings() {
             id="sightedCatEmail"
             type="text"
             name="sightedCatEmail"
-            value={formData.sightedCatEmail}
+            value={formFields.sightedCatEmail}
             onChange={handleInputChange}
           />
           <label htmlFor="sightedCatPhone">PHONE</label>
@@ -112,15 +120,15 @@ export default function AddCatSightings() {
             id="sightedCatPhone"
             type="text"
             name="sightedCatPhone"
-            value={formData.sightedCatPhone}
+            value={formFields.sightedCatPhone}
             onChange={handleInputChange}
           />
           <label htmlFor="sightedImgUrl">PHOTO</label>
           <input
-            id="sightedImgUrl"
+            id="file"
             type="file"
-            name="sightedImgUrl"
-            value={formData.sightedImgUrl}
+            name="file"
+            required
             onChange={handleInputChange}
           />
           <h3>PRIVACY</h3> <br />

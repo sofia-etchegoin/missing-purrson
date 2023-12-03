@@ -1,6 +1,18 @@
 import { Router } from 'express'
 import * as db from '../db/db-cats'
 
+
+import multer from 'multer'
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    return cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    return cb(null, `${Date.now()}_${file.originalname}`)
+  },
+})
+const upload = multer({ storage })
 const router = Router()
 
 //GET localhost:5173/api/v1/sightedcats/
@@ -25,13 +37,18 @@ const router = Router()
 //     res.status(500).json('Internal Server Error')
 //   }
 // })
-
-router.post('/:catIdMc/add', async (req, res) => {
+///api/v1/sightedcats/:catIdMc/add
+router.post('/:catIdMc/add', upload.single('file'), async (req, res) => {
   try {
+    if (!req.file) {
+      res.status(400).json({ error: 'No file uploaded' })
+      return
+    }
     const { catIdMc } = req.params
     const newCat = await db.addSightedCatDb({
       ...req.body,
       catIdMc: Number(catIdMc),
+      sightedImageUrl: req.file.filename,
     })
     res.status(201).json(newCat)
   } catch (err) {
