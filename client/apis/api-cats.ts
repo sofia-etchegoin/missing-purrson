@@ -73,7 +73,7 @@ export async function getCatSightingsApi(catIdMc: number) {
   }
 }
 
-// ADD a cat sighting for a particular cat (/api/v1/sightedcats/:catIdMc)
+// ADD a cat sighting for a particular cat (/api/v1/sightedcats/:catIdMc/add)
 
 export async function addCatSightingApi(
   sightedCat: NewSightedCat,

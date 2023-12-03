@@ -5,7 +5,7 @@ import multer from 'multer'
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    return cb(null, 'uploads/')
+    return cb(null, 'server/images/missing_cats')
   },
   filename: function (req, file, cb) {
     return cb(null, `${Date.now()}_${file.originalname}`)
@@ -59,7 +59,6 @@ router.delete('/:id', async (req, res) => {
 
 
 // POST localhost:5173/api/v1/missingcats/addcat
-
 router.post('/addcat', upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {

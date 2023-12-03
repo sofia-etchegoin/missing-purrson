@@ -28,6 +28,7 @@ export default function MissingCatList() {
   const borderColour = '#030303'
   return (
     <>
+
       <Nav backgroundColour={backgroundColour} itemColour={itemColour} borderColour={borderColour} />
       <section className="cats">
         <div className="cats__left">
