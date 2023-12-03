@@ -66,7 +66,7 @@ router.post('/addcat', upload.single('file'), async (req, res) => {
     }
     const newCat = await db.addMissingCatDb({
       ...req.body,
-      missingImageUrl: req.file.filename,
+      missingImageUrl: 'server/images/missing_cats/' + req.file.filename,
     })
     res.status(201).json(newCat)
   } catch (err) {

@@ -28,8 +28,11 @@ export default function MissingCatList() {
   const borderColour = '#030303'
   return (
     <>
-
-      <Nav backgroundColour={backgroundColour} itemColour={itemColour} borderColour={borderColour} />
+      <Nav
+        backgroundColour={backgroundColour}
+        itemColour={itemColour}
+        borderColour={borderColour}
+      />
       <section className="cats">
         <div className="cats__left">
           <div className="cats-filter">
@@ -80,8 +83,8 @@ export default function MissingCatList() {
               <div key={cat.catId} className="cats-card">
                 <div className="cats-card__img">
                   <img
-                    src="./client/images/creed.jpg"
-                    alt=""
+                    src={cat.missingImageUrl}
+                    alt={cat.catName}
                     className="cats-card-img"
                   />
                 </div>
