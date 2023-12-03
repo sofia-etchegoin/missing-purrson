@@ -59,7 +59,6 @@ router.delete('/:id', async (req, res) => {
 
 
 // POST localhost:5173/api/v1/missingcats/addcat
-
 router.post('/addcat', upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
