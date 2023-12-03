@@ -36,7 +36,7 @@ export default function AddCatSightings() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     formData.append('location', formFields.location)
-    formData.append('dateLost', formFields.dateSeen)
+    formData.append('dateSeen', formFields.dateSeen)
     formData.append('color', formFields.color)
     formData.append('description', formFields.description)
     formData.append('sightedCatPhone', formFields.sightedCatPhone)
