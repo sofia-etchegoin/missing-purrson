@@ -279,14 +279,14 @@ export default function AddMissingCat() {
                 </p>
               </div>
               <div className="add-m-cat-form-section">
-              <div className="add-m-cat-form__btn">
-                <button
-                  type="submit"
-                  disabled={!file}
-                  className="add-cat add-m-cat-form-btn"
-                >
-                  Submit
-                </button>
+                <div className="add-m-cat-form__btn">
+                  <button
+                    type="submit"
+                    disabled={!file}
+                    className="add-cat add-m-cat-form-btn"
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
             </div>
