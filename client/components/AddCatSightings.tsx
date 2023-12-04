@@ -207,11 +207,11 @@ export default function AddCatSightings() {
                         className="cat-sightings-form-input"
                         id="description"
                         type="text"
+                        cols="30"
+                        rows="10"
                         name="description"
                         value={formFields.description}
                         onChange={handleInputChange}
-                        cols="30"
-                        rows="10"
                       ></textarea>
                     </div>
                   </div>
