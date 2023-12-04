@@ -119,7 +119,7 @@ export default function AddCatSightings() {
 
   return (
     <>
-      <Map />
+      <Map catSightings={catsighting} />
       <Nav
         backgroundColour={backgroundColour}
         itemColour={itemColour}

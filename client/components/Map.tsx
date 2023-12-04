@@ -12,7 +12,7 @@ const mapOptions = {
   },
 }
 
-export default function Map() {
+export default function Map({ catSightings }) {
   const [mapContainer, setMapContainer] = useState(null)
 
   return (
@@ -22,48 +22,49 @@ export default function Map() {
       mapContainer={mapContainer}
     >
       <div ref={(node) => setMapContainer(node)} style={{ height: '100vh' }} />
-      <Location />
+      <Location catSightings={catSightings} />
     </GoogleMapsProvider>
   )
 }
 
-function Location() {
+function Location({ catSightings }) {
   const [lat, setLat] = useState(-41.2924)
   const [lng, setLng] = useState(174.7787)
   const map = useGoogleMap()
   const markerRef = useRef()
 
   useEffect(() => {
-    if (!map) {
+    if (!map || !catSightings || catSightings.length === 0) {
       return
     }
 
-    const tilesLoadedListener = map.addListener('tilesloaded', () => {
-      // Tiles are loaded, now we can safely interact with the map
-      console.log('Map: ', map)
+    // Clear existing markers
+    if (markerRef.current) {
+      markerRef.current.setMap(null)
+    }
 
-      if (markerRef.current) {
-        markerRef.current.setMap(map)
-      } else {
-        markerRef.current = new window.google.maps.Marker({ map })
-      }
+    // Create markers for each sighting
+    catSightings.forEach((sighting) => {
+      const [latString, lngString] = sighting.location.split(', ')
+      const lat = parseFloat(latString.trim())
+      const lng = parseFloat(lngString.trim())
 
-      // Clean up the listener after it's been called
-      tilesLoadedListener.remove()
+      const marker = new window.google.maps.Marker({
+        position: { lat, lng },
+        map,
+      })
+
+      markerRef.current = marker
     })
 
-    return () => {
-      // Remove the listener when the component unmounts
-      tilesLoadedListener.remove()
-    }
-  }, [map])
+    // Pan to the first sighting's location
+    const [firstLatString, firstLngString] =
+      catSightings[0].location.split(', ')
+    const firstLat = parseFloat(firstLatString.trim())
+    const firstLng = parseFloat(firstLngString.trim())
 
-  useEffect(() => {
-    if (!markerRef.current) return
-    if (isNaN(lat) || isNaN(lng)) return
-    markerRef.current.setPosition({ lat, lng })
-    map.panTo({ lat, lng })
-  }, [lat, lng, map])
+    map.panTo({ lat: firstLat, lng: firstLng })
+  }, [map, catSightings])
 
   return (
     <div className="lat-lng">
