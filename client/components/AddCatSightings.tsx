@@ -1,15 +1,17 @@
 //AddCatSighting.tsx
-'use client'
+// 'use client'
 
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Pin,
-  InfoWindow,
-  useMapsLibrary,
-  useAutocomplete,
-} from '@vis.gl/react-google-maps'
+// import {
+//   APIProvider,
+//   Map,
+//   AdvancedMarker,
+//   Pin,
+//   InfoWindow,
+//   useMapsLibrary,
+//   useAutocomplete,
+// } from '@vis.gl/react-google-maps'
+
+import Map from './Map'
 
 import { useState, useEffect, useRef } from 'react'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
@@ -37,23 +39,23 @@ export default function AddCatSightings() {
   const [file, setFile] = useState('')
   const { catIdMc } = useParams()
   // maps
-  const [inputValue, setInputValue] = useState('')
-  const [coordinates, setCoordinates] = useState(null)
-  const placesLib = useMapsLibrary('places')
-  const [placesService, setPlacesService] = useState(null)
+  // const [inputValue, setInputValue] = useState('')
+  // const [coordinates, setCoordinates] = useState(null)
+  // const placesLib = useMapsLibrary('places')
+  // const [placesService, setPlacesService] = useState(null)
 
   // Maps API
 
-  const center = {
-    lat: -41.2924,
-    lng: 174.7787,
-  }
+  // const center = {
+  //   lat: -41.2924,
+  //   lng: 174.7787,
+  // }
 
-  const mapContainerStyle = {
-    width: '100%',
-    height: '100%',
-    borderRadius: '30px',
-  }
+  // const mapContainerStyle = {
+  //   width: '100%',
+  //   height: '100%',
+  //   borderRadius: '30px',
+  // }
 
   // Maps API ENDS
 
@@ -117,6 +119,7 @@ export default function AddCatSightings() {
 
   return (
     <>
+      <Map />
       <Nav
         backgroundColour={backgroundColour}
         itemColour={itemColour}
@@ -124,11 +127,11 @@ export default function AddCatSightings() {
       />
       <section className="cat-sightings">
         <div className="cat-sightings__left">
-          <APIProvider apiKey="AIzaSyD499QbrpxctpzIhJlz48TDok-4hXTRTWw">
+          {/* <APIProvider apiKey="AIzaSyD499QbrpxctpzIhJlz48TDok-4hXTRTWw">
             <div className="cat-sightings__map">
               <Map zoom={6} center={center}></Map>
             </div>
-          </APIProvider>
+          </APIProvider> */}
         </div>
         <div className="cat-sightings__right">
           <div className="cat-sightings__header">
