@@ -31,16 +31,20 @@ export default function Nav({
     authUser,
     nickname: authUser?.name,
     picture: authUser?.picture,
+    email: authUser?.email,
+    family_name: authUser?.family_name,
+    given_name: authUser?.given_name,
   }
 
   const handleSignOut = () => {
-    console.log('sign out')
     log.logout()
   }
 
   const handleSignIn = () => {
-    console.log('sign in')
-    log.loginWithRedirect()
+    //Is user currently registered
+    //if sign/log in user 
+    //else so register user 
+    log.loginWithPopup()
   }
   return (
     <header>

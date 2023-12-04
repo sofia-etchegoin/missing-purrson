@@ -1,12 +1,12 @@
 //AddCatSighting.tsx
 
 import { useState } from 'react'
-import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
-import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
-import { useParams } from 'react-router-dom'
-import { SightedCat } from '../../models/cats'
-import { Link } from 'react-router-dom'
-import Nav from './Nav'
+import { useQueryClient, useMutation } from '@tanstack/react-query'
+//import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
+
+import { NewUser } from '../../models/user'
+// import { Link } from 'react-router-dom'
+// import Nav from './Nav'
 
 const emptyUser = {
   username: '',
@@ -22,15 +22,25 @@ export default function AddCatSightings() {
   const [formFields, setformFields] = useState(emptyUser)
   //const [isFormVisible, setFormVisibility] = useState(false)
   const formData = new FormData()
-  const [file, setFile] = useState('')
-  const { catIdMc } = useParams()
 
-  function onHandleSubmit(){
-
+  function handleSubmit(e: React.FormEvent){
+    e.preventDefault()
+    formData.append('username', formFields.username)
+    formData.append('password', formFields.password)
+    formData.append('email', formFields.email)
+    formData.append('auth0_id', formFields.auth0_id)
+    formData.append('given_name', formFields.given_name)
+    formData.append('family_name', formFields.family_name)
   }
 
-  function onHandleChange(){
-
+  const handleInputChange = async (e: any) => {
+    if (e.target.type === 'file') {
+      setformFields({
+        ...formFields,
+        [e.target.name]: e.target.value,
+      })
+      //console.log('file : ', file)
+    } 
   }
 
   return (
@@ -53,14 +63,14 @@ export default function AddCatSightings() {
                         className="cat-sightings-form-label"
                         htmlFor="location"
                       >
-                        LOCATION
+                        Username
                       </label>
                       <input
                         className="cat-sightings-form-input"
-                        id="location"
+                        id="username"
                         type="text"
-                        name="location"
-                        value={formFields.location}
+                        name="username"
+                        value={formFields.username}
                         onChange={handleInputChange}
                       />
                     </div>

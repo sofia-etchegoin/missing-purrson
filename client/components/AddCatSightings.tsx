@@ -62,7 +62,7 @@ export default function AddCatSightings() {
   const handleInputChange = async (e: any) => {
     if (e.target.type === 'file') {
       setFile(e.target.files[0])
-      console.log('file : ', file)
+      //console.log('file : ', file)
     } else {
       setformFields({
         ...formFields,
