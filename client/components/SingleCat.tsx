@@ -25,7 +25,7 @@ export default function SingleCat() {
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
-
+  const imageUrls = missingcats.missingImageUrl.split(',')
   return (
     <>
       <Nav
@@ -49,11 +49,14 @@ export default function SingleCat() {
             </Link>
           </div>
           <div className="single-cat__img">
-            <img
-              src={`/` + missingcats.missingImageUrl}
-              alt=""
-              className="single-cat-img"
-            />
+            {imageUrls.map((imageUrl, index) => (
+              <img
+                key={index}
+                src={`/${imageUrl}`}
+                alt={`Cat ${index + 1}`}
+                className="single-cat-img"
+              />
+            ))}
           </div>
         </div>
         <div className="single-cat__right">

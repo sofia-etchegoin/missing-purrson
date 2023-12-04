@@ -22,7 +22,7 @@ export default function AddMissingCat() {
   const queryClient = useQueryClient()
   const [formFields, setFormFields] = useState(emptyCat)
   const formData = new FormData()
-  const [file, setFile] = useState('')
+  const [files, setFiles] = useState('')
 
   const addCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
@@ -46,10 +46,11 @@ export default function AddMissingCat() {
     formData.append('missingCatEmail', formFields.missingCatEmail)
     formData.append('microchip', formFields.microchip)
     formData.append('microChipNumber', formFields.microChipNumber)
-    formData.append('file', file)
-    // console.log(formFields.microChipNumber)
-    // const formDataValues = formData.entries()
-    // console.log(formDataValues[9] + ' - ' + formDataValues[10])
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append('file', files[i])
+    }
+
     try {
       addCatMutuation.mutate(formData)
     } catch (error: any) {
@@ -64,9 +65,7 @@ export default function AddMissingCat() {
         microchip: e.target.value,
       })
     } else if (e.target.name === 'file') {
-      //console.log("file : " , e.target.files[0].name)
-      setFile(e.target.files[0])
-      console.log('file : ', file)
+      setFiles([...files, e.target.files[0]])
     } else {
       setFormFields({
         ...formFields,
@@ -187,8 +186,9 @@ export default function AddMissingCat() {
           name="file"
           required
           onChange={handleInputChange}
+          multiple
         />
-        <button type="submit" disabled={!file} className="add-cat">
+        <button type="submit" disabled={files.length === 0} className="add-cat">
           Submit
         </button>
       </form>

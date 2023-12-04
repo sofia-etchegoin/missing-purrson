@@ -26,6 +26,11 @@ export default function MissingCatList() {
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
+  const getImageUrlsArray = (imageUrlString) => {
+    if (!imageUrlString) return []
+    return imageUrlString.split(',').map((url) => url.trim())
+  }
+
   return (
     <>
       <Nav
@@ -78,14 +83,14 @@ export default function MissingCatList() {
           <div className="cats__header">
             <h1 className="cats-header">These Kitties Need Your Help!</h1>
           </div>
+
           <div className="cats__cards">
             {missingcats?.map((cat) => (
               <div key={cat.catId} className="cats-card">
                 <div className="cats-card__img">
                   <img
-                    src={cat.missingImageUrl}
+                    src={getImageUrlsArray(cat.missingImageUrl)[0]}
                     alt={cat.catName}
-
                     className="cats-card-img"
                   />
                 </div>
