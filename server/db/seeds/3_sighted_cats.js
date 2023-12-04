@@ -10,7 +10,7 @@ export async function seed(knex) {
       location: '40.730610, -73.935242',
       sighted_cat_phone: '022-021-2355',
       sighted_cat_email: 'founder@example.com',
-      sighted_image_url: 'server/images/sighted_cats/1701578403576_house.jpeg',
+      sighted_image_url: 'server/images/sighted_cats/fluffy2_persian.jpeg',
     },
     {
       sighted_cat_id: 2,
@@ -22,7 +22,7 @@ export async function seed(knex) {
       location: '34.052235, -118.243683',
       sighted_cat_phone: '022-021-2355',
       sighted_cat_email: 'rescuer@example.com',
-      sighted_image_url: 'server/images/sighted_cats/1701578403576_house.jpeg',
+      sighted_image_url: 'server/images/sighted_cats/whiskers_siamese2.jpg',
     },
     {
       sighted_cat_id: 3,
@@ -34,7 +34,7 @@ export async function seed(knex) {
       location: '41.878113, -87.629799',
       sighted_cat_phone: '022-021-2355',
       sighted_cat_email: 'saver@example.com',
-      sighted_image_url: 'server/images/sighted_cats/1701578403576_house.jpeg',
+      sighted_image_url: 'server/images/sighted_cats/mittens_tabby2.webp',
     },
     {
       sighted_cat_id: 4,
@@ -46,7 +46,7 @@ export async function seed(knex) {
       location: '37.774929, -122.419416',
       sighted_cat_phone: '022-021-2355',
       sighted_cat_email: 'finder@example.com',
-      sighted_image_url: 'server/images/sighted_cats/1701578403576_house.jpeg',
+      sighted_image_url: 'server/images/sighted_cats/shadow_blackcat2.jpg',
     },
     {
       sighted_cat_id: 5,
@@ -58,7 +58,7 @@ export async function seed(knex) {
       location: '40.712776, -74.005974',
       sighted_cat_phone: '022-021-2355',
       sighted_cat_email: 'catlover@example.com',
-      sighted_image_url: 'server/images/sighted_cats/1701578403576_house.jpeg',
+      sighted_image_url: 'server/images/sighted_cats/fluffy3.jpeg',
     },
   ])
 }
