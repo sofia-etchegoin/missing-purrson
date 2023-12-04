@@ -1,13 +1,41 @@
+import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { getAUserApi } from '../apis/api-users'
+import { useAuth0 } from '@auth0/auth0-react'
+import { NewUser, User } from '../../models/user'
+import { useNavigate } from 'react-router-dom'
+
 import { getAllMissingCatsApi } from '../apis/api-cats'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
 
 export default function MissingCatList() {
+  //const log = useAuth0()
+  const navigate = useNavigate()
+
+  const { user: authUser } = useAuth0()
+
+  // this needs to be ASYNC
+  const currentUser = authUser?.auth0_id
+
+  // UseQuery to establish if user exists
+  const {
+    data: user,
+    isError,
+    isLoading,
+  } = useQuery({
+    queryKey: ['Users', currentUser],
+    queryFn: async () => {
+      await getAUserApi(currentUser)
+    },
+  })
+  //does the user exist
+
+  // MISSING CATS
   const {
     data: missingcats,
-    isLoading,
-    isError,
+    isLoading: isCatLoading,
+    isError: isCatError,
   } = useQuery({
     queryKey: ['missing_cats'],
     queryFn: () => {
@@ -15,11 +43,22 @@ export default function MissingCatList() {
     },
   })
 
-  if (isError) {
+  useEffect(() => {
+    if (isError) {
+      navigate('/registeruser')
+    }
+  }, [isError, navigate])
+
+  if (isLoading) {
+    return <p>Hang in there Kitty.</p>
+  }
+
+
+  if (isCatError) {
     return <p>YEEEOOOWWWW! No kitties to be found!</p>
   }
 
-  if (!missingcats || isLoading) {
+  if (!missingcats || isCatLoading) {
     return <p>Loading...</p>
   }
 
@@ -85,7 +124,6 @@ export default function MissingCatList() {
                   <img
                     src={cat.missingImageUrl}
                     alt={cat.catName}
-
                     className="cats-card-img"
                   />
                 </div>

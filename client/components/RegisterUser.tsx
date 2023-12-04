@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { useQueryClient, useMutation } from '@tanstack/react-query'
-import { addNewUserApi } from '../apis/api-users'
+import { useEffect, useState } from 'react'
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
+import { addNewUserApi, getAUserApi } from '../apis/api-users'
 import { useAuth0 } from '@auth0/auth0-react'
-import { NewUser } from '../../models/user'
+import { NewUser, User } from '../../models/user'
 import { useNavigate } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 // import Nav from './Nav'
@@ -14,6 +14,8 @@ export default function RegisterUser() {
   const authUser = useAuth0().user
   //console.log(log.user)
   // TODO: replace placeholder user object with the one from auth0
+  
+  // this needs to be ASYNC
   const newUser = {
     authUser,
     nickname: authUser?.nickname,
@@ -37,6 +39,8 @@ export default function RegisterUser() {
       navigate(`/missingcats`)
     },
   })
+
+  
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()

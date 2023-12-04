@@ -8,6 +8,9 @@ router.get('/:auth0_id', async (req, res) => {
   const auth0_id = req.params.auth0_id
   try {
     const user = await db.getAUserDb(auth0_id)
+    if(!user){
+      res.status(404)
+    }
     res.json(user)
   } catch (error) {
     console.log(error)

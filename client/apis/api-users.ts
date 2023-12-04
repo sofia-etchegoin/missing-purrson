@@ -8,7 +8,7 @@ const rootUrl = '/api/v1'
 
 // GET a user (/api/v1/user/:Auth0_id)
 
-export async function getUserApi(Auth0_id: string): Promise<User> {
+export async function getAUserApi(Auth0_id: string): Promise<User> {
   try {
     const response = await request.get(`${rootUrl}/user/${Auth0_id}`)
     return response.body
