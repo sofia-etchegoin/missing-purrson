@@ -12,7 +12,12 @@ const storage = multer.diskStorage({
   },
 })
 
-const upload = multer({ storage })
+const upload = multer({
+  storage: storage,
+  limits: {
+    files: Infinity,
+  },
+})
 
 const router = Router()
 
@@ -20,7 +25,6 @@ const router = Router()
 router.get('/', async (req, res) => {
   try {
     const cats = await db.getAllMissingCatsDb()
-    //console.log(cats)
     res.json(cats)
   } catch (error) {
     console.log(error)
@@ -58,15 +62,20 @@ router.delete('/:id', async (req, res) => {
 })
 
 // POST localhost:5173/api/v1/missingcats/addcat
-router.post('/addcat', upload.single('file'), async (req, res) => {
+router.post('/addcat', upload.array('file'), async (req, res) => {
   try {
-    if (!req.file) {
-      res.status(400).json({ error: 'No file uploaded' })
+    if (!req.files || req.files.length === 0) {
+      res.status(400).json({ error: 'No files uploaded' })
       return
     }
+
+    const missingImageUrls = (req.files as Express.Multer.File[])
+      .map((file) => 'server/images/missing_cats/' + file.filename)
+      .join(',')
+
     const newCat = await db.addMissingCatDb({
       ...req.body,
-      missingImageUrl: 'server/images/missing_cats/' + req.file.filename,
+      missingImageUrl: missingImageUrls,
     })
     res.status(201).json(newCat)
   } catch (err) {
