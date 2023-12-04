@@ -1,6 +1,6 @@
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx'
 import { Link } from 'react-router-dom'
-// import { SignIn } from './SignIn'
-// import { SignOut } from './SignOut'
+import { useAuth0 } from "@auth0/auth0-react"
 
 interface NavColor {
   backgroundColour: string
@@ -24,7 +24,24 @@ export default function Nav({
   const navBorderStyle = {
     borderColor: borderColour,
   }
+  const log = useAuth0()
+  const authUser = useAuth0().user
+  // TODO: replace placeholder user object with the one from auth0
+  const user = {
+    authUser,
+    nickname: authUser?.name,
+    picture: authUser?.picture,
+  }
 
+  const handleSignOut = () => {
+    console.log('sign out')
+    log.logout()
+  }
+
+  const handleSignIn = () => {
+    console.log('sign in')
+    log.loginWithRedirect()
+  }
   return (
     <header>
       <nav className="nav" style={navStyle}>
@@ -56,17 +73,25 @@ export default function Nav({
             >
               <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
             </svg>
-            {/* <SignIn /> */}
-            {/* <SignOut /> */}
-            <a href="#" id="login" style={navItemStyle} className="nav-auth">
-              LOGIN
-            </a>
-            <a href="#" id="signUp" style={navItemStyle} className="nav-auth">
-              SIGNUP
-            </a>
+            <IfAuthenticated>
+              <button onClick={handleSignOut}>Sign out</button>
+              {user && <p>Signed in as: {user?.nickname} <img src={user?.picture} alt={user?.nickname}/></p>}
+            </IfAuthenticated>
+            <IfNotAuthenticated>
+              <button onClick={handleSignIn}>Sign in</button>
+            </IfNotAuthenticated>
+
           </div>
         </div>
       </nav>
     </header>
   )
 }
+
+            
+{/* <a href="#" id="login" style={navItemStyle} className="nav-auth">
+LOGIN
+</a>
+<a href="#" id="signUp" style={navItemStyle} className="nav-auth">
+SIGNUP
+</a> */}
