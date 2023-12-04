@@ -1,6 +1,17 @@
 //AddCatSighting.tsx
+'use client'
 
-import { useState } from 'react'
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+  InfoWindow,
+  useMapsLibrary,
+  useAutocomplete,
+} from '@vis.gl/react-google-maps'
+
+import { useState, useEffect, useRef } from 'react'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
 import { useParams } from 'react-router-dom'
@@ -25,6 +36,26 @@ export default function AddCatSightings() {
   const formData = new FormData()
   const [file, setFile] = useState('')
   const { catIdMc } = useParams()
+  // maps
+  const [inputValue, setInputValue] = useState('')
+  const [coordinates, setCoordinates] = useState(null)
+  const placesLib = useMapsLibrary('places')
+  const [placesService, setPlacesService] = useState(null)
+
+  // Maps API
+
+  const center = {
+    lat: -41.2924,
+    lng: 174.7787,
+  }
+
+  const mapContainerStyle = {
+    width: '100%',
+    height: '100%',
+    borderRadius: '30px',
+  }
+
+  // Maps API ENDS
 
   const {
     data: catsighting,
@@ -79,7 +110,7 @@ export default function AddCatSightings() {
     return <p>Loading...</p>
   }
 
-  console.log(catsighting)
+  // console.log(catsighting)
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
@@ -93,7 +124,11 @@ export default function AddCatSightings() {
       />
       <section className="cat-sightings">
         <div className="cat-sightings__left">
-          <div className="cat-sightings__map"></div>
+          <APIProvider apiKey="AIzaSyD499QbrpxctpzIhJlz48TDok-4hXTRTWw">
+            <div className="cat-sightings__map">
+              <Map zoom={6} center={center}></Map>
+            </div>
+          </APIProvider>
         </div>
         <div className="cat-sightings__right">
           <div className="cat-sightings__header">

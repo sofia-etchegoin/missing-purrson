@@ -9,7 +9,7 @@
   align-items: center;
 
   &__left{
-    flex-basis: 50%;
+    flex-basis: 60%;
     padding: 10em;
     @include column-flex;
     gap: 3em;
