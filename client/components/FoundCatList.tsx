@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getAllMissingCatsApi } from '../apis/api-cats'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
 
@@ -15,17 +16,38 @@ export default function FoundCatList() {
     },
   })
 
+  const [loadingTimePassed, setLoadingTimePassed] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingTimePassed(true)
+    }, 1000) // Set the loading time in milliseconds (e.g., 3000ms or 3 seconds)
+
+    return () => clearTimeout(timer) // Cleanup the timer on component unmount
+  }, [])
+
   if (isError) {
-    return <p>YEEEOOOWWWW! No kitties to be found!</p>
+    return (
+      <div className="loading">
+        <img src="/client/images/catGif1.gif" alt="" />
+        <h1 className="loading-heading">Something's broken!</h1>
+      </div>
+    )
   }
 
-  if (!missingcats || isLoading) {
-    return <p>Loading...</p>
+  if (!missingcats || !loadingTimePassed || isLoading) {
+    return (
+      <div className="loading">
+        <img src="/client/images/catGif3.gif" alt="" />
+        <h1 className="loading-heading">Just a Sec!!</h1>
+      </div>
+    )
   }
 
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
+  const navLogo = 'client/images/MP-Logo-Black.svg'
   const getImageUrlsArray = (imageUrlString) => {
     if (!imageUrlString) return []
     return imageUrlString.split(',').map((url) => url.trim())
@@ -39,6 +61,7 @@ export default function FoundCatList() {
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
+        navLogoSrc={navLogo}
       />
       <section className="cats">
         <div className="cats__left">

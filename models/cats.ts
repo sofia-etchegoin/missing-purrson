@@ -16,7 +16,7 @@ export interface MissingCat {
 }
 
 export interface NewMissingCat {
-  microchip: number
+  microchip: string
   microChipNumber: string
   userIdMc: number
   catName: string
@@ -39,6 +39,7 @@ export interface SightedCat {
   description: string
   dateSeen: Date
   location: string
+  stringLocation: string
   sightedCatPhone: string
   sightedCatEmail: string
   sightedImageUrl: string
@@ -51,6 +52,7 @@ export interface NewSightedCat {
   description: string
   dateSeen: Date
   location: string
+  stringLocation: string
   sightedCatPhone: string
   sightedCatEmail: string
   sightedImageUrl: string

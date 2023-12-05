@@ -84,6 +84,7 @@ export default function AddMissingCat() {
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
+  const navLogo = 'client/images/MP-Logo-Black.svg'
 
   return (
     <>
@@ -91,6 +92,7 @@ export default function AddMissingCat() {
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
+        navLogoSrc={navLogo}
       />
       <section className="add-m-cat">
         <div className="add-m-cat__header">
@@ -175,9 +177,6 @@ export default function AddMissingCat() {
                   onChange={handleInputChange}
                 />
               </div>
-            </div>
-            <div className="add-m-cat-form-div"></div>
-            <div className="add-m-cat-form__section">
               <div className="add-m-cat-form-section">
                 <label
                   className="add-m-cat-form-label"
@@ -194,6 +193,9 @@ export default function AddMissingCat() {
                   onChange={handleInputChange}
                 />
               </div>
+            </div>
+            <div className="add-m-cat-form-div"></div>
+            <div className="add-m-cat-form__section">
               <div className="add-m-cat-form-section">
                 <label
                   className="add-m-cat-form-label"
@@ -241,9 +243,6 @@ export default function AddMissingCat() {
                   onChange={handleInputChange}
                 />
               </div>
-            </div>
-            <div className="add-m-cat-form-div"></div>
-            <div className="add-m-cat-form__section">
               <div className="add-m-cat-form-section">
                 <label className="add-m-cat-form-label" htmlFor="description">
                   DESCRIPTION
@@ -259,6 +258,9 @@ export default function AddMissingCat() {
                   onChange={handleInputChange}
                 ></textarea>
               </div>
+            </div>
+            <div className="add-m-cat-form-div"></div>
+            <div className="add-m-cat-form__section">
               <div className="add-m-cat-form-section">
                 <label
                   className="add-m-cat-form-label"

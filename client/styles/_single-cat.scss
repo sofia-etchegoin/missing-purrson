@@ -51,7 +51,7 @@
 
   // Big Image
   &-img{
-    height: 90%;
+    height: 100%;
     width: auto;
     border-radius: 15px;
     // Btn coantins Small img
@@ -143,11 +143,51 @@
 
   }
 
+  &__links{
+    @include row-flex;
+    justify-content: space-between;
+  }
+
   &__link{
     width: 20%
   }
 
+  &__link:nth-child(2){
+    width: 30%;
+  }
+
   &-link{
+    
+    &-btn{
+      background: none;
+      width: 100%;
+      @include row-flex;
+      @include center-flex;
+      gap: 1em;
+      font-size: 1.5em;
+      font-weight: bold;
+      padding: 0.8em 0.5em;
+      border: solid 2px $blue;
+      border-radius: 30px;
+      cursor: pointer;
+      color: $black;
+  
+      svg{
+        fill: $black;
+      }
+  
+      &:hover{
+        @include btn-hover;
+        color: $white;
+  
+        svg{
+          fill: $white;
+          transition: 0.3s ease-in-out;
+        }
+      }
+    }
+
+
     @include row-flex;
     @include center-flex;
     gap: 1em;
@@ -171,6 +211,10 @@
         fill: $white;
         transition: 0.3s ease-in-out;
       }
+    }
+
+    &--back{
+      padding: 0.8em 2em;
     }
   }
 }
