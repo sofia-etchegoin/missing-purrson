@@ -16,6 +16,7 @@ const emptyCat = {
   microchip: '',
   microChipNumber: '',
   missingImageUrl: '',
+  catMissing: true,
 }
 
 export default function AddMissingCat() {
@@ -23,8 +24,7 @@ export default function AddMissingCat() {
   const queryClient = useQueryClient()
   const [formFields, setFormFields] = useState(emptyCat)
   const formData = new FormData()
-  const [files, setFiles] = useState('')
-  const [uploadedFileNames, setUploadedFileNames] = useState<string[]>([])
+  const [files, setFiles] = useState([])
 
   const addCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
@@ -67,11 +67,7 @@ export default function AddMissingCat() {
         microchip: e.target.value,
       })
     } else if (e.target.name === 'file') {
-      setFiles([...files, ...e.target.files])
-      const newFileNames = Array.from(e.target.files).map(
-        (file: File) => file.name,
-      )
-      setUploadedFileNames([...uploadedFileNames, ...newFileNames])
+      setFiles([...files, e.target.files])
     } else {
       setFormFields({
         ...formFields,
@@ -273,11 +269,6 @@ export default function AddMissingCat() {
                   onChange={handleInputChange}
                   multiple
                 />
-                {uploadedFileNames.map((fileName, index) => (
-                  <p key={index}>
-                    File {index + 1}: {fileName}
-                  </p>
-                ))}
               </div>
               <div className="add-m-cat-form-section">
                 <h3 className="add-m-cat-form-label">Privacy</h3>
@@ -291,9 +282,7 @@ export default function AddMissingCat() {
                 <div className="add-m-cat-form__btn">
                   <button
                     type="submit"
-
-                    disabled={!file}
-
+                    disabled={files.length === 0}
                     className="add-cat add-m-cat-form-btn"
                   >
                     Submit
