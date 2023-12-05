@@ -88,14 +88,17 @@ export default function AddCatSightings() {
 
   return (
     <>
-      <Map catSightings={catsighting} />
       <Nav
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
       />
       <section className="cat-sightings">
-        <div className="cat-sightings__left"></div>
+        <div className="cat-sightings__left">
+          <div className="cat-sightings__map">
+            <Map catSightings={catsighting} />
+          </div>
+        </div>
         <div className="cat-sightings__right">
           <div className="cat-sightings__header">
             <h1 className="cat-sightings-heading">Possible Sightings</h1>

@@ -21,7 +21,10 @@ export default function Map({ catSightings }) {
       mapOptions={mapOptions}
       mapContainer={mapContainer}
     >
-      <div ref={(node) => setMapContainer(node)} style={{ height: '100vh' }} />
+      <div
+        ref={(node) => setMapContainer(node)}
+        style={{ height: '100%', borderRadius: '15px' }}
+      />
       <Location catSightings={catSightings} />
     </GoogleMapsProvider>
   )
