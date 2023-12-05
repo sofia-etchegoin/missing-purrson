@@ -54,8 +54,13 @@ export default function AddCatSightings() {
   })
 
   const addCatSightingMutation = useMutation({
-    mutationFn: (sightedCat) => addCatSightingApi(sightedCat, Number(catIdMc)),
+    mutationFn: async (sightedCat) => {
+      console.log('before Mutation')
+      await addCatSightingApi(sightedCat, Number(catIdMc))
+      console.log('after Mutation')
+    },
     onSuccess: () => {
+      console.log('working')
       queryClient.invalidateQueries(['sighted_cats'])
       setformFields(emptySighting)
       setFormVisibility(false)

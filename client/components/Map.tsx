@@ -31,22 +31,26 @@ export default function Map({ catSightings }) {
         ref={(node) => setMapContainer(node)}
         style={{ height: '100%', borderRadius: '15px' }}
       />
-      {/* <Location catSightings={catSightings} /> */}
-      {mapLoaded && <Location catSightings={catSightings} />}
+      {catSightings.map((sighting) => (
+        <Location key={sighting.id} sighting={sighting} />
+      ))}
+
+      {/* {mapLoaded && <Location catSightings={catSightings} />} */}
     </GoogleMapsProvider>
   )
 }
 
-function Location({ catSightings }) {
-  const [lat, setLat] = useState(-41.2924)
-  const [lng, setLng] = useState(174.7787)
+function Location({ sighting }) {
   const map = useGoogleMap()
   const markerRef = useRef()
 
   useEffect(() => {
-    if (!map || !catSightings || catSightings.length === 0) {
+    if (!map || !sighting) {
       return
     }
+    console.log('bruh')
+
+    console.log(map)
 
     // Clear existing markers
     if (markerRef.current) {
@@ -54,42 +58,26 @@ function Location({ catSightings }) {
     }
 
     // Create markers for each sighting
-    catSightings.forEach((sighting) => {
-      const [latString, lngString] = sighting.location.split(', ')
-      const lat = parseFloat(latString.trim())
-      const lng = parseFloat(lngString.trim())
+    const [latString, lngString] = sighting.location.split(', ')
+    const lat = parseFloat(latString.trim())
+    const lng = parseFloat(lngString.trim())
 
+    if (window.google && window.google.maps) {
+      console.log('running')
       const marker = new window.google.maps.Marker({
         position: { lat, lng },
         map,
       })
-
       markerRef.current = marker
-    })
+    }
 
     // Pan to the first sighting's location
-    const [firstLatString, firstLngString] =
-      catSightings[0].location.split(', ')
+    const [firstLatString, firstLngString] = sighting.location.split(', ')
     const firstLat = parseFloat(firstLatString.trim())
     const firstLng = parseFloat(firstLngString.trim())
 
     map.panTo({ lat: firstLat, lng: firstLng })
-  }, [map, catSightings])
+  }, [map, sighting])
 
-  return (
-    <div className="lat-lng">
-      <input
-        type="number"
-        value={lat}
-        onChange={(event) => setLat(parseFloat(event.target.value))}
-        step={0.01}
-      />
-      <input
-        type="number"
-        value={lng}
-        onChange={(event) => setLng(parseFloat(event.target.value))}
-        step={0.01}
-      />
-    </div>
-  )
+  return <></>
 }
