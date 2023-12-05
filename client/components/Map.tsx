@@ -14,18 +14,25 @@ const mapOptions = {
 
 export default function Map({ catSightings }) {
   const [mapContainer, setMapContainer] = useState(null)
+  const [mapLoaded, setMapLoaded] = useState(false)
+
+  const handleLoad = (map) => {
+    setMapLoaded(true)
+  }
 
   return (
     <GoogleMapsProvider
       googleMapsAPIKey="AIzaSyD499QbrpxctpzIhJlz48TDok-4hXTRTWw"
       mapOptions={mapOptions}
       mapContainer={mapContainer}
+      onLoad={handleLoad}
     >
       <div
         ref={(node) => setMapContainer(node)}
         style={{ height: '100%', borderRadius: '15px' }}
       />
-      <Location catSightings={catSightings} />
+      {/* <Location catSightings={catSightings} /> */}
+      {mapLoaded && <Location catSightings={catSightings} />}
     </GoogleMapsProvider>
   )
 }

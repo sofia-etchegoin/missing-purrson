@@ -3,6 +3,7 @@
 import Map from './Map'
 
 import { useState, useRef } from 'react'
+import { StandaloneSearchBox, LoadScript } from '@react-google-maps/api'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
 import { useParams } from 'react-router-dom'
@@ -27,6 +28,22 @@ export default function AddCatSightings() {
   const formData = new FormData()
   const [file, setFile] = useState('')
   const { catIdMc } = useParams()
+
+  // MAPS
+  const inputRef = useRef()
+
+  const handlePlaceChange = () => {
+    const [place] = inputRef.current.getPlaces()
+    if (place) {
+      // console.log(place.formatted_address)
+      // console.log(place.geometry.location.lat())
+      // console.log(place.geometry.location.lng())
+      const latString = place.geometry.location.lat().toString()
+      const lngString = place.geometry.location.lng().toString()
+      formFields.location = latString + ', ' + lngString
+      console.log(formFields)
+    }
+  }
 
   const {
     data: catsighting,
@@ -159,14 +176,35 @@ export default function AddCatSightings() {
                       >
                         LOCATION
                       </label>
-                      <input
+                      <LoadScript
+                        googleMapsApiKey="AIzaSyD499QbrpxctpzIhJlz48TDok-4hXTRTWw"
+                        libraries={['places']}
+                      >
+                        <StandaloneSearchBox
+                          onLoad={(ref) => (inputRef.current = ref)}
+                          onPlacesChanged={handlePlaceChange}
+                          // onChange={handleInputChange}
+                        >
+                          <input
+                            className="cat-sightings-form-input"
+                            id="location"
+                            type="text"
+                            name="location"
+                            // value={formFields.location}
+                            // onChange={handleInputChange}
+                            // value={formFields.location}
+                            // onChange={handleInputChange}
+                          />
+                        </StandaloneSearchBox>
+                      </LoadScript>
+                      {/* <input
                         className="cat-sightings-form-input"
                         id="location"
                         type="text"
                         name="location"
-                        value={formFields.location}
-                        onChange={handleInputChange}
-                      />
+                        // value={formFields.location}
+                        // onChange={handleInputChange}
+                      /> */}
                     </div>
                     <div className="cat-sightings-form__section">
                       <label
@@ -340,4 +378,3 @@ export default function AddCatSightings() {
     </>
   )
 }
-
