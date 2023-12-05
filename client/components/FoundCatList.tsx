@@ -83,7 +83,9 @@ export default function FoundCatList() {
         </div>
         <div className="cats__right">
           <div className="cats__header">
-            <h1 className="cats-header">These Kitties Need Your Help!</h1>
+            <h1 className="cats-header">
+              These Kitties Has Found Their Way Back Home!
+            </h1>
           </div>
 
           <div className="cats__cards">
@@ -102,7 +104,7 @@ export default function FoundCatList() {
                     <p className="cats-card-location">{cat.location}</p>
                     <p className="cats-card-bio">{cat.description}</p>
                     <div className="cats-card__link">
-                      <Link
+                      {/* <Link
                         className="cats-card-link"
                         to={`/missingcats/singlecat/${cat.catId}`}
                       >
@@ -115,13 +117,13 @@ export default function FoundCatList() {
                         >
                           <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
                         </svg>
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 </div>
               ))
             ) : (
-              <p>No missing cats with cat missing status FALSE found.</p>
+              <p>No found cats at the moment.</p>
             )}
           </div>
         </div>

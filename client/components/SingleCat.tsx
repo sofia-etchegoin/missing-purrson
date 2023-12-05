@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
-import { getOneMissingCatApi } from '../apis/api-cats'
-import { useQuery } from '@tanstack/react-query'
+import { getOneMissingCatApi, FoundCatsApi } from '../apis/api-cats'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import { MissingCat } from '../../models/cats'
 import { useState } from 'react'
 import Nav from './Nav'
@@ -154,6 +154,15 @@ export default function SingleCat() {
               </svg>
             </Link>
           </div>
+          {/* ///////////////////// */}
+          {missingcats.catMissing && (
+            <button
+              className="single-cat-link"
+              onClick={() => FoundCatsApi(Number(catId), false)}
+            >
+              Mark Cat As Found
+            </button>
+          )}
         </div>
       </section>
     </>
