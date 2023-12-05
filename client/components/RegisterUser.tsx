@@ -29,7 +29,8 @@ export default function RegisterUser() {
   const [formFields, setformFields] = useState(newUser)
   //const [isFormVisible, setFormVisibility] = useState(false)
   // const formData = new FormData()
-
+    
+  
   const addUserMutuation = useMutation({
     mutationFn: addNewUserApi,
     onSuccess: async () => {
@@ -39,6 +40,7 @@ export default function RegisterUser() {
       navigate(`/missingcats`)
     },
   })
+  
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
