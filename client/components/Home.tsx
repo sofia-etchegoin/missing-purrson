@@ -1,10 +1,48 @@
 import { Link } from 'react-router-dom'
+import { getAUserApi } from '../apis/api-users'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useQuery } from '@tanstack/react-query'
+import { NewUser, User } from '../../models/user'
+import { IfNotAuthenticated } from './Authenticated.tsx'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Nav from './Nav'
 
 export default function Home() {
   const backgroundColour = 'none'
   const itemColour = '#f3f3f3'
   const borderColour = '#f3f3f3'
+  const navigate = useNavigate()
+
+  const { user: authUser } = useAuth0()
+
+  // this needs to be ASYNC
+  const currentUser = authUser?.auth0_id
+
+  // UseQuery to establish if user exists
+  const {
+    data: user,
+    isError,
+    isLoading,
+  } = useQuery({
+    queryKey: ['User', currentUser],
+    queryFn: async () => {
+      await getAUserApi(currentUser)
+    },
+  })
+  //does the user exist
+  useEffect(() => {
+    if (isError) {
+      navigate('/registeruser')
+    }
+  }, [isError, navigate])
+
+  if (isLoading) {
+    return <p>Hang in there Kitty.</p>
+  }
+
+
+
   return (
     <>
       <Nav backgroundColour={backgroundColour} itemColour={itemColour} borderColour={borderColour} />
@@ -20,6 +58,7 @@ export default function Home() {
               to act as a dedicated space to list your missing Kitty!
             </p>
           </div>
+          <IfNotAuthenticated>
           <div className="landing__links">
             <Link to="/addcat" className="landing-link">
               List a cat
@@ -44,6 +83,7 @@ export default function Home() {
               </svg>
             </Link>
           </div>
+          </IfNotAuthenticated>
         </div>
         <div className="landing__right"></div>
       </section>
