@@ -39,6 +39,7 @@ export default function AddMissingCat() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const catMissingAsString = formFields.catMissing.toString()
     formData.append('catName', formFields.catName)
     formData.append('location', formFields.location)
     formData.append('dateLost', formFields.dateLost)
@@ -49,7 +50,7 @@ export default function AddMissingCat() {
     formData.append('missingCatEmail', formFields.missingCatEmail)
     formData.append('microchip', formFields.microchip)
     formData.append('microChipNumber', formFields.microChipNumber)
-
+    formData.append('catMissing', catMissingAsString)
     for (let i = 0; i < files.length; i++) {
       formData.append('file', files[i])
     }
