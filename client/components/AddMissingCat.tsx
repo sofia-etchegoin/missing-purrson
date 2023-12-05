@@ -221,8 +221,8 @@ export default function AddMissingCat() {
                   value={formFields.microchip}
                   onChange={handleInputChange}
                 >
-                  <option value="yes">YES</option>
-                  <option value="no">NO</option>
+                  <option value="yes">NO</option>
+                  <option value="no">YES</option>
                 </select>
               </div>
               <div className="add-m-cat-form-section">
