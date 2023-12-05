@@ -1,47 +1,19 @@
 import { Link } from 'react-router-dom'
-import { getAUserApi } from '../apis/api-users'
-import { useAuth0 } from '@auth0/auth0-react'
-import { useQuery } from '@tanstack/react-query'
-import { NewUser, User } from '../../models/user'
-import { IfNotAuthenticated } from './Authenticated.tsx'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { getAUserApi } from '../apis/api-users'
+// import { useAuth0 } from '@auth0/auth0-react'
+// import { useQuery } from '@tanstack/react-query'
+// import { NewUser, User } from '../../models/user'
+// import { useEffect } from 'react'
+// import { useNavigate } from 'react-router-dom'
+
+import { IfAuthenticated } from './Authenticated.tsx'
+
 import Nav from './Nav'
 
 export default function Home() {
   const backgroundColour = 'none'
   const itemColour = '#f3f3f3'
   const borderColour = '#f3f3f3'
-  const navigate = useNavigate()
-
-  const { user: authUser } = useAuth0()
-
-  // this needs to be ASYNC
-  const currentUser = authUser?.auth0_id
-
-  // UseQuery to establish if user exists
-  const {
-    data: user,
-    isError,
-    isLoading,
-  } = useQuery({
-    queryKey: ['User', currentUser],
-    queryFn: async () => {
-      await getAUserApi(currentUser)
-    },
-  })
-  //does the user exist
-  useEffect(() => {
-    if (isError) {
-      navigate('/registeruser')
-    }
-  }, [isError, navigate])
-
-  if (isLoading) {
-    return <p>Hang in there Kitty.</p>
-  }
-
-
 
   return (
     <>
@@ -58,8 +30,8 @@ export default function Home() {
               to act as a dedicated space to list your missing Kitty!
             </p>
           </div>
-          <IfNotAuthenticated>
           <div className="landing__links">
+          <IfAuthenticated>
             <Link to="/addcat" className="landing-link">
               List a cat
               <svg
@@ -71,6 +43,7 @@ export default function Home() {
                 <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
               </svg>
             </Link>
+          </IfAuthenticated>
             <Link to="/missingcats" className="landing-link">
               Missing Cats
               <svg
@@ -83,7 +56,6 @@ export default function Home() {
               </svg>
             </Link>
           </div>
-          </IfNotAuthenticated>
         </div>
         <div className="landing__right"></div>
       </section>

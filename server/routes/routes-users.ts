@@ -3,12 +3,12 @@ import * as db from '../db/db-users'
 
 const router = Router()
 
-//GET localhost:5173/api/v1/user/
-router.get('/:auth0_id', async (req, res) => {
-  const auth0_id = req.params.auth0_id
+//GET localhost:5173/api/v1/user/:auth0Id'
+router.get('/:Auth0Id', async (req, res) => {
+  const auth0Id = req.params.Auth0Id
   try {
-    const user = await db.getAUserDb(auth0_id)
-    if(!user){
+    const user = await db.getAUserDb(auth0Id)
+    if (!user) {
       res.status(404)
     }
     res.json(user)
@@ -21,7 +21,6 @@ router.get('/:auth0_id', async (req, res) => {
 // POST localhost:5173/api/v1/user/adduser
 router.post('/adduser', async (req, res) => {
   try {
-    //console.log(req.body)
     const newUser = await db.addAUserDb(req.body)
     res.status(201).json(newUser)
   } catch (err) {

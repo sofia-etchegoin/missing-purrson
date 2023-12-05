@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { addMissingCatApi } from '../apis/api-cats'
 import { useNavigate } from 'react-router-dom'
+
 import Nav from './Nav'
 
 const emptyCat = {
@@ -25,6 +26,7 @@ export default function AddMissingCat() {
   const formData = new FormData()
   const [file, setFile] = useState('')
 
+  //console.log('Received Route in Component', user)
   const addCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
     onSuccess: async (data) => {
@@ -34,6 +36,7 @@ export default function AddMissingCat() {
       navigate(`/missingcats/singlecat/${catId}`)
     },
   })
+  //does the user exist
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -279,14 +282,14 @@ export default function AddMissingCat() {
                 </p>
               </div>
               <div className="add-m-cat-form-section">
-              <div className="add-m-cat-form__btn">
-                <button
-                  type="submit"
-                  disabled={!file}
-                  className="add-cat add-m-cat-form-btn"
-                >
-                  Submit
-                </button>
+                <div className="add-m-cat-form__btn">
+                  <button
+                    type="submit"
+                    disabled={!file}
+                    className="add-cat add-m-cat-form-btn"
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
             </div>

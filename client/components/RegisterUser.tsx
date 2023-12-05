@@ -4,31 +4,31 @@ import { addNewUserApi, getAUserApi } from '../apis/api-users'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NewUser, User } from '../../models/user'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 // import Nav from './Nav'
 
 export default function RegisterUser() {
-  const log = useAuth0()
+  //const log = useAuth0()
   const navigate = useNavigate()
 
   const authUser = useAuth0().user
   //console.log(log.user)
   // TODO: replace placeholder user object with the one from auth0
-  
-  // this needs to be ASYNC
+
   const newUser = {
     authUser,
-    nickname: authUser?.nickname,
+    username: authUser?.nickname,
     email: authUser?.email,
-    auth0_id: authUser?.auth0_id,
-    family_name: authUser?.family_name,
-    given_name: authUser?.given_name,
+    auth0Id: authUser?.sub,
+    familyName: authUser?.family_name,
+    givenName: authUser?.given_name,
   }
+  
   const queryClient = useQueryClient()
   const [formFields, setformFields] = useState(newUser)
   //const [isFormVisible, setFormVisibility] = useState(false)
-  const formData = new FormData()
-  console.log()
+  // const formData = new FormData()
 
   const addUserMutuation = useMutation({
     mutationFn: addNewUserApi,
@@ -40,20 +40,12 @@ export default function RegisterUser() {
     },
   })
 
-  
-
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    // to be written
-    //insert new user into DB
-    formData.append('username', formFields.nickname)
-    formData.append('email', formFields.email)
-    formData.append('auth0_id', formFields.auth0_id)
-    formData.append('given_name', formFields.given_name)
-    formData.append('family_name', formFields.family_name)
 
     try {
-      addUserMutuation.mutate(formData)
+      setTimeout('1500')
+      addUserMutuation.mutate(formFields)
     } catch (error: any) {
       console.log('Error adding cat')
     }
@@ -95,7 +87,7 @@ export default function RegisterUser() {
                   id="username"
                   type="text"
                   name="username"
-                  value={formFields.nickname}
+                  value={formFields.username}
                   onChange={handleInputChange}
                 />
               </div>
@@ -113,24 +105,6 @@ export default function RegisterUser() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="cat-sightings-form__section">
-                <label
-                  className="cat-sightings-form-label"
-                  htmlFor="description"
-                >
-                  Auth0_id
-                </label>
-                <textarea
-                  className="cat-sightings-form-input"
-                  id="auth0_id"
-                  type="text"
-                  cols="30"
-                  rows="10"
-                  name="auth0_id"
-                  value={formFields.auth0_id}
-                  onChange={handleInputChange}
-                ></textarea>
-              </div>
             </div>
             <div className="cat-sightings-form__right">
               <div className="cat-sightings-form__section">
@@ -145,7 +119,7 @@ export default function RegisterUser() {
                   id="given_name"
                   type="text"
                   name="given_name"
-                  value={formFields.given_name}
+                  value={formFields.givenName}
                   onChange={handleInputChange}
                 />
               </div>
@@ -161,7 +135,7 @@ export default function RegisterUser() {
                   id="family_name"
                   type="text"
                   name="family_name"
-                  value={formFields.family_name}
+                  value={formFields.familyName}
                   onChange={handleInputChange}
                 />
               </div>
@@ -177,9 +151,11 @@ export default function RegisterUser() {
             <button className="submit cat-sightings-form-btn" type="submit">
               Register
             </button>
-            <button className="submit cat-sightings-form-btn" type="submit">
-              Cancel
-            </button>
+            <Link to="/">
+              <button className="submit cat-sightings-form-btn" type="submit">
+                Cancel
+              </button>{' '}
+            </Link>
           </div>
         </form>
       </div>
