@@ -1,5 +1,7 @@
 //AddCatSighting.tsx
 
+import Map from './Map'
+
 import { useState } from 'react'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
@@ -79,7 +81,7 @@ export default function AddCatSightings() {
     return <p>Loading...</p>
   }
 
-  console.log(catsighting)
+  // console.log(catsighting)
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
@@ -93,7 +95,9 @@ export default function AddCatSightings() {
       />
       <section className="cat-sightings">
         <div className="cat-sightings__left">
-          <div className="cat-sightings__map"></div>
+          <div className="cat-sightings__map">
+            <Map catSightings={catsighting} />
+          </div>
         </div>
         <div className="cat-sightings__right">
           <div className="cat-sightings__header">
@@ -333,8 +337,6 @@ export default function AddCatSightings() {
           )}
         </div>
       </section>
-
-      {/* BREAK */}
     </>
   )
 }

@@ -2,14 +2,16 @@
   height: 100vh;
   width: 100%;
   @include row-flex;
+  justify-content: space-between;
   gap: 5em;
   padding: 8em;
   background: $orange;
 
   &__left{
+    flex-basis: 60%;
     height: 100%;
-    flex-basis: 50%;
     padding-top: 4em;
+    overflow: hidden;
   }
 
   &-back{
@@ -21,6 +23,7 @@
 
   &__img{
     height: 100%;
+    border-radius: 30px;
     display: flex;
     justify-content: flex-end;
     gap: 1em;
@@ -48,7 +51,7 @@
 
   // Big Image
   &-img{
-    height: 100%;
+    height: 90%;
     width: auto;
     border-radius: 15px;
     // Btn coantins Small img
@@ -71,7 +74,7 @@
 
   &__right{
     padding-top: 4em;
-    flex-basis: 50%;
+    flex-basis: 40%;
     @include column-flex;
     gap: 5em;
   }
@@ -99,7 +102,7 @@
   &__description{
     @include column-flex;
     gap: 1em;
-    width: 80%;
+    width: 100%;
   }
 
   &-description{
@@ -109,7 +112,7 @@
   }
 
   &__table{
-    width: 80%;
+    width: 100%;
     padding: 3em;
     border-radius: 15px;
     background: $white;

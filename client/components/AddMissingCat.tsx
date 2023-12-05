@@ -291,7 +291,9 @@ export default function AddMissingCat() {
                 <div className="add-m-cat-form__btn">
                   <button
                     type="submit"
-                    disabled={files.length === 0}
+
+                    disabled={!file}
+
                     className="add-cat add-m-cat-form-btn"
                   >
                     Submit

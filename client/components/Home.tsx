@@ -7,11 +7,15 @@ export default function Home() {
   const borderColour = '#f3f3f3'
   return (
     <>
-      <Nav backgroundColour={backgroundColour} itemColour={itemColour} borderColour={borderColour} />
+      <Nav
+        backgroundColour={backgroundColour}
+        itemColour={itemColour}
+        borderColour={borderColour}
+      />
       <section className="landing">
         <div className="landing__left">
           <div className="landing__header">
-            <h1 className="landing-heading">Missing Purson</h1>
+            <h1 className="landing-heading">Missing Purrson</h1>
             <p className="landing-subheading">Our Goal</p>
           </div>
           <div className="landing__body">
