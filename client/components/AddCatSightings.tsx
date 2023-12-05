@@ -2,7 +2,7 @@
 
 import Map from './Map'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
 import { useParams } from 'react-router-dom'
@@ -340,3 +340,4 @@ export default function AddCatSightings() {
     </>
   )
 }
+
