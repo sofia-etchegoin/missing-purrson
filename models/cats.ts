@@ -1,6 +1,6 @@
 export interface MissingCat {
   catId: number
-  microchip: number
+  microchip: string
   microChipNumber: string
   userIdMc: number
   catName: string

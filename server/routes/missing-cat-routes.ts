@@ -84,4 +84,46 @@ router.post('/addcat', upload.array('file'), async (req, res) => {
   }
 })
 
+// GET localhost:5173/api/v1/foundcats
+router.get('/foundcats', async (req, res) => {
+  try {
+    // Perform logic to fetch information about found cats from the database
+    // For example, you might have a function like db.getAllFoundCatsDb();
+    const foundCats = await db.getAllMissingCatsDb()
+
+    res.json(foundCats)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Internal Server Error' })
+  }
+})
+
+// PUT localhost:5173/api/v1/missingcats/singlecat/:id
+router.put('/singlecat/:catId', async (req, res) => {
+  const catId = Number(req.params.catId)
+  const { catMissing } = req.body // Assuming you send a field like 'markAsFound' in the request body
+
+  if (isNaN(catId)) {
+    res.status(400).send('Bad Request: ID must be a number')
+    return
+  }
+
+  try {
+    if (catMissing !== undefined) {
+      await db.FoundCatsDb(catId, catMissing)
+      // Perform logic to mark the cat as found (update the database, change status, etc.)
+      // For example, you might have a function like db.markCatAsFoundDb(catId);
+    } else {
+      // Perform logic to update general information about the cat
+      // For example, you might have a function like db.updateCatInfoDb(catId, req.body);
+    }
+
+    // Send a success status back to the client
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Internal Server Error' })
+  }
+})
+
 export default router

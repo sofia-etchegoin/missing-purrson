@@ -88,3 +88,27 @@ export async function addCatSightingApi(
     console.error(`Error adding cat sighting`, error)
   }
 }
+
+//
+export async function FoundCatsApi(catId: number, catMissing: boolean) {
+  try {
+    // Make a request to your server to update the cat status
+    const response = await request
+      .put(`${rootUrl}/missingcats/singlecat/${catId}`)
+      .send({ catMissing })
+
+    if (response.status === 200) {
+      console.log('Cat marked as found successfully!')
+      // Redirect the user to the /foundcats route
+      window.location.href = `/foundcats`
+    } else {
+      // Handle the case where the API request was successful but the cat wasn't marked as found
+      console.error('Cat could not be marked as found:', response.body)
+      throw new Error('Failed to mark cat as found')
+    }
+  } catch (error) {
+    // Handle any errors that occur during the API call
+    console.error('Error marking cat as found:', error)
+    throw new Error('Failed to mark cat as found')
+  }
+}

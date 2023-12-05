@@ -174,6 +174,21 @@ export async function singleCatSightingsDb(
   }
 }
 
+export async function FoundCatsDb(
+  catId: number,
+  catMissing: false,
+  db = connection,
+): Promise<void> {
+  try {
+    await db('missing_cats')
+      .where({ cat_id: catId })
+      .update({ cat_missing: catMissing })
+  } catch (error) {
+    console.error('Error. No cat is found:', error)
+    throw error
+  }
+}
+
 export function close(db = connection) {
   db.destroy
 }
