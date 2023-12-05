@@ -7,6 +7,7 @@
   background: $orange;
 
   &__left{
+    height: 100%;
     flex-basis: 50%;
     padding-top: 4em;
   }
@@ -22,14 +23,50 @@
     height: 100%;
     display: flex;
     justify-content: flex-end;
+    gap: 1em;
+
+    &-left{
+      flex-basis: 20%;
+      height: 100%;
+      @include column-flex;
+      gap: 0.5em;
+    }
+
+    &-right{
+      flex-basis: 70%;
+      overflow: hidden;
+      display: flex;
+    }
+
   }
-  .form-transition {
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+  &-btn-img{
+    width: 100%;
+    height: auto;
+    align-self: center;
   }
+
+  // Big Image
   &-img{
     height: 100%;
     width: auto;
-    border-radius: 30px;
+    border-radius: 15px;
+    // Btn coantins Small img
+    &-btn{
+      flex-basis: 20%;
+      height: 50%;
+      overflow: hidden;
+      display: flex;
+      border-radius: 15px;
+      border: none;
+      cursor: pointer;
+
+      &:focus{
+        outline: none !important;
+        border:2px solid $blue;
+        box-shadow: 0 0 4px $blue;
+      }
+    }
   }
 
   &__right{
@@ -42,6 +79,12 @@
   &__header{
     @include column-flex;
     gap: 2em;
+  }
+
+  &__heading{
+    width: 80%;
+    justify-content: space-between;
+    @include row-flex;    
   }
 
   &-heading{
