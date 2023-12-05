@@ -23,7 +23,8 @@ export default function AddMissingCat() {
   const queryClient = useQueryClient()
   const [formFields, setFormFields] = useState(emptyCat)
   const formData = new FormData()
-  const [file, setFile] = useState('')
+  const [files, setFiles] = useState('')
+  const [uploadedFileNames, setUploadedFileNames] = useState<string[]>([])
 
   const addCatMutuation = useMutation({
     mutationFn: addMissingCatApi,
@@ -47,10 +48,11 @@ export default function AddMissingCat() {
     formData.append('missingCatEmail', formFields.missingCatEmail)
     formData.append('microchip', formFields.microchip)
     formData.append('microChipNumber', formFields.microChipNumber)
-    formData.append('file', file)
-    // console.log(formFields.microChipNumber)
-    // const formDataValues = formData.entries()
-    // console.log(formDataValues[9] + ' - ' + formDataValues[10])
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append('file', files[i])
+    }
+
     try {
       addCatMutuation.mutate(formData)
     } catch (error: any) {
@@ -65,9 +67,11 @@ export default function AddMissingCat() {
         microchip: e.target.value,
       })
     } else if (e.target.name === 'file') {
-      //console.log("file : " , e.target.files[0].name)
-      setFile(e.target.files[0])
-      console.log('file : ', file)
+      setFiles([...files, ...e.target.files])
+      const newFileNames = Array.from(e.target.files).map(
+        (file: File) => file.name,
+      )
+      setUploadedFileNames([...uploadedFileNames, ...newFileNames])
     } else {
       setFormFields({
         ...formFields,
@@ -96,7 +100,6 @@ export default function AddMissingCat() {
           </h2>
 
           {/* Form Starts */}
-
           <form
             className="add-m-cat-form"
             action="/addcat"
@@ -268,7 +271,13 @@ export default function AddMissingCat() {
                   name="file"
                   required
                   onChange={handleInputChange}
+                  multiple
                 />
+                {uploadedFileNames.map((fileName, index) => (
+                  <p key={index}>
+                    File {index + 1}: {fileName}
+                  </p>
+                ))}
               </div>
               <div className="add-m-cat-form-section">
                 <h3 className="add-m-cat-form-label">Privacy</h3>
@@ -282,7 +291,9 @@ export default function AddMissingCat() {
                 <div className="add-m-cat-form__btn">
                   <button
                     type="submit"
+
                     disabled={!file}
+
                     className="add-cat add-m-cat-form-btn"
                   >
                     Submit

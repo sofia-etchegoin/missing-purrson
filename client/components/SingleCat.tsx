@@ -2,10 +2,13 @@ import { Link, useParams } from 'react-router-dom'
 import { getOneMissingCatApi } from '../apis/api-cats'
 import { useQuery } from '@tanstack/react-query'
 import { MissingCat } from '../../models/cats'
+import { useState } from 'react'
 import Nav from './Nav'
 
 export default function SingleCat() {
   const { catId } = useParams<{ catId: string }>()
+  // State for clicked image
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
   const {
     data: missingcats,
@@ -25,7 +28,7 @@ export default function SingleCat() {
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
-
+  const imageUrls = missingcats.missingImageUrl.split(',')
   return (
     <>
       <Nav
@@ -35,30 +38,61 @@ export default function SingleCat() {
       />
       <section className="single-cat">
         <div className="single-cat__left">
-          <div className="single-cat-back">
-            <Link className="single-cat-link" to="/missingcats">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="16"
-                width="14"
-                viewBox="0 0 448 512"
-              >
-                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-              </svg>
-              All Cats
-            </Link>
-          </div>
           <div className="single-cat__img">
-            <img
-              src={`/` + missingcats.missingImageUrl}
-              alt=""
-              className="single-cat-img"
-            />
+            {/* {imageUrls.map((imageUrl, index) => (
+              <img
+                key={index}
+                src={`/${imageUrl}`}
+                alt={`Cat ${index + 1}`}
+                className="single-cat-img"
+              />
+            ))} */}
+            <div className="single-cat__img-left">
+              {imageUrls.map((imageUrl, index) => (
+                <button
+                  key={index}
+                  className={`single-cat-img-btn ${
+                    index === selectedImageIndex ? 'selected' : ''
+                  }`}
+                  onClick={() => setSelectedImageIndex(index)}
+                >
+                  <img
+                    src={`/${imageUrl}`}
+                    alt={`Cat ${index + 1}`}
+                    className="single-cat-btn-img"
+                  />
+                </button>
+              ))}
+            </div>
+            {selectedImageIndex !== null && (
+              <div className="single-cat__img-right">
+                <img
+                  src={`/${imageUrls[selectedImageIndex]}`}
+                  alt={`Selected Cat`}
+                  className="single-cat-img"
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className="single-cat__right">
           <div className="single-cat__header">
-            <h1 className="single-cat-heading">{missingcats.catName}</h1>
+            <div className="single-cat__heading">
+              <h1 className="single-cat-heading">{missingcats.catName}</h1>
+              <div className="single-cat-back">
+                <Link className="single-cat-link" to="/missingcats">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="16"
+                    width="14"
+                    viewBox="0 0 448 512"
+                  >
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                  </svg>
+                  All Cats
+                </Link>
+              </div>
+            </div>
             <h2 className="single-cat-subheading">{missingcats.location}</h2>
           </div>
           <div className="single-cat__description">
