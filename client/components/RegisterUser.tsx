@@ -9,13 +9,8 @@ import { Link } from 'react-router-dom'
 // import Nav from './Nav'
 
 export default function RegisterUser() {
-  //const log = useAuth0()
   const navigate = useNavigate()
-
   const authUser = useAuth0().user
-  //console.log(log.user)
-  // TODO: replace placeholder user object with the one from auth0
-
   const newUser = {
     authUser,
     username: authUser?.nickname,
@@ -24,13 +19,6 @@ export default function RegisterUser() {
     familyName: authUser?.family_name,
     givenName: authUser?.given_name,
   }
-  
-  const queryClient = useQueryClient()
-  const [formFields, setformFields] = useState(newUser)
-  //const [isFormVisible, setFormVisibility] = useState(false)
-  // const formData = new FormData()
-    
-  
   const addUserMutuation = useMutation({
     mutationFn: addNewUserApi,
     onSuccess: async () => {
@@ -40,7 +28,46 @@ export default function RegisterUser() {
       navigate(`/missingcats`)
     },
   })
-  
+  const queryClient = useQueryClient()
+  const [formFields, setformFields] = useState(newUser)
+
+  const authIsLoading = useAuth0().isLoading
+
+  const {
+    data: user,
+    isError,
+    isLoading,
+  } = useQuery({
+    queryKey: ['user', authUser.auth0Id],
+    queryFn: async () => {
+      try {
+        const userData = await getAUserApi(authUser.auth0Id)
+        return userData // Return the data
+      } catch (error) {
+        throw new Error('Failed to fetch user data') // Throw an error if there's an issue
+      }
+    },
+    // onSuccess: (userData) => {
+    //   // Navigate based on the presence of user data
+    //   if (userData) {
+    //     navigate('/');
+    //   }
+    // },
+  })
+
+  if (user) {
+    navigate('/')
+  }
+  if (isError) {
+    navigate('/registeruser')
+  }
+  //     // //}, [isError, navigate])
+  if (isLoading) {
+    return <p>Hang in there Kitty.</p>
+  }
+  if (authIsLoading) {
+    return <p>authIsLoading</p>
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -54,13 +81,13 @@ export default function RegisterUser() {
   }
 
   const handleInputChange = async (e: any) => {
-    if (e.target.type === 'file') {
-      setformFields({
-        ...formFields,
-        [e.target.name]: e.target.value,
-      })
-      //console.log('file : ', file)
-    }
+    //if (e.target.type === 'file') {
+    setformFields({
+      ...formFields,
+      [e.target.name]: e.target.value,
+    })
+    //console.log('file : ', file)
+    //}
   }
 
   return (
@@ -156,7 +183,7 @@ export default function RegisterUser() {
             <Link to="/">
               <button className="submit cat-sightings-form-btn" type="submit">
                 Cancel
-              </button>{' '}
+              </button>
             </Link>
           </div>
         </form>

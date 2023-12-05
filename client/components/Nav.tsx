@@ -1,10 +1,8 @@
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx'
 import { Link } from 'react-router-dom'
-import { getAUserApi } from '../apis/api-users'
-import { useQuery } from '@tanstack/react-query'
-import { useAuth0 } from "@auth0/auth0-react"
+import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom'
-import RegisterUser from './RegisterUser.tsx'
+
 
 interface NavColor {
   backgroundColour: string
@@ -28,72 +26,21 @@ export default function Nav({
   const navBorderStyle = {
     borderColor: borderColour,
   }
+
   const log = useAuth0()
-  const authUser = useAuth0().user
-  const authIsLoading = useAuth0().isLoading
+  const userLogged = useAuth0().user
   const navigate = useNavigate()
-  const userLogged = {
-    authUser,
-    nickname: authUser?.name,
-    picture: authUser?.picture,
-    auth0Id: authUser?.sub,
-    email: authUser?.email,
-    family_name: authUser?.family_name,
-    given_name: authUser?.given_name,
-  }
-  const {
-    data: user,
-    isError,
-    isLoading,
-  } = useQuery({
-    queryKey: ['user', userLogged.auth0Id],
-    queryFn: async () => {
-      try {
-        const userData = await getAUserApi(userLogged.auth0Id)
-        return userData // Return the data
-      } catch (error) {
-        throw new Error('Failed to fetch user data') // Throw an error if there's an issue
-      }
-    },
-    onSuccess: (userData) => {
-      // Navigate based on the presence of user data
-      if (userData) {
-        navigate('/');
-      } else {
-        navigate('/registeruser')
-      }
-    },
-  })
-  if (user){
-    console.log(user)
-  }
-  if (isError) {
-    navigate('/')
-  }
-    //     // //}, [isError, navigate])
-  if (isLoading) {
-    return <p>Hang in there Kitty.</p>
-  }
-  if (authIsLoading) {
-    return <p> Auth is Loading</p>
-  }
-  
   // TODO: replace placeholder user object with the one from auth0
-  
 
   const handleSignOut = () => {
     log.logout()
   }
-
   const handleSignIn = () => {
-    //Is user currently registered
-    //if sign/log in user 
-    //else so register user 
-    log.loginWithRedirect()
+    log.loginWithRedirect() //{ redirect_uri: 'http://localhost:5173/registeruser' }
+    navigate('/registeruser')
+
     //console.log('component ', currentUser)
     //UseQuery to establish if user exists
-    
-
   }
   return (
     <header>
@@ -126,14 +73,22 @@ export default function Nav({
             >
               <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
             </svg>
-        <IfAuthenticated>
-          <Link to='/' onClick={handleSignOut}>Sign out</Link>
-          {userLogged && <p>Signed in as: {userLogged?.nickname} <img src={userLogged?.picture} alt={userLogged?.nickname}/></p>}
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <Link to='/'onClick={handleSignIn}>Sign in</Link>
-        </IfNotAuthenticated>
-
+            <IfAuthenticated>
+              <Link to="/" onClick={handleSignOut}>
+                Sign out
+              </Link>
+              {userLogged && (
+                <p>
+                  Signed in as: {userLogged?.nickname}{' '}
+                  <img src={userLogged?.picture} alt={userLogged?.nickname} />
+                </p>
+              )}
+            </IfAuthenticated>
+            <IfNotAuthenticated>
+              <Link to="/" onClick={handleSignIn}>
+                Sign in
+              </Link>
+            </IfNotAuthenticated>
           </div>
         </div>
       </nav>
@@ -141,10 +96,11 @@ export default function Nav({
   )
 }
 
-            
-{/* <a href="#" id="login" style={navItemStyle} className="nav-auth">
+{
+  /* <a href="#" id="login" style={navItemStyle} className="nav-auth">
 LOGIN
 </a>
 <a href="#" id="signUp" style={navItemStyle} className="nav-auth">
 SIGNUP
-</a> */}
+</a> */
+}
