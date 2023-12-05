@@ -31,6 +31,8 @@ export default function MissingCatList() {
     return imageUrlString.split(',').map((url) => url.trim())
   }
 
+  const filteredMissingCats = missingcats.filter((cat) => cat.catMissing)
+
   return (
     <>
       <Nav
@@ -85,38 +87,42 @@ export default function MissingCatList() {
           </div>
 
           <div className="cats__cards">
-            {missingcats?.map((cat) => (
-              <div key={cat.catId} className="cats-card">
-                <div className="cats-card__img">
-                  <img
-                    src={getImageUrlsArray(cat.missingImageUrl)[0]}
-                    alt={cat.catName}
-                    className="cats-card-img"
-                  />
-                </div>
-                <div className="cats-card__info">
-                  <h2 className="cats-card-title">{cat.catName}</h2>
-                  <p className="cats-card-location">{cat.location}</p>
-                  <p className="cats-card-bio">{cat.description}</p>
-                  <div className="cats-card__link">
-                    <Link
-                      className="cats-card-link"
-                      to={`/missingcats/singlecat/${cat.catId}`}
-                    >
-                      More Info
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="16"
-                        width="14"
-                        viewBox="0 0 448 512"
+            {filteredMissingCats.length > 0 ? (
+              filteredMissingCats.map((cat) => (
+                <div key={cat.catId} className="cats-card">
+                  <div className="cats-card__img">
+                    <img
+                      src={getImageUrlsArray(cat.missingImageUrl)[0]}
+                      alt={cat.catName}
+                      className="cats-card-img"
+                    />
+                  </div>
+                  <div className="cats-card__info">
+                    <h2 className="cats-card-title">{cat.catName}</h2>
+                    <p className="cats-card-location">{cat.location}</p>
+                    <p className="cats-card-bio">{cat.description}</p>
+                    <div className="cats-card__link">
+                      <Link
+                        className="cats-card-link"
+                        to={`/missingcats/singlecat/${cat.catId}`}
                       >
-                        <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
-                      </svg>
-                    </Link>
+                        More Info
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="16"
+                          width="14"
+                          viewBox="0 0 448 512"
+                        >
+                          <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p>No missing cats with cat missing status TRUE found.</p>
+            )}
           </div>
         </div>
       </section>
