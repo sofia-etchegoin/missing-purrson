@@ -30,6 +30,7 @@ export default function Nav({
   }
   const log = useAuth0()
   const authUser = useAuth0().user
+  const authIsLoading = useAuth0().isLoading
   const navigate = useNavigate()
   const userLogged = {
     authUser,
@@ -54,21 +55,29 @@ export default function Nav({
         throw new Error('Failed to fetch user data') // Throw an error if there's an issue
       }
     },
+    onSuccess: (userData) => {
+      // Navigate based on the presence of user data
+      if (userData) {
+        navigate('/');
+      } else {
+        navigate('/registeruser')
+      }
+    },
   })
-
+  if (user){
+    console.log(user)
+  }
   if (isError) {
-    console.log("you need to register")
+    navigate('/')
   }
     //     // //}, [isError, navigate])
   if (isLoading) {
     return <p>Hang in there Kitty.</p>
   }
-  if (user) {
-    navigate('/')
+  if (authIsLoading) {
+    return <p> Auth is Loading</p>
   }
-  if(!user){
-    navigate('/registeruser')
-  }
+  
   // TODO: replace placeholder user object with the one from auth0
   
 
@@ -81,7 +90,6 @@ export default function Nav({
     //if sign/log in user 
     //else so register user 
     log.loginWithRedirect()
-    navigate(<RegisterUser user={userLogged}/>)
     //console.log('component ', currentUser)
     //UseQuery to establish if user exists
     

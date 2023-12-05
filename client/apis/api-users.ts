@@ -9,10 +9,10 @@ const rootUrl = '/api/v1'
 // GET a user (/api/v1/user/:Auth0Id)
 
 export async function getAUserApi(Auth0Id: string): Promise<User> {
-  console.log('API Client', Auth0Id)
+  //console.log('API Client', Auth0Id)
   try {
     const response = await request.get(`${rootUrl}/user/${Auth0Id}`)
-    console.log('Response API client', response.body)
+    //console.log('Response API client', response.body)
     return response.body
   } catch (error) {
     throw console.error('Error fetching individual user', error)
