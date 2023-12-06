@@ -225,28 +225,15 @@ export default function AddCatSightings() {
                         <StandaloneSearchBox
                           onLoad={(ref) => (inputRef.current = ref)}
                           onPlacesChanged={handlePlaceChange}
-                          // onChange={handleInputChange}
                         >
                           <input
                             className="cat-sightings-form-input"
                             id="location"
                             type="text"
                             name="location"
-                            // value={formFields.location}
-                            // onChange={handleInputChange}
-                            // value={formFields.location}
-                            // onChange={handleInputChange}
                           />
                         </StandaloneSearchBox>
                       </LoadScript>
-                      {/* <input
-                        className="cat-sightings-form-input"
-                        id="location"
-                        type="text"
-                        name="location"
-                        // value={formFields.location}
-                        // onChange={handleInputChange}
-                      /> */}
                     </div>
                     <div className="cat-sightings-form__section">
                       <label

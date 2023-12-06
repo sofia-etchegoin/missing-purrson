@@ -5,7 +5,7 @@ import {
 } from '@ubilabs/google-maps-react-hooks'
 
 const mapOptions = {
-  zoom: 6,
+  zoom: 15,
   center: {
     lat: -41.2924,
     lng: 174.7787,
