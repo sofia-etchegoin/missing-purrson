@@ -3,12 +3,13 @@
   width: 100%;
   @include row-flex;
   justify-content: space-between;
-  gap: 5em;
+  gap: 3em;
   padding: 8em;
+  padding-top: 10em;
   background: $orange;
 
   &__left{
-    flex-basis: 60%;
+    flex-basis: 50%;
     height: 100%;
     padding-top: 4em;
     overflow: hidden;
@@ -51,7 +52,7 @@
 
   // Big Image
   &-img{
-    height: 90%;
+    width: 100%;
     width: auto;
     border-radius: 15px;
     // Btn coantins Small img
@@ -74,9 +75,9 @@
 
   &__right{
     padding-top: 4em;
-    flex-basis: 40%;
+    flex-basis: 50%;
     @include column-flex;
-    gap: 5em;
+    gap: 2em;
   }
 
   &__header{
@@ -85,7 +86,7 @@
   }
 
   &__heading{
-    width: 80%;
+    width: 100%;
     justify-content: space-between;
     @include row-flex;    
   }
@@ -143,11 +144,51 @@
 
   }
 
+  &__links{
+    @include row-flex;
+    justify-content: space-between;
+  }
+
   &__link{
     width: 20%
   }
 
+  &__link:nth-child(2){
+    width: 30%;
+  }
+
   &-link{
+    
+    &-btn{
+      background: none;
+      width: 100%;
+      @include row-flex;
+      @include center-flex;
+      gap: 1em;
+      font-size: 1.5em;
+      font-weight: bold;
+      padding: 0.8em 0.5em;
+      border: solid 2px $blue;
+      border-radius: 30px;
+      cursor: pointer;
+      color: $black;
+  
+      svg{
+        fill: $black;
+      }
+  
+      &:hover{
+        @include btn-hover;
+        color: $white;
+  
+        svg{
+          fill: $white;
+          transition: 0.3s ease-in-out;
+        }
+      }
+    }
+
+
     @include row-flex;
     @include center-flex;
     gap: 1em;
@@ -171,6 +212,10 @@
         fill: $white;
         transition: 0.3s ease-in-out;
       }
+    }
+
+    &--back{
+      padding: 0.8em 2em;
     }
   }
 }

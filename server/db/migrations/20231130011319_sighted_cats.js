@@ -7,6 +7,7 @@ export async function up(knex) {
     table.string('description')
     table.date('date_seen')
     table.string('location')
+    table.string('string_location')
     table.string('sighted_cat_phone')
     table.string('sighted_cat_email')
     table.string('sighted_image_url')

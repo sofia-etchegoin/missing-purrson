@@ -5,12 +5,14 @@ export default function Home() {
   const backgroundColour = 'none'
   const itemColour = '#f3f3f3'
   const borderColour = '#f3f3f3'
+  const navLogoSrc = '/client/images/MP-Logo-White.svg'
   return (
     <>
       <Nav
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
+        navLogoSrc={navLogoSrc}
       />
       <section className="landing">
         <div className="landing__left">

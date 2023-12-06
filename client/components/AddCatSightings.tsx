@@ -2,7 +2,7 @@
 
 import Map from './Map'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { StandaloneSearchBox, LoadScript } from '@react-google-maps/api'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { addCatSightingApi, getCatSightingsApi } from '../apis/api-cats'
@@ -13,6 +13,7 @@ import Nav from './Nav'
 
 const emptySighting = {
   location: '',
+  stringLocation: '',
   dateSeen: '',
   color: '',
   description: '',
@@ -32,6 +33,16 @@ export default function AddCatSightings() {
   // MAPS
   const inputRef = useRef()
 
+  const [loadingTimePassed, setLoadingTimePassed] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingTimePassed(true)
+    }, 1000) // Set the loading time in milliseconds (e.g., 3000ms or 3 seconds)
+
+    return () => clearTimeout(timer) // Cleanup the timer on component unmount
+  }, [])
+
   const handlePlaceChange = () => {
     const [place] = inputRef.current.getPlaces()
     if (place) {
@@ -41,6 +52,7 @@ export default function AddCatSightings() {
       const latString = place.geometry.location.lat().toString()
       const lngString = place.geometry.location.lng().toString()
       formFields.location = latString + ', ' + lngString
+      formFields.stringLocation = place.formatted_address
       console.log(formFields)
     }
   }
@@ -70,6 +82,7 @@ export default function AddCatSightings() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     formData.append('location', formFields.location)
+    formData.append('stringLocation', formFields.stringLocation)
     formData.append('dateSeen', formFields.dateSeen)
     formData.append('color', formFields.color)
     formData.append('description', formFields.description)
@@ -96,24 +109,35 @@ export default function AddCatSightings() {
   }
 
   if (isError) {
-    return <p>YEEEOOOWWWW! No kitties to be found!</p>
+    return (
+      <div className="loading">
+        <img src="/client/images/catGif1.gif" alt="" />
+        <h1 className="loading-heading">Something's broken!</h1>
+      </div>
+    )
   }
 
-  if (!catsighting || isLoading) {
-    return <p>Loading...</p>
+  if (!catsighting || !loadingTimePassed || isLoading) {
+    return (
+      <div className="loading">
+        <img src="/client/images/catGif5.gif" alt="" />
+        <h1 className="loading-heading">Just a Sec!!</h1>
+      </div>
+    )
   }
 
   // console.log(catsighting)
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
-
+  const navLogo = '/client/images/MP-Logo-Black.svg'
   return (
     <>
       <Nav
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
+        navLogoSrc={navLogo}
       />
       <section className="cat-sightings">
         <div className="cat-sightings__left">
@@ -124,6 +148,22 @@ export default function AddCatSightings() {
         <div className="cat-sightings__right">
           <div className="cat-sightings__header">
             <h1 className="cat-sightings-heading">Possible Sightings</h1>
+            <div className="cat-sightings__btn">
+              <Link
+                className="single-cat-link single-cat-link--back"
+                to={`/missingcats/singlecat/${catIdMc}`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="16"
+                  width="14"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                </svg>
+                Back
+              </Link>
+            </div>
             <div className="cat-sightings__btn">
               <button
                 className="cat-sightings-btn"
@@ -155,9 +195,6 @@ export default function AddCatSightings() {
                   </>
                 )}
               </button>
-              <Link to={`/missingcats/singlecat/${catIdMc}`}>
-                <button>Back</button>
-              </Link>
             </div>
           </div>
           {isFormVisible ? (
@@ -188,28 +225,15 @@ export default function AddCatSightings() {
                         <StandaloneSearchBox
                           onLoad={(ref) => (inputRef.current = ref)}
                           onPlacesChanged={handlePlaceChange}
-                          // onChange={handleInputChange}
                         >
                           <input
                             className="cat-sightings-form-input"
                             id="location"
                             type="text"
                             name="location"
-                            // value={formFields.location}
-                            // onChange={handleInputChange}
-                            // value={formFields.location}
-                            // onChange={handleInputChange}
                           />
                         </StandaloneSearchBox>
                       </LoadScript>
-                      {/* <input
-                        className="cat-sightings-form-input"
-                        id="location"
-                        type="text"
-                        name="location"
-                        // value={formFields.location}
-                        // onChange={handleInputChange}
-                      /> */}
                     </div>
                     <div className="cat-sightings-form__section">
                       <label
@@ -357,7 +381,7 @@ export default function AddCatSightings() {
                       <div className="cat-sightings-card-section">
                         <h3 className="cat-sightings-card-title">Location:</h3>
                         <p className="cat-sightings-card-info">
-                          {sighting.location}
+                          {sighting.string_location}
                         </p>
                       </div>
                       <div className="cat-sightings-card-section">

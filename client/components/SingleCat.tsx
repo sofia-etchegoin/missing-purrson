@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { getOneMissingCatApi, FoundCatsApi } from '../apis/api-cats'
 import { useQuery, useMutation } from '@tanstack/react-query'
+import { useEffect } from 'react'
 import { MissingCat } from '../../models/cats'
 import { useState } from 'react'
 import Nav from './Nav'
@@ -9,6 +10,15 @@ export default function SingleCat() {
   const { catId } = useParams<{ catId: string }>()
   // State for clicked image
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [loadingTimePassed, setLoadingTimePassed] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingTimePassed(true)
+    }, 1000) // Set the loading time in milliseconds (e.g., 3000ms or 3 seconds)
+
+    return () => clearTimeout(timer) // Cleanup the timer on component unmount
+  }, [])
 
   const {
     data: missingcats,
@@ -19,22 +29,37 @@ export default function SingleCat() {
   })
 
   if (isError) {
-    return <p>YEEEOOOWWWW! No kitties to be found!</p>
+    return (
+      <div className="loading">
+        <img src="/client/images/catGif1.gif" alt="" />
+        <h1 className="loading-heading">Something's broken!</h1>
+      </div>
+    )
   }
 
-  if (!missingcats || isLoading) {
-    return <p>Loading...</p>
+  if (!missingcats || !loadingTimePassed || isLoading) {
+    return (
+      <div className="loading">
+        <img src="/client/images/catGif4.gif" alt="" />
+        <h1 className="loading-heading">Just a Sec!!</h1>
+      </div>
+    )
   }
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
+  const navLogo = '/client/images/MP-Logo-Black.svg'
   const imageUrls = missingcats.missingImageUrl.split(',')
+
+  const microChipBool = Boolean(missingcats.microchip)
+
   return (
     <>
       <Nav
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
+        navLogoSrc={navLogo}
       />
       <section className="single-cat">
         <div className="single-cat__left">
@@ -114,7 +139,7 @@ export default function SingleCat() {
               <h3 className="single-cat-info-heading">Colour</h3>
               <p className="single-cat-info-body">{missingcats.color}</p>
             </div>
-            {missingcats.microchip && (
+            {microChipBool && (
               <>
                 <div className="single-cat__section">
                   <h3 className="single-cat-info-heading">Microchipped?</h3>
@@ -135,34 +160,43 @@ export default function SingleCat() {
               </p>
             </div>
             <div className="single-cat__section">
-              <h3 className="single-cat-info-heading">Owner Email</h3>
+              <h3 className="single-cat-info-heading">Owner Mobile</h3>
               <p className="single-cat-info-body">
                 {missingcats.missingCatPhone}
               </p>
             </div>
           </div>
-          <div className="single-cat__link">
-            <Link className="single-cat-link" to={`/sightings/${catId}`}>
-              Sightings
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="16"
-                width="14"
-                viewBox="0 0 448 512"
+          <div className="single-cat__links">
+            <div className="single-cat__link">
+              <Link className="single-cat-link" to={`/sightings/${catId}`}>
+                Sightings
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="16"
+                  width="14"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                </svg>
+              </Link>
+            </div>
+            <div className="single-cat__link">
+              <button
+                className="single-cat-link-btn"
+                onClick={() => FoundCatsApi(Number(catId), false)}
               >
-                <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
-              </svg>
-            </Link>
+                Mark Cat As Found
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="16"
+                  width="16"
+                  viewBox="0 0 512 512"
+                >
+                  <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
+                </svg>
+              </button>
+            </div>
           </div>
-          {/* ///////////////////// */}
-          {missingcats.catMissing && (
-            <button
-              className="single-cat-link"
-              onClick={() => FoundCatsApi(Number(catId), false)}
-            >
-              Mark Cat As Found
-            </button>
-          )}
         </div>
       </section>
     </>
