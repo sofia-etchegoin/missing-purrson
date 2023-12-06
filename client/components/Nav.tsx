@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom'
 
-
 interface NavColor {
   backgroundColour: string
   itemColour: string
@@ -78,10 +77,14 @@ export default function Nav({
                 Sign out
               </Link>
               {userLogged && (
-                <p>
-                  Signed in as: {userLogged?.nickname}{' '}
-                  <img src={userLogged?.picture} alt={userLogged?.nickname} />
-                </p>
+                <div className="auth__links">
+                  <p className="auth-name">{userLogged?.given_name} </p>
+                  <img
+                    className="auth-img"
+                    src={userLogged?.picture}
+                    alt={userLogged?.nickname}
+                  />
+                </div>
               )}
             </IfAuthenticated>
             <IfNotAuthenticated>
