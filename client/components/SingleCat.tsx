@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { MissingCat } from '../../models/cats'
 import { useState } from 'react'
 import Nav from './Nav'
+import logoSrc from '../images/MP-Logo-Black.svg'
 
 export default function SingleCat() {
   const { catId } = useParams<{ catId: string }>()
@@ -48,7 +49,6 @@ export default function SingleCat() {
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
-  const navLogo = '/client/images/MP-Logo-Black.svg'
   const imageUrls = missingcats.missingImageUrl.split(',')
 
   const microChipBool = Boolean(missingcats.microchip)
@@ -59,7 +59,7 @@ export default function SingleCat() {
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
-        navLogoSrc={navLogo}
+        navLogoSrc={logoSrc}
       />
       <section className="single-cat">
         <div className="single-cat__left">

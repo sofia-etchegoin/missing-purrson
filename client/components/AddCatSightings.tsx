@@ -1,5 +1,4 @@
 //AddCatSighting.tsx
-
 import Map from './Map'
 
 import { useState, useRef, useEffect } from 'react'
@@ -10,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { SightedCat } from '../../models/cats'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
+import logoSrc from '../images/MP-Logo-Black.svg'
 
 const emptySighting = {
   location: '',
@@ -130,14 +130,13 @@ export default function AddCatSightings() {
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
-  const navLogo = '/client/images/MP-Logo-Black.svg'
   return (
     <>
       <Nav
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
-        navLogoSrc={navLogo}
+        navLogoSrc={logoSrc}
       />
       <section className="cat-sightings">
         <div className="cat-sightings__left">
