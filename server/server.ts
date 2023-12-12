@@ -1,13 +1,15 @@
 import express from 'express'
 import * as Path from 'node:path'
 
-import catRoutes from './routes/routes-cats.ts'
+import missingCatRoutes from './routes/missing-cat-routes'
+import sightedCatRoutes from './routes/sighted-cat-routes'
 
 const server = express()
 
 server.use(express.json())
 
-server.use('/api/v1/cats', catRoutes)
+server.use('/api/v1/missingcats', missingCatRoutes)
+server.use('/api/v1/sightedcats', sightedCatRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))

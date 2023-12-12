@@ -1,0 +1,56 @@
+{
+  "hash": "c028e49e",
+  "browserHash": "475f1d7a",
+  "optimized": {
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "9f231313",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "73404b3c",
+      "needsInterop": false
+    },
+    "@tanstack/react-query": {
+      "src": "../../node_modules/@tanstack/react-query/build/lib/index.mjs",
+      "file": "@tanstack_react-query.js",
+      "fileHash": "4d4d977b",
+      "needsInterop": false
+    },
+    "@tanstack/react-query-devtools": {
+      "src": "../../node_modules/@tanstack/react-query-devtools/build/lib/index.mjs",
+      "file": "@tanstack_react-query-devtools.js",
+      "fileHash": "bdc0f09a",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "212de975",
+      "needsInterop": true
+    },
+    "superagent": {
+      "src": "../../node_modules/superagent/lib/client.js",
+      "file": "superagent.js",
+      "fileHash": "76d83990",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-ZGAH7ZJI": {
+      "file": "chunk-ZGAH7ZJI.js"
+    },
+    "chunk-DZXRV6RW": {
+      "file": "chunk-DZXRV6RW.js"
+    },
+    "chunk-ZAUFE7H7": {
+      "file": "chunk-ZAUFE7H7.js"
+    },
+    "chunk-UXIASGQL": {
+      "file": "chunk-UXIASGQL.js"
+    }
+  }
+}
