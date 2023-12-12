@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: {
-    files: Infinity,
+    files: 5,
   },
 })
 
@@ -62,7 +62,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 // POST localhost:5173/api/v1/missingcats/addcat
-router.post('/addcat', upload.array('file'), async (req, res) => {
+router.post('/addcat', upload.array('file', 5), async (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
       res.status(400).json({ error: 'No files uploaded' })

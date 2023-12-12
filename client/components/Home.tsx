@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
+import logoSrc from '../images/MP-Logo-White.svg'
 
 export default function Home() {
   const backgroundColour = 'none'
   const itemColour = '#f3f3f3'
   const borderColour = '#f3f3f3'
-  const navLogoSrc = '/client/images/MP-Logo-White.svg'
+
   return (
     <>
       <Nav
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
-        navLogoSrc={navLogoSrc}
+        navLogoSrc={logoSrc}
       />
       <section className="landing">
         <div className="landing__left">

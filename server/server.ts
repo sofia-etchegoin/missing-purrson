@@ -11,7 +11,7 @@ const server = express()
 dotenv.config()
 
 server.use(express.json())
-
+server.use('/uploads', express.static('/app/storage/uploads'))
 server.use('/api/v1/missingcats', missingCatRoutes)
 server.use('/api/v1/sightedcats', sightedCatRoutes)
 
