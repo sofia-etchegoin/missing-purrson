@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { getAllMissingCatsApi } from '../apis/api-cats'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
+import logoSrc from '../images/MP-Logo-Black.svg'
 
 export default function MissingCatList() {
   const [loadingTimePassed, setLoadingTimePassed] = useState(false)
@@ -46,7 +47,6 @@ export default function MissingCatList() {
   const backgroundColour = 'none'
   const itemColour = '#030303'
   const borderColour = '#030303'
-  const navLogo = 'client/images/MP-Logo-Black.svg'
   const getImageUrlsArray = (imageUrlString) => {
     if (!imageUrlString) return []
     return imageUrlString.split(',').map((url) => url.trim())
@@ -60,7 +60,7 @@ export default function MissingCatList() {
         backgroundColour={backgroundColour}
         itemColour={itemColour}
         borderColour={borderColour}
-        navLogoSrc={navLogo}
+        navLogoSrc={logoSrc}
       />
       <section className="cats">
         <div className="cats__left">
