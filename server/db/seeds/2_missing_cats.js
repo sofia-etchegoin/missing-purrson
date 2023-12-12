@@ -14,7 +14,7 @@ export async function seed(knex) {
       missing_cat_phone: '022-021-2355',
       missing_cat_email: 'daniel@kingston.com',
       missing_image_url:
-        'server/images/samples/creed-1.jpg,server/images/samples/creed-2.jpg,server/images/samples/creed-3.jpg,server/images/samples/creed-4.jpg,server/images/samples/creed-5.jpg',
+        'uploads/creed-1.jpg,uploads/creed-2.jpg,uploads/creed-3.jpg,uploads/creed-4.jpg,uploads/creed-5.jpg',
       cat_missing: true,
     },
     {
@@ -31,7 +31,7 @@ export async function seed(knex) {
       missing_cat_phone: '022-987-6543',
       missing_cat_email: 'owner@email.com',
       missing_image_url:
-        'server/images/samples/edward-1.jpeg,server/images/samples/edward-2.jpeg,server/images/samples/edward-3.jpeg,server/images/samples/edward-4.jpeg,server/images/samples/edward-5.jpeg',
+        'uploads/edward-1.jpeg,uploads/edward-2.jpeg,uploads/edward-3.jpeg,uploads/edward-4.jpeg,uploads/edward-5.jpeg',
       cat_missing: true,
     },
     {
@@ -48,7 +48,7 @@ export async function seed(knex) {
       missing_cat_phone: '022-555-1234',
       missing_cat_email: 'chaddles.owner@email.com',
       missing_image_url:
-        'server/images/samples/chaddles-1.jpg,server/images/samples/chaddles-2.jpg,server/images/samples/chaddles-3.jpg,server/images/samples/chaddles-4.jpeg,server/images/samples/chaddles-5.jpg',
+        'uploads/chaddles-1.jpg,uploads/chaddles-2.jpg,uploadss/chaddles-3.jpg,uploads/chaddles-4.jpeg,uploads/chaddles-5.jpg',
       cat_missing: true,
     },
     {
@@ -65,7 +65,7 @@ export async function seed(knex) {
       missing_cat_phone: '022-333-7890',
       missing_cat_email: 'butters.owner@email.com',
       missing_image_url:
-        'server/images/samples/butters-1.jpg,server/images/samples/butters-2.jpg,server/images/samples/butters-3.jpg,server/images/samples/butters-4.jpg,server/images/samples/butters-5.jpeg',
+        'uploads/butters-1.jpg,uploads/butters-2.jpg,uploads/butters-3.jpg,uploads/butters-4.jpg,uploads/butters-5.jpeg',
       cat_missing: true,
     },
   ])
