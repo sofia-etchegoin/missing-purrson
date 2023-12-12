@@ -11,12 +11,12 @@ const server = express()
 dotenv.config()
 
 server.use(express.json())
-server.use('/uploads', express.static('server/uploads'))
 server.use('/api/v1/missingcats', missingCatRoutes)
 server.use('/api/v1/sightedcats', sightedCatRoutes)
 
 if (process.env.NODE_ENV === 'production') {
-  server.use(express.static(Path.resolve('public')))
+  //server.use(express.static(Path.resolve('public')))
+  server.use('/uploads', express.static('server/uploads'))
   server.use('/assets', express.static(Path.resolve('./dist/assets')))
   server.get('*', (req, res) => {
     res.sendFile(Path.resolve('./dist/index.html'))
