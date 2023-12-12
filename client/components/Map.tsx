@@ -1,8 +1,11 @@
+//Map.tsx
 import React, { useState, useEffect, useRef } from 'react'
 import {
   useGoogleMap,
   GoogleMapsProvider,
 } from '@ubilabs/google-maps-react-hooks'
+
+import { fetchGoogleMapsAPIKey } from '../apis/api-map'
 
 const mapOptions = {
   zoom: 15,
@@ -15,6 +18,20 @@ const mapOptions = {
 export default function Map({ catSightings }) {
   const [mapContainer, setMapContainer] = useState(null)
   const [mapLoaded, setMapLoaded] = useState(false)
+  const [googleMapsAPIKey, setGoogleMapsAPIKey] = useState('')
+
+  useEffect(() => {
+    const getGoogleMapsKey = async () => {
+      try {
+        const apiKey = await fetchGoogleMapsAPIKey()
+        setGoogleMapsAPIKey(apiKey)
+      } catch (error) {
+        console.error('Error setting Google Maps API key:', error)
+      }
+    }
+
+    getGoogleMapsKey()
+  }, [])
 
   const handleLoad = (map) => {
     setMapLoaded(true)
@@ -22,7 +39,7 @@ export default function Map({ catSightings }) {
 
   return (
     <GoogleMapsProvider
-      googleMapsAPIKey="AIzaSyD499QbrpxctpzIhJlz48TDok-4hXTRTWw"
+      googleMapsAPIKey={googleMapsAPIKey}
       mapOptions={mapOptions}
       mapContainer={mapContainer}
       onLoad={handleLoad}
