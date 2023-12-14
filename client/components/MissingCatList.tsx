@@ -114,7 +114,7 @@ export default function MissingCatList() {
                 <div key={cat.catId} className="cats-card">
                   <div className="cats-card__img">
                     <img
-                      src={getImageUrlsArray(cat.missingImageUrl)[0]}
+                      src={`'/' + getImageUrlsArray(cat.missingImageUrl)[0]`}
                       alt={cat.catName}
                       className="cats-card-img"
                     />
