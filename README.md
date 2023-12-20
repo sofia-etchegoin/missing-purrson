@@ -117,11 +117,11 @@ Post-lunch check-in (to make sure we were all on the same page with tasks).
 
 End of day retro to discuss what went well and what didn't.
 
-## Link to designs/wireframes
+## Wireframes
 
 https://www.figma.com/file/Zguxyv1UlY4WI6PdSUyk5q/Untitled?type=design&node-id=0%3A1&mode=design&t=6fiibhbiilWHnjfb-1
 
-## Link to database diagram
+## Database diagram
 
 https://dbdiagram.io/d/missingPurrson-6567dc953be14957870363a1
 
