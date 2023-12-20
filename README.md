@@ -111,7 +111,7 @@ Started at 8:45am with a coffee and a standup. Set the daily KANBAN on the white
 
 Lunch break at 12:30pm, taking regular breaks when needed.
 
-Worked on the tech when not in meetings or taking breaks.
+Worked on the tech during the day.
 
 Post-lunch check-in (to make sure we were all on the same page with tasks).
 
