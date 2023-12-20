@@ -1,3 +1,4 @@
+//api-map.ts
 export const fetchGoogleMapsAPIKey = async () => {
   try {
     const response = await fetch('/api/getGoogleMapsKey')

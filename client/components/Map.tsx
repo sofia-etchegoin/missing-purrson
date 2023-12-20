@@ -1,5 +1,5 @@
 //Map.tsx
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {
   useGoogleMap,
   GoogleMapsProvider,
@@ -65,9 +65,6 @@ function Location({ sighting }) {
     if (!map || !sighting) {
       return
     }
-    console.log('bruh')
-
-    console.log(map)
 
     // Clear existing markers
     if (markerRef.current) {

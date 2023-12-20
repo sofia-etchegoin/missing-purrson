@@ -46,9 +46,6 @@ export default function AddCatSightings() {
   const handlePlaceChange = () => {
     const [place] = inputRef.current.getPlaces()
     if (place) {
-      // console.log(place.formatted_address)
-      // console.log(place.geometry.location.lat())
-      // console.log(place.geometry.location.lng())
       const latString = place.geometry.location.lat().toString()
       const lngString = place.geometry.location.lng().toString()
       formFields.location = latString + ', ' + lngString
@@ -112,7 +109,7 @@ export default function AddCatSightings() {
     return (
       <div className="loading">
         <img src="/client/images/catGif1.gif" alt="" />
-        <h1 className="loading-heading">Something's broken!</h1>
+        <h1 className="loading-heading">Something is broken!</h1>
       </div>
     )
   }
